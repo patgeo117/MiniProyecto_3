@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Creacion de clases">
-      <change afterPath="$PROJECT_DIR$/src/Interfaz.java" afterDir="false" />
+    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Interfaz 1">
+      <change afterPath="$PROJECT_DIR$/src/Interfaz/Interfaz_2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Interfaz/Interfaz_3.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/Interfaz_1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Principal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +27,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Interfaz.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Interfaz/Interfaz_1.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -36,15 +38,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/gpati/IdeaProjects/MiniProyecto1.1",
-    "settings.editor.selected.configurable": "settings.sync"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gpati/IdeaProjects/MiniProyecto1.1&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -68,7 +70,21 @@
       <option name="project" value="LOCAL" />
       <updated>1683919987849</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Interfaz 1">
+      <created>1683946866499</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1683946866499</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Interfaz 1">
+      <created>1683946881506</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1683946881506</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -85,6 +101,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inicio" />
     <MESSAGE value="Creacion de clases" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creacion de clases" />
+    <MESSAGE value="Interfaz 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Interfaz 1" />
   </component>
 </project>

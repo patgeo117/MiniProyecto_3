@@ -1,17 +1,17 @@
+package Interfaz;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class Interfaz {
+public class Interfaz_1 {
 
     // Ventanas
     JFrame Ventana1 = new JFrame();
-    JFrame Ventana2 = new JFrame();
-    JFrame Ventana3 = new JFrame();
 
     // Iconos
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("Recursos/LoginIcon.png")));
-
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("Recursos/LoginIcon2.png")));
 
     // MenuBar
     JMenuItem Sbibliotecario;
@@ -30,7 +30,7 @@ public class Interfaz {
     JButton bLogin;
 
 
-    public Interfaz(){
+    public Interfaz_1(){
 
         // Configuracion Ventana 1
         Ventana1.setLayout(null);
@@ -41,7 +41,6 @@ public class Interfaz {
         Ventana1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Ventana1.setIconImage(img.getImage());
         Ventana1.setVisible(true);
-
 
         // Configuracion MenuBar
         JMenuBar mb = new JMenuBar();
@@ -60,38 +59,34 @@ public class Interfaz {
 
         // JTextField
         txtUsuario = new JTextField("EMAIL ID...");
-        txtUsuario.setBounds(100, 100, 100, 20);
+        txtUsuario.setBounds(100, 110, 100, 20);
         Ventana1.add(txtUsuario);
 
         txtContrasena = new JTextField("PASSWORD...");
-        txtContrasena.setBounds(100, 140, 100, 20);
+        txtContrasena.setBounds(100, 150, 100, 20);
         Ventana1.add(txtContrasena);
 
         // JLabel
         lUsuario = new JLabel();
         lUsuario.setText("Username:");
-        lUsuario.setBounds(100,80,100,20);
+        lUsuario.setBounds(100,90,100,20);
         Ventana1.add(lUsuario);
 
         lContrasena = new JLabel();
         lContrasena.setText("Password:");
-        lContrasena.setBounds(100,120,100,20);
+        lContrasena.setBounds(100,130,100,20);
         Ventana1.add(lContrasena);
 
-        lImagen = new JLabel(img);
-        lImagen.setBounds(100,5,100,80);
+        lImagen = new JLabel(img2);
+        lImagen.setBounds(100,5,img2.getIconWidth(),img2.getIconHeight());
         Ventana1.add(lImagen);
 
         // JButton
         bLogin = new JButton();
         bLogin.setText("Log in");
         bLogin.setBackground(Color.BLUE);
-        bLogin.setBounds(100,180,100,30);
+        bLogin.setBounds(100,190,100,30);
         Ventana1.add(bLogin);
-
-
-
-
 
     }
 }
