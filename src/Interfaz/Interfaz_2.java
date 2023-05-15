@@ -42,7 +42,7 @@ public class Interfaz_2 {
         // Configuracion Panel
         panel = new JPanel();
         panel.setBounds(40,200,600,400);
-        panel.setBackground(Color.BLUE);
+        panel.setBackground(Color.lightGray);
         Ventana2.add(panel);
 
         // Configuracion Label
@@ -91,22 +91,22 @@ public class Interfaz_2 {
 
         bPrestarLibro = new JButton("Prestar");
         bPrestarLibro.setBounds(60,100,100,40);
-        bPrestarLibro.setBackground(Color.ORANGE);
+        bPrestarLibro.setBackground(Color.RED);
         Ventana2.add(bPrestarLibro);
 
         bRetornarLibro = new JButton("Retornar");
         bRetornarLibro.setBounds(200,100,100,40);
-        bRetornarLibro.setBackground(Color.ORANGE);
+        bRetornarLibro.setBackground(Color.RED);
         Ventana2.add(bRetornarLibro);
 
         bEstadoLibros = new JButton("Estado");
         bEstadoLibros.setBounds(340,100,100,40);
-        bEstadoLibros.setBackground(Color.ORANGE);
+        bEstadoLibros.setBackground(Color.RED);
         Ventana2.add(bEstadoLibros);
 
         bInformacion = new JButton("Información");
         bInformacion.setBounds(480,100,100,40);
-        bInformacion.setBackground(Color.ORANGE);
+        bInformacion.setBackground(Color.RED);
         Ventana2.add(bInformacion);
 
 
