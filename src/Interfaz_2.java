@@ -28,6 +28,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JLabel lEstadoLibro;
     JLabel lInformacionLibro;
     JLabel lTitulo;
+
     public Interfaz_2(){
 
         // Configuración Panel
@@ -124,10 +125,11 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton jb = (JButton) e.getSource();
         if(jb == bCrearCuentas){
-            new Interfaz_3();
+            setVisible(false);
+            Interfaz_3 interfaz3 = new Interfaz_3();
         }
         if(jb == bVolver){
-            dispose();
+            setVisible(false);
             new Interfaz_1();
         }
     }

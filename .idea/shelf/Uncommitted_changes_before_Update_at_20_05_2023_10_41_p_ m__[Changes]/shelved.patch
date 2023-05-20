@@ -1,0 +1,17 @@
+Index: src/Interfaz/Interfaz_1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Interfaz;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.util.Objects;\r\n\r\npublic class Interfaz_1 extends JFrame {\r\n\r\n    // Iconos\r\n    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource(\"/Recursos/LoginIcon.png\")));\r\n    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource(\"/Recursos/LoginIcon2.png\")));\r\n\r\n    // JText Field\r\n    JTextField txtUsuario;\r\n    JPasswordField txtContrasena;\r\n\r\n    // JLabel\r\n    JLabel lUsuario;\r\n    JLabel lContrasena;\r\n    JLabel lImagen;\r\n\r\n    // Jbutton\r\n    JButton bLogin;\r\n\r\n\r\n    public Interfaz_1() {\r\n\r\n        // JTextField\r\n        txtUsuario = new JTextField();\r\n        txtUsuario.setBounds(100, 110, 100, 20);\r\n        add(txtUsuario);\r\n\r\n        txtContrasena = new JPasswordField();\r\n        txtContrasena.setBounds(100, 150, 100, 20);\r\n        add(txtContrasena);\r\n\r\n        // JLabel\r\n        lUsuario = new JLabel();\r\n        lUsuario.setText(\"Username:\");\r\n        lUsuario.setBounds(100, 90, 100, 20);\r\n        add(lUsuario);\r\n\r\n        lContrasena = new JLabel();\r\n        lContrasena.setText(\"Password:\");\r\n        lContrasena.setBounds(100, 130, 100, 20);\r\n        add(lContrasena);\r\n\r\n        lImagen = new JLabel(img2);\r\n        lImagen.setBounds(105, 5, img2.getIconWidth(), img2.getIconHeight());\r\n        add(lImagen);\r\n\r\n        // JButton\r\n        bLogin = new JButton(\"Log In\");\r\n        bLogin.setBackground(Color.BLUE);\r\n        bLogin.setBounds(100, 190, 100, 30);\r\n        // agregamos el método de escucha al botón\r\n        bLogin.addActionListener(new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n                dispose(); // Finaliza y limpia el jFrame actual\r\n                new Interfaz_2();\r\n            }\r\n        });\r\n        add(bLogin);\r\n\r\n        // Configuracion Ventana 1\r\n\r\n        setLayout(null);\r\n        setSize(300, 325);\r\n        setTitle(\"Login\");\r\n        setLocationRelativeTo(null);\r\n        setResizable(false);\r\n        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\r\n        setIconImage(img.getImage());\r\n        setVisible(true);\r\n\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        new Interfaz_1();\r\n    }\r\n\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/Interfaz/Interfaz_1.java b/src/Interfaz/Interfaz_1.java
+--- a/src/Interfaz/Interfaz_1.java	
++++ b/src/Interfaz/Interfaz_1.java	
+@@ -27,6 +27,8 @@
+ 
+     public Interfaz_1() {
+ 
++
++
+         // JTextField
+         txtUsuario = new JTextField();
+         txtUsuario.setBounds(100, 110, 100, 20);
