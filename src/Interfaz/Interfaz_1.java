@@ -2,24 +2,19 @@ package Interfaz;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Objects;
 
-public class Interfaz_1 {
-
-    // Ventanas
-    JFrame Ventana1 = new JFrame();
+public class Interfaz_1 extends JFrame {
 
     // Iconos
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("Recursos/LoginIcon.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("Recursos/LoginIcon2.png")));
-
-    // MenuBar
-    JMenuItem Sbibliotecario;
-    JMenuItem Nbibliotecario;
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/LoginIcon.png")));
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/LoginIcon2.png")));
 
     // JText Field
     JTextField txtUsuario;
-    JTextField txtContrasena;
+    JPasswordField txtContrasena;
 
     // JLabel
     JLabel lUsuario;
@@ -30,63 +25,62 @@ public class Interfaz_1 {
     JButton bLogin;
 
 
-    public Interfaz_1(){
-
-        // Configuracion Ventana 1
-        Ventana1.setLayout(null);
-        Ventana1.setSize(300,325);
-        Ventana1.setTitle("Login");
-        Ventana1.setLocationRelativeTo(null);
-        Ventana1.setResizable(false);
-        Ventana1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Ventana1.setIconImage(img.getImage());
-        Ventana1.setVisible(true);
-
-        // Configuracion MenuBar
-        JMenuBar mb = new JMenuBar();
-
-        JMenu menuTipoCuenta = new JMenu("Tipo de Cuenta");
-
-        Sbibliotecario = new JMenuItem("Maestro Bibliotecario");
-        menuTipoCuenta.add(Sbibliotecario);
-
-        Nbibliotecario = new JMenuItem("Normal Bibliotecario");
-        menuTipoCuenta.add(Nbibliotecario);
-        menuTipoCuenta.addSeparator();
-
-        mb.add(menuTipoCuenta);
-        Ventana1.setJMenuBar(mb);
+    public Interfaz_1() {
 
         // JTextField
-        txtUsuario = new JTextField("EMAIL ID...");
+        txtUsuario = new JTextField();
         txtUsuario.setBounds(100, 110, 100, 20);
-        Ventana1.add(txtUsuario);
+        add(txtUsuario);
 
-        txtContrasena = new JTextField("PASSWORD...");
+        txtContrasena = new JPasswordField();
         txtContrasena.setBounds(100, 150, 100, 20);
-        Ventana1.add(txtContrasena);
+        add(txtContrasena);
 
         // JLabel
         lUsuario = new JLabel();
         lUsuario.setText("Username:");
-        lUsuario.setBounds(100,90,100,20);
-        Ventana1.add(lUsuario);
+        lUsuario.setBounds(100, 90, 100, 20);
+        add(lUsuario);
 
         lContrasena = new JLabel();
         lContrasena.setText("Password:");
-        lContrasena.setBounds(100,130,100,20);
-        Ventana1.add(lContrasena);
+        lContrasena.setBounds(100, 130, 100, 20);
+        add(lContrasena);
 
         lImagen = new JLabel(img2);
-        lImagen.setBounds(100,5,img2.getIconWidth(),img2.getIconHeight());
-        Ventana1.add(lImagen);
+        lImagen.setBounds(105, 5, img2.getIconWidth(), img2.getIconHeight());
+        add(lImagen);
 
         // JButton
-        bLogin = new JButton();
-        bLogin.setText("Log in");
+        bLogin = new JButton("Log In");
         bLogin.setBackground(Color.BLUE);
-        bLogin.setBounds(100,190,100,30);
-        Ventana1.add(bLogin);
+        bLogin.setBounds(100, 190, 100, 30);
+        // agregamos el método de escucha al botón
+        bLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Finaliza y limpia el jFrame actual
+                new Interfaz_2();
+            }
+        });
+        add(bLogin);
+
+        // Configuracion Ventana 1
+
+        setLayout(null);
+        setSize(300, 325);
+        setTitle("Login");
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(img.getImage());
+        setVisible(true);
 
     }
+
+    public static void main(String[] args) {
+        new Interfaz_1();
+    }
+
+
 }
