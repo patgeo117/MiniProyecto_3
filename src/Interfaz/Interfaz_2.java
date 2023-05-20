@@ -2,13 +2,14 @@ package Interfaz;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
+import java.util.*;
+import java.lang.*;
 
 public class Interfaz_2 {
     // Ventana
     JFrame Ventana2 = new JFrame();
     // Icono
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("Recursos/IconBiblioteca.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/IconBiblioteca.png")));
     // panel
     JPanel panel;
     // Botones
@@ -29,15 +30,6 @@ public class Interfaz_2 {
     JLabel lInformacionLibro;
     JLabel lTitulo;
     public Interfaz_2(){
-        // Configuración Ventana
-        Ventana2.setLayout(null);
-        Ventana2.setSize(700,700);
-        Ventana2.setTitle("Biblioteca");
-        Ventana2.setLocationRelativeTo(null);
-        Ventana2.setResizable(false);
-        Ventana2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Ventana2.setIconImage(img.getImage());
-        Ventana2.setVisible(true);
 
         // Configuracion Panel
         panel = new JPanel();
@@ -109,7 +101,15 @@ public class Interfaz_2 {
         bInformacion.setBackground(Color.RED);
         Ventana2.add(bInformacion);
 
-
+        // Configuración Ventana
+        Ventana2.setLayout(null);
+        Ventana2.setSize(700,700);
+        Ventana2.setTitle("Biblioteca");
+        Ventana2.setLocationRelativeTo(null);
+        Ventana2.setResizable(false);
+        Ventana2.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Ventana2.setIconImage(img.getImage());
+        Ventana2.setVisible(true);
 
     }
 
