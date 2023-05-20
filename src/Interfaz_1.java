@@ -9,6 +9,7 @@ public class Interfaz_1 extends JFrame {
     UsuarioMaestro usuarioMaestro = new UsuarioMaestro();
     Bibliotecario bibliotecario = new Bibliotecario();
 
+
     // Iconos
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/LoginIcon.png")));
     ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/LoginIcon2.png")));
@@ -62,39 +63,38 @@ public class Interfaz_1 extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Se toman los valores del JtextField
                 String Usuario = txtUsuario.getText();
-                char[] Clave = txtContrasena.getPassword();
-                String Contrasena = new String(Clave);  // Se transforma la clave a String
-
-                // se realizan las validaciones del Bibliotecario Maestro
-                if (Usuario.equals(usuarioMaestro.setUsuario())) { // Valido el usuario
-                    if (Contrasena.equals(usuarioMaestro.setContrasena())) { // valido la contraseña
-                        setVisible(false);
+                char Clave [] = txtContrasena.getPassword();
+                // Se transforma la clave a String
+                String Contraseña = new String(Clave);
+                // se hacen las validaciones del Bibliotecario Maestro
+                if(Usuario .equals(usuarioMaestro.getUsuario())){
+                    if (Contraseña .equals(usuarioMaestro.getContraseña())){
+                        dispose(); // Finaliza y limpia el jFrame actual
                         Interfaz_2 interfaz2 = new Interfaz_2();
                         // Se habilita el botón crear cuenta
                         interfaz2.lCrearCuenta.setVisible(true);
                         interfaz2.bCrearCuentas.setVisible(true);
-                    } else {
+                    }else {
                         // validación si la contraseña es incorrecta
-                        JOptionPane.showMessageDialog(null, "Usuario y/o Contrasena incorrecta. Vuelve a intentarlo");
-                        txtUsuario.setText(" ");
-                        txtContrasena.setText(" ");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Usuario y/o Contrasena incorrecta. Vuelve a intentarlo");
-                    txtUsuario.setText("");
-                    txtContrasena.setText("");
-                }
-
-                // validación para los Bibliotecarios Normal
-                if (Usuario.equals(bibliotecario.setName())) {
-                    if (Contrasena.equals(bibliotecario.setPassword())) {
-                        setVisible(false);
-                        new Interfaz_2();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Usuario o Contrasena incorrecta. Vuelve a intentarlo");
+                        JOptionPane.showMessageDialog(null,"Usuario o Contraseña incorrecta. Vuelve a intentarlo");
                         txtUsuario.setText("");
                         txtContrasena.setText("");
                     }
+                }
+                // validación para los Bibliotecarios Normal
+                else if(Usuario .equals(bibliotecario.getUsuarioN())){
+                    if(Contraseña .equals(bibliotecario.getContraseñaN())){
+                        new Interfaz_2();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(null,"Usuario o Contraseña incorrecta. Vuelve a intentarlo");
+                        txtUsuario.setText("");
+                        txtContrasena.setText("");
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(null,"Usuario o Contraseña incorrecta. Vuelve a intentarlo");
+                    txtUsuario.setText("");
+                    txtContrasena.setText("");
                 }
             }
         });
