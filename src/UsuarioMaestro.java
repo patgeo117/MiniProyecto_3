@@ -1,14 +1,12 @@
-
-
 public class UsuarioMaestro {
 
-    public String getUsuario(){
-        String VarUsuario = "Maestro";
-        return VarUsuario;
+    private String varUser = "Maestro";
+    private String varPassword= "Maestro";
+    public String setUsuario(){
+        return varUser;
     }
 
-    public String getContraseña(){
-        String VarContraseña = "Maestro1234";
-        return VarContraseña;
+    public String setContrasena(){
+        return varPassword;
     }
 }

@@ -11,7 +11,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     // panel
     JPanel panel;
     // Botones
-    JButton bCrearCuentas;
+     JButton bCrearCuentas;
     JButton bPrestarLibro;
     JButton bRetornarLibro;
     JButton bEstadoLibros;
