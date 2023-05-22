@@ -84,7 +84,7 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         JButton jb = (JButton) e.getSource();
         if (jb == crearCuenta) {
             getData();
-            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ",JOptionPane.INFORMATION_MESSAGE,img);
+            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ",JOptionPane.INFORMATION_MESSAGE);
             Usuario.setText("");
             Contrasena.setText("");
 
