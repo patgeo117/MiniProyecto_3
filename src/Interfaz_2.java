@@ -78,8 +78,6 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         setIconImage(img.getImage());
         setVisible(true);
 
-        // PRUEBA
-
         // Crear los nombres de las columnas
         String[] columnNames = {"Título", "Categoría", "Estado", "Código"};
         // Crear un modelo de tabla y agregar los datos

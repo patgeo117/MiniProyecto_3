@@ -6,7 +6,7 @@ public class Libros {
     public static Object[][] getData() {
         data = new Object[][] {
                 {"El resplandor", "TERROR", Disponible, 101},
-                {"It", "TERROR", "No Disponible", 102},
+                {"It", "TERROR", NoDisponible, 102},
                 {"El Exorcista", "TERROR", "Disponible", 103},
                 {"Pet Sematary", "TERROR", "Disponible", 104},
                 {"Frankenstein", "TERROR", "Disponible", 105},
