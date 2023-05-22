@@ -72,12 +72,12 @@ public class Interfaz_1 extends JFrame {
                         break;
                     }
                 }
-                if (usuarioValido) {
+                if (usuarioValido == true) {
                     setVisible(false);
                     new Interfaz_2();
                 }
                 // Se realizan las validaciones del Bibliotecario Maestro
-                else if (Usuario.equals(usuarioMaestro.setUsuario()) && Contrasena.equals(usuarioMaestro.setContrasena())) { // valido la contraseña
+                else if (Usuario.equals(usuarioMaestro.setUsuario()) && Contrasena.equals(usuarioMaestro.setContrasena())) { // validó la contraseña
                     setVisible(false);
                     Interfaz_2 interfaz2 = new Interfaz_2();
                     // Se habilita el botón crear cuenta

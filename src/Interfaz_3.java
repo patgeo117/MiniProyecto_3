@@ -11,15 +11,14 @@ public class Interfaz_3 extends JFrame implements ActionListener {
     // Jlabel
     JLabel lUsuario;
     JLabel lContrasena;
-
     // JtextField
     JTextField Usuario;
     JPasswordField Contrasena;
     // Jbutton
     JButton crearCuenta;
     JButton volver;
-
-    List<Bibliotecario> bibliotecarioList = new ArrayList<Bibliotecario>(); // creo una lista de tipo bibliotecario
+    // creo una lista de tipo bibliotecario
+    List<Bibliotecario> bibliotecarioList = new ArrayList<Bibliotecario>();
 
     public Interfaz_3() {
         // Configuración Jlabel
@@ -64,21 +63,20 @@ public class Interfaz_3 extends JFrame implements ActionListener {
     }
 
     public void getData() {
+        // Se toma el usuario del JTextField
         String name = Usuario.getText();
+        // Se toma la Contraseña del JTestField
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
-
+        // Construyo la lista bibliotecario y le paso los datos
         Bibliotecario bibliotecario = new Bibliotecario(name, password);
-
-        // ##### CÓDIGO DE PRUEBA #####
-
+        //
         bibliotecarioList.add(bibliotecario);
 
         for (Bibliotecario b : bibliotecarioList) {
             System.out.println(b.name + " " + b.password);
         }
         System.out.println(" ");
-
     }
 
     @Override
@@ -86,6 +84,10 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         JButton jb = (JButton) e.getSource();
         if (jb == crearCuenta) {
             getData();
+            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ",JOptionPane.INFORMATION_MESSAGE,img);
+            Usuario.setText("");
+            Contrasena.setText("");
+
         }
         if (jb == volver){
             setVisible(false);

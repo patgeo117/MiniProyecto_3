@@ -27,7 +27,6 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JLabel lRetornarLibro;
     JLabel lEstadoLibro;
     JLabel lInformacionLibro;
-    JLabel lTitulo;
 
     public Interfaz_2(){
 
