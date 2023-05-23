@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Implementación de la lista de libros 2">
+    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Mejoras al JTABLE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bibliotecario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interfaz_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Libros.java" afterDir="false" />
     </list>
     <list id="ecc96d05-5993-44b6-bd22-180bbb27c80c" name="JLabel" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684788999556</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Mejoras al JTABLE">
+      <created>1684851853666</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1684851853666</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +140,7 @@
     <MESSAGE value="Añado el mensaje de crear cuenta" />
     <MESSAGE value="Implementación de la lista de libros" />
     <MESSAGE value="Implementación de la lista de libros 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementación de la lista de libros 2" />
+    <MESSAGE value="Mejoras al JTABLE" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mejoras al JTABLE" />
   </component>
 </project>

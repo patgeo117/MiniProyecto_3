@@ -18,7 +18,14 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JButton bEstadoLibros;
     JButton bInfo;
     JButton bVolver;
-    // Label
+    // Jmenubar
+    JMenuBar menuBar;
+    JMenu estadoLibro;
+    JMenu personasMora;
+    JMenuItem mostrar;
+    JMenuItem terror;
+    JMenuItem novela;
+    JMenuItem inge;
     JLabel lCrearCuenta;
 
     public Interfaz_2(){
@@ -27,6 +34,33 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         panel = new JPanel();
         panel.setBounds(40,120,600,350);
         add(panel);
+
+        // Configuración Jmenubar
+        menuBar = new JMenuBar();
+
+        estadoLibro = new JMenu("Estado Libros");
+        personasMora = new JMenu("Personas en Mora");
+
+        mostrar = new JMenuItem("Mostrar");
+        mostrar.addActionListener(Action2);
+
+        terror = new JMenuItem("Terror");
+        terror.addActionListener(Action2);
+        novela = new JMenuItem("Novela Clásica");
+        novela.addActionListener(Action2);
+        inge = new JMenuItem("Ingeniería");
+        inge.addActionListener(Action2);
+
+        personasMora.add(mostrar);
+
+        estadoLibro.add(terror);
+        estadoLibro.add(novela);
+        estadoLibro.add(inge);
+
+        menuBar.add(estadoLibro);
+        menuBar.add(personasMora);
+
+        this.setJMenuBar(menuBar);
 
         // Configuración Label
         lCrearCuenta = new JLabel("Crear Cuenta:");
@@ -39,7 +73,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         bCrearCuentas.setBounds(40,500,100,20);
         bCrearCuentas.setBackground(Color.green);
         bCrearCuentas.setVisible(false);
-        bCrearCuentas.addActionListener(this);
+        bCrearCuentas.addActionListener(Action1);
         add(bCrearCuentas);
 
         bPrestarLibro = new JButton("Prestar");
@@ -65,7 +99,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         bVolver = new JButton("Volver");
         bVolver.setBounds(10,10,75,30);
         bVolver.setBackground(Color.green);
-        bVolver.addActionListener(this);
+        bVolver.addActionListener(Action1);
         add(bVolver);
 
         // Configuración Ventana
@@ -93,18 +127,59 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         // se añade al panel y además se le agrega el método JScroll para que se visualice de forma correcta
         panel.add(new JScrollPane(table));
 
+
     }
+
+    ActionListener Action1 = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JButton jb = (JButton) e.getSource();
+            if(jb == bCrearCuentas){
+                setVisible(false);
+                new Interfaz_3();
+            }
+            if(jb == bVolver){
+                setVisible(false);
+                new Interfaz_1();
+            }
+        }
+    };
+    ActionListener Action2 = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JMenuItem jm = (JMenuItem) e.getSource();
+            if(jm == mostrar){
+                System.out.println("Presionado mostrar");
+            }
+            if(jm == terror){
+                JOptionPane.showMessageDialog(null,
+                        "Nombre: "+Libros.getData()[0][0]+"     Estado: "+Libros.getData()[0][2]+"\n" +
+                                "Nombre: "+Libros.getData()[1][0]+"     Estado: "+Libros.getData()[1][2]+"\n" +
+                                "Nombre: "+Libros.getData()[2][0]+"     Estado: "+Libros.getData()[2][2]+"\n" +
+                                "Nombre: "+Libros.getData()[3][0]+"     Estado: "+Libros.getData()[3][2]+"\n" +
+                                "Nombre: "+Libros.getData()[4][0]+"     Estado: "+Libros.getData()[4][2]+"\n", "Estado Libros Terror",JOptionPane.INFORMATION_MESSAGE);
+            }
+            if(jm == novela){
+                JOptionPane.showMessageDialog(null,
+                        "Nombre: "+Libros.getData()[5][0]+"     Estado: "+Libros.getData()[5][2]+"\n" +
+                                "Nombre: "+Libros.getData()[6][0]+"     Estado: "+Libros.getData()[6][2]+"\n" +
+                                "Nombre: "+Libros.getData()[7][0]+"     Estado: "+Libros.getData()[7][2]+"\n" +
+                                "Nombre: "+Libros.getData()[8][0]+"     Estado: "+Libros.getData()[8][2]+"\n" +
+                                "Nombre: "+Libros.getData()[9][0]+"     Estado: "+Libros.getData()[9][2]+"\n", "Estado Libros Novela",JOptionPane.INFORMATION_MESSAGE);
+            }
+            if(jm == inge){
+                JOptionPane.showMessageDialog(null,
+                        "Nombre: "+Libros.getData()[10][0]+"    Estado: "+Libros.getData()[10][2]+"\n" +
+                                "Nombre: "+Libros.getData()[11][0]+"    Estado: "+Libros.getData()[11][2]+"\n" +
+                                "Nombre: "+Libros.getData()[12][0]+"    Estado: "+Libros.getData()[12][2]+"\n" +
+                                "Nombre: "+Libros.getData()[13][0]+"    Estado: "+Libros.getData()[13][2]+"\n" +
+                                "Nombre: "+Libros.getData()[14][0]+"    Estado: "+Libros.getData()[14][2]+"\n", "Estado Libros Ingeniería",JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    };
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JButton jb = (JButton) e.getSource();
-        if(jb == bCrearCuentas){
-            setVisible(false);
-            new Interfaz_3();
-        }
-        if(jb == bVolver){
-            setVisible(false);
-            new Interfaz_1();
-        }
+
     }
 }
