@@ -18,7 +18,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JButton bEstadoLibros;
     JButton bInfo;
     JButton bVolver;
-    // Jmenubar
+    // JMenuBar
     JMenuBar menuBar;
     JMenu estadoLibro;
     JMenu personasMora;
@@ -26,6 +26,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JMenuItem terror;
     JMenuItem novela;
     JMenuItem inge;
+    // JLabel
     JLabel lCrearCuenta;
 
     public Interfaz_2(){
@@ -130,6 +131,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
 
     }
 
+    // ActionListener para los butones
     ActionListener Action1 = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -144,13 +146,24 @@ public class Interfaz_2 extends JFrame implements ActionListener {
             }
         }
     };
+
+    // ActionListener para los Jmenuitem
     ActionListener Action2 = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            // Se crea un jmenuitem al cual se le asigna el jmenuitem presionado
             JMenuItem jm = (JMenuItem) e.getSource();
+
+            // Si se presiona el jmenuitem mostrar del jmenu personasMora se
+            //mostrara un cuadro de texto con las personas en mora
             if(jm == mostrar){
+                                // Print de prueba (Luego se cambiara)
                 System.out.println("Presionado mostrar");
             }
+
+            // Al presionar el jmenuitem terror este mostrara un cuadro de txt donde
+            // apareceran los nombre y el estado de cada libro de terror
             if(jm == terror){
                 JOptionPane.showMessageDialog(null,
                         "Nombre: "+Libros.getData()[0][0]+"     Estado: "+Libros.getData()[0][2]+"\n" +
@@ -159,6 +172,9 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                                 "Nombre: "+Libros.getData()[3][0]+"     Estado: "+Libros.getData()[3][2]+"\n" +
                                 "Nombre: "+Libros.getData()[4][0]+"     Estado: "+Libros.getData()[4][2]+"\n", "Estado Libros Terror",JOptionPane.INFORMATION_MESSAGE);
             }
+
+            // Al presionar el jmenuitem novela este mostrara un cuadro de txt donde
+            // apareceran los nombre y el estado de cada libro de novels Classics
             if(jm == novela){
                 JOptionPane.showMessageDialog(null,
                         "Nombre: "+Libros.getData()[5][0]+"     Estado: "+Libros.getData()[5][2]+"\n" +
@@ -167,6 +183,9 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                                 "Nombre: "+Libros.getData()[8][0]+"     Estado: "+Libros.getData()[8][2]+"\n" +
                                 "Nombre: "+Libros.getData()[9][0]+"     Estado: "+Libros.getData()[9][2]+"\n", "Estado Libros Novela",JOptionPane.INFORMATION_MESSAGE);
             }
+
+            // Al presionar el jmenuitem inge este mostrara un cuadro de txt donde
+            // apareceran los nombre y el estado de cada libro de engineering
             if(jm == inge){
                 JOptionPane.showMessageDialog(null,
                         "Nombre: "+Libros.getData()[10][0]+"    Estado: "+Libros.getData()[10][2]+"\n" +
