@@ -23,4 +23,11 @@ public class Libros {
         };
         return data;
     }
+
+    // Crear los nombres de las columnas
+    public static String[] getNomColumnas() {
+
+        return new String[]{"Título", "Categoría", "Estado", "Código"};
+    }
 }
+

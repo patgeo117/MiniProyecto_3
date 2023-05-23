@@ -78,10 +78,14 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         setIconImage(img.getImage());
         setVisible(true);
 
-        // Crear los nombres de las columnas
-        String[] columnNames = {"Título", "Categoría", "Estado", "Código"};
         // Crear un modelo de tabla y agregar los datos
-        DefaultTableModel model = new DefaultTableModel(Libros.getData(), columnNames);
+        DefaultTableModel model = new DefaultTableModel(Libros.getData(), Libros.getNomColumnas()){
+            // Se deshabilita la opción de modificar las filas y las columnas
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         // Crear un componente JTable con el modelo de tabla
         JTable table = new JTable(model);
         // Se le dan las dimensiones
