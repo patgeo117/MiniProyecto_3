@@ -62,7 +62,7 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    public void getData() {
+    public void getBibliotecarios() {
         // Se toma el usuario del JTextField
         String name = Usuario.getText();
         // Se toma la Contraseña del JTestField
@@ -83,7 +83,7 @@ public class Interfaz_3 extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton jb = (JButton) e.getSource();
         if (jb == crearCuenta) {
-            getData();
+            getBibliotecarios();
             JOptionPane.showMessageDialog(null, "Cuenta creada...", " ",JOptionPane.INFORMATION_MESSAGE);
             Usuario.setText("");
             Contrasena.setText("");

@@ -15,7 +15,6 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JButton bCrearCuentas;
     JButton bPrestarLibro;
     JButton bRetornarLibro;
-    JButton bEstadoLibros;
     JButton bInfo;
     JButton bVolver;
     // JMenuBar
@@ -28,6 +27,8 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JMenuItem inge;
     // JLabel
     JLabel lCrearCuenta;
+
+    // Variable para la cantidad de días prestado
 
     // Crear un modelo de tabla y agregar los datos
     DefaultTableModel model = new DefaultTableModel(Libros.getData(), Libros.getNomColumnas()) {
@@ -89,22 +90,19 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         add(bCrearCuentas);
 
         bPrestarLibro = new JButton("Prestar");
-        bPrestarLibro.setBounds(60, 60, 100, 40);
+        bPrestarLibro.setBounds(100, 60, 100, 40);
         bPrestarLibro.setBackground(Color.RED);
+        bPrestarLibro.addActionListener(this);
         add(bPrestarLibro);
 
         bRetornarLibro = new JButton("Retornar");
-        bRetornarLibro.setBounds(200, 60, 100, 40);
+        bRetornarLibro.setBounds(240, 60, 100, 40);
         bRetornarLibro.setBackground(Color.RED);
+        bRetornarLibro.addActionListener(this);
         add(bRetornarLibro);
 
-        bEstadoLibros = new JButton("Estado");
-        bEstadoLibros.setBounds(340, 60, 100, 40);
-        bEstadoLibros.setBackground(Color.RED);
-        add(bEstadoLibros);
-
         bInfo = new JButton("Información");
-        bInfo.setBounds(480, 60, 100, 40);
+        bInfo.setBounds(380, 60, 100, 40);
         bInfo.setBackground(Color.RED);
         add(bInfo);
 
@@ -130,19 +128,22 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         // se añade al panel y además se le agrega el método JScroll para que se visualice de forma correcta
         panel.add(new JScrollPane(table));
 
-
     }
 
-    public void Prestarlibro(){
+    public void Prestarlibro() {
         int indexRow = table.getSelectedRow();
         boolean data = (boolean) model.getValueAt(indexRow, 2);
 
-        for(int i = 0; i<= table.getRowCount(); i++){
-            if(data){
-                Libros.estado = data;
+        for (int i = 0; i <= table.getRowCount(); i++) {
+            if (data && indexRow == i) {
+                model.setValueAt(false, indexRow, 2);
+                Libros.getData()[i][2] = false;
                 break;
+
             }
         }
+        System.out.print(Libros.getData()[0][2]);//******************
+        model.fireTableDataChanged();
     }
 
     // ActionListener para los Jmenuitem
@@ -153,14 +154,16 @@ public class Interfaz_2 extends JFrame implements ActionListener {
             // Se crea un jmenuitem al cual se le asigna el jmenuitem presionado
             JMenuItem jm = (JMenuItem) e.getSource();
 
-            // Si se presiona el jmenuitem mostrar del jmenu personasMora se
-            //mostrara un cuadro de texto con las personas en mora
+            System.out.print(Libros.getData()[0][2]); // *****************
+
+            // Sí se presiona el jmenuitem mostrar del jmenu personasMora
+            // mostrar un cuadro de texto con las personas en mora
             if (jm == mostrar) {
                 // Print de prueba (Luego se cambiara)
                 System.out.println("Presionado mostrar");
             }
 
-            // Al presionar el jmenuitem terror este mostrara un cuadro de txt donde
+            // Al presionar el jmenuitem terror este mostrará un cuadro de txt donde
             // apareceran los nombre y el estado de cada libro de terror
             if (jm == terror) {
                 JOptionPane.showMessageDialog(null,
@@ -171,7 +174,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                                 "Nombre: " + Libros.getData()[4][0] + "    Estado: " + Libros.getData()[4][2] + "\n", "Estado Libros Terror", JOptionPane.PLAIN_MESSAGE);
             }
 
-            // Al presionar el jmenuitem novela este mostrara un cuadro de txt donde
+            // Al presionar el jmenuitem novela este mostrará un cuadro de txt donde
             // apareceran los nombre y el estado de cada libro de novels Classics
             if (jm == novela) {
                 JOptionPane.showMessageDialog(null,
@@ -182,7 +185,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                                 "Nombre: " + Libros.getData()[9][0] + "    Estado: " + Libros.getData()[9][2] + "\n", "Estado Libros Novela", JOptionPane.INFORMATION_MESSAGE);
             }
 
-            // Al presionar el jmenuitem inge este mostrara un cuadro de txt donde
+            // Al presionar el jmenuitem inge este mostrará un cuadro de txt donde
             // apareceran los nombre y el estado de cada libro de engineering
             if (jm == inge) {
                 JOptionPane.showMessageDialog(null,
@@ -196,19 +199,30 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     };
 
     @Override
-    public void actionPerformed(ActionEvent e) {     // ActionListener para los butones
+    public void actionPerformed(ActionEvent e) {     // ActionListener para los botones
         JButton jb = (JButton) e.getSource();
         if (jb == bCrearCuentas) {
             setVisible(false);
             new Interfaz_3();
         }
-        if(jb == bPrestarLibro){
+        if (jb == bPrestarLibro) {
             Prestarlibro();
         }
         if (jb == bVolver) {
             setVisible(false);
             new Interfaz_1();
         }
+        if (jb == bRetornarLibro) {
+            int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Dias que fue prestado el libro", "Retornar Libro"));
+            int diasAtraso = dias - 7;
 
+            if (diasAtraso > 0) {
+                int multa = diasAtraso * 1000; // Calcular la multa
+                JOptionPane.showMessageDialog(null, "Se debe cobrar una multa de " + multa + " pesos.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se debe cobrar ninguna multa.");
+            }
+        }
     }
 }
+

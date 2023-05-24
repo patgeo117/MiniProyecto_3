@@ -1,6 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Libros {
-    static boolean estado = true;
-    static Object[][] data;
 
     public static Object[][] getData() {
         data = new Object[][] {
@@ -21,8 +22,8 @@ public class Libros {
                 {"Introduction to Electrical Engineering", "INGENIERÍA", estado, 115}
         };
         return data;
-    }
 
+    }
     // Crear los nombres de las columnas
     public static String[] getNomColumnas() {
 
