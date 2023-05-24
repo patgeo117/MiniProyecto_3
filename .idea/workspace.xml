@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Mejoras al JTABLE">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_05_2023_7_50_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_05_2023_7_50_p__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2023_3_21_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2023_3_21_p__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_6_51_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_6_51_p__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Libros.java" afterDir="false" />
-    </list>
+    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="PRUEBA Prestar libro" />
     <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="">
       <change beforePath="$PROJECT_DIR$/src/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Libros.java" afterDir="false" />
     </list>
@@ -33,17 +24,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/Libros.java">
-      <ranges>
-        <range start1="0" end1="0" start2="0" end2="3" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="1" end1="3" start2="4" end2="4" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="5" end1="21" start2="6" end2="22" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
-        <range start1="23" end1="23" start2="24" end2="25" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="24" end1="25" start2="26" end2="26" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -137,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684851853666</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="PRUEBA Prestar libro">
+      <created>1684898383046</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1684898383046</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -160,6 +147,7 @@
     <MESSAGE value="Implementación de la lista de libros" />
     <MESSAGE value="Implementación de la lista de libros 2" />
     <MESSAGE value="Mejoras al JTABLE" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mejoras al JTABLE" />
+    <MESSAGE value="PRUEBA Prestar libro" />
+    <option name="LAST_COMMIT_MESSAGE" value="PRUEBA Prestar libro" />
   </component>
 </project>
