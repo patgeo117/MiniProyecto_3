@@ -1,25 +1,24 @@
 public class Libros {
-    static boolean Disponible = true;
-    static boolean NoDisponible = false;
+    static boolean estado = true;
     static Object[][] data;
 
     public static Object[][] getData() {
         data = new Object[][] {
-                {"El resplandor", "TERROR", Disponible, 101},
-                {"It", "TERROR", NoDisponible, 102},
-                {"El Exorcista", "TERROR", "Disponible", 103},
-                {"Pet Sematary", "TERROR", "Disponible", 104},
-                {"Frankenstein", "TERROR", "Disponible", 105},
-                {"Cien años de soledad", "NOVELA", "Disponible", 106},
-                {"1984", "NOVELA", "No Disponible", 107},
-                {"El gran Gatsby", "NOVELA", "Disponible", 108},
-                {"Orgullo y prejuicio", "NOVELA", "Disponible", 109},
-                {"Don Quijote de la Mancha", "NOVELA", "Disponible", 110},
-                {"Circuit Analysis: Theory and Practice", "INGENIERÍA", "Disponible", 111},
-                {"Mechanics of Materials", "INGENIERÍA", "No Disponible", 112},
-                {"Introduction to Chemical Engineering Thermodynamics", "INGENIERÍA", "Disponible", 113},
-                {"Structural Analysis", "INGENIERÍA", "Disponible", 114},
-                {"Introduction to Electrical Engineering", "INGENIERÍA", "Disponible", 115}
+                {"El resplandor", "TERROR", estado, 101},
+                {"It", "TERROR", estado, 102},
+                {"El Exorcista", "TERROR", estado, 103},
+                {"Pet Sematary", "TERROR", estado, 104},
+                {"Frankenstein", "TERROR", estado, 105},
+                {"Cien años de soledad", "NOVELA", estado, 106},
+                {"1984", "NOVELA", estado, 107},
+                {"El gran Gatsby", "NOVELA", estado, 108},
+                {"Orgullo y prejuicio", "NOVELA", estado, 109},
+                {"Don Quijote de la Mancha", "NOVELA", estado, 110},
+                {"Circuit Analysis: Theory and Practice", "INGENIERÍA", estado, 111},
+                {"Mechanics of Materials", "INGENIERÍA", estado, 112},
+                {"Introduction to Chemical Engineering Thermodynamics", "INGENIERÍA", estado, 113},
+                {"Structural Analysis", "INGENIERÍA", estado, 114},
+                {"Introduction to Electrical Engineering", "INGENIERÍA", estado, 115}
         };
         return data;
     }

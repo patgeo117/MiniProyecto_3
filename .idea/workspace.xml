@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Mejoras al JTABLE">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2023_2_44_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_20_05_2023_2_44_p__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2023_10_41_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2023_10_41_p__m___Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2023_10_41_p__m___Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2023_10_41_p__m___Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2023_2_45_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2023_2_45_p__m___Changes_.xml" afterDir="false" />
+    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Añado el mensaje de crear cuenta">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interfaz_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Libros.java" afterDir="false" />
     </list>
     <list id="ecc96d05-5993-44b6-bd22-180bbb27c80c" name="JLabel" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +43,8 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/gpati/IdeaProjects/MiniProyecto1.1&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
   }
@@ -101,28 +100,7 @@
       <option name="project" value="LOCAL" />
       <updated>1684720247196</updated>
     </task>
-    <task id="LOCAL-00007" summary="Implementación de la lista de libros">
-      <created>1684786724533</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1684786724533</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Implementación de la lista de libros 2">
-      <created>1684788999555</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1684788999556</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Mejoras al JTABLE">
-      <created>1684851853666</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1684851853666</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,9 +120,6 @@
     <MESSAGE value="Interfaz 1" />
     <MESSAGE value="Interfaz 2" />
     <MESSAGE value="Añado el mensaje de crear cuenta" />
-    <MESSAGE value="Implementación de la lista de libros" />
-    <MESSAGE value="Implementación de la lista de libros 2" />
-    <MESSAGE value="Mejoras al JTABLE" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mejoras al JTABLE" />
+    <option name="LAST_COMMIT_MESSAGE" value="Añado el mensaje de crear cuenta" />
   </component>
 </project>
