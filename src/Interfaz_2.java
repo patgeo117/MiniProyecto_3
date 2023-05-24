@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.lang.*;
+import java.util.List;
 
 public class Interfaz_2 extends JFrame implements ActionListener {
     // Icono
@@ -31,7 +32,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     // Variable para la cantidad de días prestado
 
     // Crear un modelo de tabla y agregar los datos
-    DefaultTableModel model = new DefaultTableModel(Libros.getData(), Libros.getNomColumnas()) {
+    DefaultTableModel model = new DefaultTableModel(Libros.getDataRow(), Libros.getNomColumnas()) {
         // Se deshabilita la opción de modificar las filas y las columnas
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -41,8 +42,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     // Crear un componente JTable con el modelo de tabla
     JTable table = new JTable(model);
 
-    // creo una lista con los datos prorcionados en la clase Libros para poder modificarlos
-    Object[][] datos = Libros.getData();
+    List<Prestamo> prestamolist = new ArrayList<>(); //***************
 
     public Interfaz_2() {
 
@@ -139,6 +139,10 @@ public class Interfaz_2 extends JFrame implements ActionListener {
 
         for (int i = 0; i <= table.getRowCount(); i++) {
             if (data && indexRow == i) {
+                // Obtengo los datos del usuario y los agrego a la lista en préstamo
+                String usuario = JOptionPane.showInputDialog(null, "Ingresa tu nombre completo: ");
+                String libro = (String)model.getValueAt(i, 0 );
+
                 model.setValueAt(false, indexRow, 2);
                 Libros.data[i][2] = false;
 
@@ -152,6 +156,10 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         }
 
         model.fireTableDataChanged();
+        //for(Prestamo p : prestamolist){ *************
+
+            //System.out.print(p.user + " " + p.libro);
+       // }
     }
 
     public void RetornarLibro() {
