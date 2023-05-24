@@ -140,12 +140,45 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         for (int i = 0; i <= table.getRowCount(); i++) {
             if (data && indexRow == i) {
                 model.setValueAt(false, indexRow, 2);
-                datos[i][2] = false;
-                break;
+                Libros.data[i][2] = false;
 
+                Prestamo prestamo = new Prestamo(usuario, libro); //***************
+                prestamolist.add(prestamo); //***************
+                break;
+            } else if (!data && indexRow == i) {
+                JOptionPane.showMessageDialog(null, "El libro Nn esta Disponible");
+                break;
             }
         }
-        System.out.print(datos[0][2]);//******************
+
+        model.fireTableDataChanged();
+    }
+
+    public void RetornarLibro() {
+        int indexRow = table.getSelectedRow();
+        boolean data = (boolean) model.getValueAt(indexRow, 2);
+
+        for (int j = 0; j <= table.getRowCount();) {
+            if(!data && indexRow == j) {
+                int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Dias que fue prestado el libro"));
+                int diasAtraso = dias - 7;
+                model.setValueAt(true, indexRow, 2);
+                Libros.data[j][2] = true;
+
+                if (diasAtraso > 0) {
+                    Prestamo.multa = diasAtraso * 1000; // Calcular la multa
+                    JOptionPane.showMessageDialog(null, "Se debe cobrar una multa de " + Prestamo.multa + " pesos.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se debe cobrar ninguna multa.");
+                }
+            }
+            else {
+                JOptionPane.showMessageDialog(null,"El libro ya esta en la biblioteca");
+            }
+            break;
+
+        }
+        System.out.print(Libros.getDataRow()[0][2]);//******************
         model.fireTableDataChanged();
     }
 
@@ -157,7 +190,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
             // Se crea un jmenuitem al cual se le asigna el jmenuitem presionado
             JMenuItem jm = (JMenuItem) e.getSource();
 
-            System.out.print(datos[0][2]); // *****************
+            System.out.print(Libros.data[0][2]); // *****************
 
             // Sí se presiona el jmenuitem mostrar del jmenu personasMora
             // mostrar un cuadro de texto con las personas en mora
@@ -170,33 +203,33 @@ public class Interfaz_2 extends JFrame implements ActionListener {
             // apareceran los nombre y el estado de cada libro de terror
             if (jm == terror) {
                 JOptionPane.showMessageDialog(null,
-                        "Nombre: " + datos[0][0] + "    Estado: " + datos[0][2] + "\n" +
-                                "Nombre: " + datos[1][0] + "    Estado: " + datos[1][2] + "\n" +
-                                "Nombre: " + datos[2][0] + "    Estado: " + datos[2][2] + "\n" +
-                                "Nombre: " + datos[3][0] + "    Estado: " + datos[3][2] + "\n" +
-                                "Nombre: " + datos[4][0] + "    Estado: " + datos[4][2] + "\n", "Estado Libros Terror", JOptionPane.PLAIN_MESSAGE);
+                        "Nombre: " + Libros.data[0][0] + "    Estado: " + Libros.data[0][2] + "\n" +
+                                "Nombre: " + Libros.data[1][0] + "    Estado: " + Libros.data[1][2] + "\n" +
+                                "Nombre: " + Libros.data[2][0] + "    Estado: " + Libros.data[2][2] + "\n" +
+                                "Nombre: " + Libros.data[3][0] + "    Estado: " + Libros.data[3][2] + "\n" +
+                                "Nombre: " + Libros.data[4][0] + "    Estado: " + Libros.data[4][2] + "\n", "Estado Libros Terror", JOptionPane.PLAIN_MESSAGE);
             }
 
             // Al presionar el jmenuitem novela este mostrará un cuadro de txt donde
             // apareceran los nombre y el estado de cada libro de novels Classics
             if (jm == novela) {
                 JOptionPane.showMessageDialog(null,
-                        "Nombre: " + datos[5][0] + "    Estado: " + datos[5][2] + "\n" +
-                                "Nombre: " + datos[6][0] + "    Estado: " + datos[6][2] + "\n" +
-                                "Nombre: " + datos[7][0] + "    Estado: " + datos[7][2] + "\n" +
-                                "Nombre: " + datos[8][0] + "    Estado: " + datos[8][2] + "\n" +
-                                "Nombre: " + datos[9][0] + "    Estado: " + datos[9][2] + "\n", "Estado Libros Novela", JOptionPane.INFORMATION_MESSAGE);
+                        "Nombre: " + Libros.data[5][0] + "    Estado: " + Libros.data[5][2] + "\n" +
+                                "Nombre: " + Libros.data[6][0] + "    Estado: " + Libros.data[6][2] + "\n" +
+                                "Nombre: " + Libros.data[7][0] + "    Estado: " + Libros.data[7][2] + "\n" +
+                                "Nombre: " + Libros.data[8][0] + "    Estado: " + Libros.data[8][2] + "\n" +
+                                "Nombre: " + Libros.data[9][0] + "    Estado: " + Libros.data[9][2] + "\n", "Estado Libros Novela", JOptionPane.INFORMATION_MESSAGE);
             }
 
             // Al presionar el jmenuitem inge este mostrará un cuadro de txt donde
             // apareceran los nombre y el estado de cada libro de engineering
             if (jm == inge) {
                 JOptionPane.showMessageDialog(null,
-                        "Nombre: " + datos[10][0] + "    Estado: " + datos[10][2] + "\n" +
-                                "Nombre: " + datos[11][0] + "    Estado: " + datos[11][2] + "\n" +
-                                "Nombre: " + datos[12][0] + "    Estado: " + datos[12][2] + "\n" +
-                                "Nombre: " + datos[13][0] + "    Estado: " + datos[13][2] + "\n" +
-                                "Nombre: " + datos[14][0] + "    Estado: " + datos[14][2] + "\n", "Estado Libros Ingeniería", JOptionPane.INFORMATION_MESSAGE);
+                        "Nombre: " + Libros.data[10][0] + "    Estado: " + Libros.data[10][2] + "\n" +
+                                "Nombre: " + Libros.data[11][0] + "    Estado: " + Libros.data[11][2] + "\n" +
+                                "Nombre: " + Libros.data[12][0] + "    Estado: " + Libros.data[12][2] + "\n" +
+                                "Nombre: " + Libros.data[13][0] + "    Estado: " + Libros.data[13][2] + "\n" +
+                                "Nombre: " + Libros.data[14][0] + "    Estado: " + Libros.data[14][2] + "\n", "Estado Libros Ingeniería", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     };
@@ -216,15 +249,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
             new Interfaz_1();
         }
         if (jb == bRetornarLibro) {
-            int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Dias que fue prestado el libro", "Retornar Libro"));
-            int diasAtraso = dias - 7;
-
-            if (diasAtraso > 0) {
-                int multa = diasAtraso * 1000; // Calcular la multa
-                JOptionPane.showMessageDialog(null, "Se debe cobrar una multa de " + multa + " pesos.");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se debe cobrar ninguna multa.");
-            }
+            RetornarLibro();
         }
     }
 }
