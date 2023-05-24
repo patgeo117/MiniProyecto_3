@@ -156,10 +156,9 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         }
 
         model.fireTableDataChanged();
-        //for(Prestamo p : prestamolist){ *************
-
-            //System.out.print(p.user + " " + p.libro);
-       // }
+        for(Prestamo p : prestamolist){ //*************
+            System.out.print(p.user + " " + p.libro);
+        }
     }
 
     public void RetornarLibro() {
