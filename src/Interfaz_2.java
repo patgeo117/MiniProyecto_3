@@ -138,7 +138,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         boolean data = (boolean) model.getValueAt(indexRow, 2);
 
         for(int i = 0; i<= table.getRowCount(); i++){
-            if(indexRow == i){
+            if(data){
                 Libros.estado = data;
                 break;
             }
