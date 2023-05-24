@@ -4,22 +4,22 @@ import java.util.List;
 public class Libros {
 
     public static Object[][] getData() {
-        data = new Object[][] {
-                {"El resplandor", "TERROR", estado, 101},
-                {"It", "TERROR", estado, 102},
-                {"El Exorcista", "TERROR", estado, 103},
-                {"Pet Sematary", "TERROR", estado, 104},
-                {"Frankenstein", "TERROR", estado, 105},
-                {"Cien años de soledad", "NOVELA", estado, 106},
-                {"1984", "NOVELA", estado, 107},
-                {"El gran Gatsby", "NOVELA", estado, 108},
-                {"Orgullo y prejuicio", "NOVELA", estado, 109},
-                {"Don Quijote de la Mancha", "NOVELA", estado, 110},
-                {"Circuit Analysis: Theory and Practice", "INGENIERÍA", estado, 111},
-                {"Mechanics of Materials", "INGENIERÍA", estado, 112},
-                {"Introduction to Chemical Engineering Thermodynamics", "INGENIERÍA", estado, 113},
-                {"Structural Analysis", "INGENIERÍA", estado, 114},
-                {"Introduction to Electrical Engineering", "INGENIERÍA", estado, 115}
+        Object[][] data = new Object[][] {
+                {"El resplandor", "TERROR", true, 101},
+                {"It", "TERROR", true, 102},
+                {"El Exorcista", "TERROR", true, 103},
+                {"Pet Sematary", "TERROR", true, 104},
+                {"Frankenstein", "TERROR", true, 105},
+                {"Cien años de soledad", "NOVELA", true, 106},
+                {"1984", "NOVELA", true, 107},
+                {"El gran Gatsby", "NOVELA", true, 108},
+                {"Orgullo y prejuicio", "NOVELA", true, 109},
+                {"Don Quijote de la Mancha", "NOVELA", true, 110},
+                {"Circuit Analysis: Theory and Practice", "INGENIERÍA", true, 111},
+                {"Mechanics of Materials", "INGENIERÍA", true, 112},
+                {"Introduction to Chemical Engineering Thermodynamics", "INGENIERÍA", true, 113},
+                {"Structural Analysis", "INGENIERÍA", true, 114},
+                {"Introduction to Electrical Engineering", "INGENIERÍA", true, 115}
         };
         return data;
 
