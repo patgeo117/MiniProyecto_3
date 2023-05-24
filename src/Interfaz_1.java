@@ -72,7 +72,7 @@ public class Interfaz_1 extends JFrame {
                         break;
                     }
                 }
-                if (usuarioValido) {
+                if (usuarioValido == true) { // DIscutir con Jhojan
                     setVisible(false);
                     new Interfaz_2();
                 }
