@@ -1,5 +1,4 @@
 public class Libros {
-    static boolean estado = true;
     static Object[][] data;
 
     public static Object[][] getData() {

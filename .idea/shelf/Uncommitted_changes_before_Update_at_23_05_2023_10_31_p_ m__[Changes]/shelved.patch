@@ -1,0 +1,226 @@
+Index: src/Interfaz_2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\r\nimport javax.swing.table.DefaultTableModel;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.util.*;\r\nimport java.lang.*;\r\n\r\npublic class Interfaz_2 extends JFrame implements ActionListener {\r\n    // Icono\r\n    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource(\"/Recursos/IconBiblioteca.png\")));\r\n    // panel\r\n    JPanel panel;\r\n    // Botones\r\n    JButton bCrearCuentas;\r\n    JButton bPrestarLibro;\r\n    JButton bRetornarLibro;\r\n    JButton bInfo;\r\n    JButton bVolver;\r\n    // JMenuBar\r\n    JMenuBar menuBar;\r\n    JMenu estadoLibro;\r\n    JMenu personasMora;\r\n    JMenuItem mostrar;\r\n    JMenuItem terror;\r\n    JMenuItem novela;\r\n    JMenuItem inge;\r\n    // JLabel\r\n    JLabel lCrearCuenta;\r\n\r\n    // Variable para la cantidad de días prestado\r\n\r\n    // Crear un modelo de tabla y agregar los datos\r\n    DefaultTableModel model = new DefaultTableModel(Libros.getData(), Libros.getNomColumnas()) {\r\n        // Se deshabilita la opción de modificar las filas y las columnas\r\n        @Override\r\n        public boolean isCellEditable(int row, int column) {\r\n            return false;\r\n        }\r\n    };\r\n    // Crear un componente JTable con el modelo de tabla\r\n    JTable table = new JTable(model);\r\n\r\n    public Interfaz_2() {\r\n\r\n        // Configuración Panel\r\n        panel = new JPanel();\r\n        panel.setBounds(40, 120, 600, 350);\r\n        add(panel);\r\n\r\n        // Configuración Jmenubar\r\n        menuBar = new JMenuBar();\r\n\r\n        estadoLibro = new JMenu(\"Estado Libros\");\r\n        personasMora = new JMenu(\"Personas en Mora\");\r\n\r\n        mostrar = new JMenuItem(\"Mostrar\");\r\n        mostrar.addActionListener(Action2);\r\n\r\n        terror = new JMenuItem(\"Terror\");\r\n        terror.addActionListener(Action2);\r\n        novela = new JMenuItem(\"Novela Clásica\");\r\n        novela.addActionListener(Action2);\r\n        inge = new JMenuItem(\"Ingeniería\");\r\n        inge.addActionListener(Action2);\r\n\r\n        personasMora.add(mostrar);\r\n\r\n        estadoLibro.add(terror);\r\n        estadoLibro.add(novela);\r\n        estadoLibro.add(inge);\r\n\r\n        menuBar.add(estadoLibro);\r\n        menuBar.add(personasMora);\r\n\r\n        this.setJMenuBar(menuBar);\r\n\r\n        // Configuración Label\r\n        lCrearCuenta = new JLabel(\"Crear Cuenta:\");\r\n        lCrearCuenta.setBounds(40, 480, 100, 20);\r\n        lCrearCuenta.setVisible(false);\r\n        add(lCrearCuenta);\r\n\r\n        // Configuración Botones\r\n        bCrearCuentas = new JButton(\"Crear\");\r\n        bCrearCuentas.setBounds(40, 500, 100, 20);\r\n        bCrearCuentas.setBackground(Color.green);\r\n        bCrearCuentas.setVisible(false);\r\n        bCrearCuentas.addActionListener(this);\r\n        add(bCrearCuentas);\r\n\r\n        bPrestarLibro = new JButton(\"Prestar\");\r\n        bPrestarLibro.setBounds(100, 60, 100, 40);\r\n        bPrestarLibro.setBackground(Color.RED);\r\n        bPrestarLibro.addActionListener(this);\r\n        add(bPrestarLibro);\r\n\r\n        bRetornarLibro = new JButton(\"Retornar\");\r\n        bRetornarLibro.setBounds(240, 60, 100, 40);\r\n        bRetornarLibro.setBackground(Color.RED);\r\n        bRetornarLibro.addActionListener(this);\r\n        add(bRetornarLibro);\r\n\r\n        bInfo = new JButton(\"Información\");\r\n        bInfo.setBounds(380, 60, 100, 40);\r\n        bInfo.setBackground(Color.RED);\r\n        add(bInfo);\r\n\r\n        bVolver = new JButton(\"Volver\");\r\n        bVolver.setBounds(10, 10, 75, 30);\r\n        bVolver.setBackground(Color.green);\r\n        bVolver.addActionListener(this);\r\n        add(bVolver);\r\n\r\n        // Configuración Ventana\r\n        setLayout(null);\r\n        setSize(700, 600);\r\n        setTitle(\"Biblioteca\");\r\n        setLocationRelativeTo(null);\r\n        setResizable(false);\r\n        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\r\n        setIconImage(img.getImage());\r\n        setVisible(true);\r\n\r\n\r\n        // Se le dan las dimensiones\r\n        table.setPreferredScrollableViewportSize(new Dimension(600, 300));\r\n        // se añade al panel y además se le agrega el método JScroll para que se visualice de forma correcta\r\n        panel.add(new JScrollPane(table));\r\n\r\n    }\r\n\r\n    public void Prestarlibro() {\r\n        int indexRow = table.getSelectedRow();\r\n        boolean data = (boolean) model.getValueAt(indexRow, 2);\r\n\r\n        for (int i = 0; i <= table.getRowCount(); i++) {\r\n            if (data && indexRow == i) {\r\n                model.setValueAt(false, indexRow, 2);\r\n                Libros.getData()[i][2] = false;\r\n                break;\r\n\r\n            }\r\n        }\r\n        System.out.print(Libros.getData()[0][2]);//******************\r\n        model.fireTableDataChanged();\r\n    }\r\n\r\n    // ActionListener para los Jmenuitem\r\n    ActionListener Action2 = new ActionListener() {\r\n        @Override\r\n        public void actionPerformed(ActionEvent e) {\r\n\r\n            // Se crea un jmenuitem al cual se le asigna el jmenuitem presionado\r\n            JMenuItem jm = (JMenuItem) e.getSource();\r\n\r\n            System.out.print(Libros.getData()[0][2]); // *****************\r\n\r\n            // Sí se presiona el jmenuitem mostrar del jmenu personasMora\r\n            // mostrar un cuadro de texto con las personas en mora\r\n            if (jm == mostrar) {\r\n                // Print de prueba (Luego se cambiara)\r\n                System.out.println(\"Presionado mostrar\");\r\n            }\r\n\r\n            // Al presionar el jmenuitem terror este mostrará un cuadro de txt donde\r\n            // apareceran los nombre y el estado de cada libro de terror\r\n            if (jm == terror) {\r\n                JOptionPane.showMessageDialog(null,\r\n                        \"Nombre: \" + Libros.getData()[0][0] + \"    Estado: \" + Libros.getData()[0][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[1][0] + \"    Estado: \" + Libros.getData()[1][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[2][0] + \"    Estado: \" + Libros.getData()[2][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[3][0] + \"    Estado: \" + Libros.getData()[3][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[4][0] + \"    Estado: \" + Libros.getData()[4][2] + \"\\n\", \"Estado Libros Terror\", JOptionPane.PLAIN_MESSAGE);\r\n            }\r\n\r\n            // Al presionar el jmenuitem novela este mostrará un cuadro de txt donde\r\n            // apareceran los nombre y el estado de cada libro de novels Classics\r\n            if (jm == novela) {\r\n                JOptionPane.showMessageDialog(null,\r\n                        \"Nombre: \" + Libros.getData()[5][0] + \"    Estado: \" + Libros.getData()[5][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[6][0] + \"    Estado: \" + Libros.getData()[6][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[7][0] + \"    Estado: \" + Libros.getData()[7][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[8][0] + \"    Estado: \" + Libros.getData()[8][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[9][0] + \"    Estado: \" + Libros.getData()[9][2] + \"\\n\", \"Estado Libros Novela\", JOptionPane.INFORMATION_MESSAGE);\r\n            }\r\n\r\n            // Al presionar el jmenuitem inge este mostrará un cuadro de txt donde\r\n            // apareceran los nombre y el estado de cada libro de engineering\r\n            if (jm == inge) {\r\n                JOptionPane.showMessageDialog(null,\r\n                        \"Nombre: \" + Libros.getData()[10][0] + \"    Estado: \" + Libros.getData()[10][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[11][0] + \"    Estado: \" + Libros.getData()[11][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[12][0] + \"    Estado: \" + Libros.getData()[12][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[13][0] + \"    Estado: \" + Libros.getData()[13][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.getData()[14][0] + \"    Estado: \" + Libros.getData()[14][2] + \"\\n\", \"Estado Libros Ingeniería\", JOptionPane.INFORMATION_MESSAGE);\r\n            }\r\n        }\r\n    };\r\n\r\n    @Override\r\n    public void actionPerformed(ActionEvent e) {     // ActionListener para los botones\r\n        JButton jb = (JButton) e.getSource();\r\n        if (jb == bCrearCuentas) {\r\n            setVisible(false);\r\n            new Interfaz_3();\r\n        }\r\n        if (jb == bPrestarLibro) {\r\n            Prestarlibro();\r\n        }\r\n        if (jb == bVolver) {\r\n            setVisible(false);\r\n            new Interfaz_1();\r\n        }\r\n        if (jb == bRetornarLibro) {\r\n            int dias = Integer.parseInt(JOptionPane.showInputDialog(null, \"Dias que fue prestado el libro\", \"Retornar Libro\"));\r\n            int diasAtraso = dias - 7;\r\n\r\n            if (diasAtraso > 0) {\r\n                int multa = diasAtraso * 1000; // Calcular la multa\r\n                JOptionPane.showMessageDialog(null, \"Se debe cobrar una multa de \" + multa + \" pesos.\");\r\n            } else {\r\n                JOptionPane.showMessageDialog(null, \"No se debe cobrar ninguna multa.\");\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Interfaz_2.java b/src/Interfaz_2.java
+--- a/src/Interfaz_2.java	(revision 63fd8abbaab1648bac753f53da8b28d49b5bdf65)
++++ b/src/Interfaz_2.java	(date 1684898960469)
+@@ -15,6 +15,7 @@
+     JButton bCrearCuentas;
+     JButton bPrestarLibro;
+     JButton bRetornarLibro;
++    JButton bEstadoLibros;
+     JButton bInfo;
+     JButton bVolver;
+     // JMenuBar
+@@ -28,8 +29,6 @@
+     // JLabel
+     JLabel lCrearCuenta;
+ 
+-    // Variable para la cantidad de días prestado
+-
+     // Crear un modelo de tabla y agregar los datos
+     DefaultTableModel model = new DefaultTableModel(Libros.getData(), Libros.getNomColumnas()) {
+         // Se deshabilita la opción de modificar las filas y las columnas
+@@ -90,19 +89,22 @@
+         add(bCrearCuentas);
+ 
+         bPrestarLibro = new JButton("Prestar");
+-        bPrestarLibro.setBounds(100, 60, 100, 40);
++        bPrestarLibro.setBounds(60, 60, 100, 40);
+         bPrestarLibro.setBackground(Color.RED);
+-        bPrestarLibro.addActionListener(this);
+         add(bPrestarLibro);
+ 
+         bRetornarLibro = new JButton("Retornar");
+-        bRetornarLibro.setBounds(240, 60, 100, 40);
++        bRetornarLibro.setBounds(200, 60, 100, 40);
+         bRetornarLibro.setBackground(Color.RED);
+-        bRetornarLibro.addActionListener(this);
+         add(bRetornarLibro);
+ 
++        bEstadoLibros = new JButton("Estado");
++        bEstadoLibros.setBounds(340, 60, 100, 40);
++        bEstadoLibros.setBackground(Color.RED);
++        add(bEstadoLibros);
++
+         bInfo = new JButton("Información");
+-        bInfo.setBounds(380, 60, 100, 40);
++        bInfo.setBounds(480, 60, 100, 40);
+         bInfo.setBackground(Color.RED);
+         add(bInfo);
+ 
+@@ -128,22 +130,19 @@
+         // se añade al panel y además se le agrega el método JScroll para que se visualice de forma correcta
+         panel.add(new JScrollPane(table));
+ 
++
+     }
+ 
+-    public void Prestarlibro() {
++    public void Prestarlibro(){
+         int indexRow = table.getSelectedRow();
+         boolean data = (boolean) model.getValueAt(indexRow, 2);
+ 
+-        for (int i = 0; i <= table.getRowCount(); i++) {
+-            if (data && indexRow == i) {
+-                model.setValueAt(false, indexRow, 2);
+-                Libros.getData()[i][2] = false;
++        for(int i = 0; i<= table.getRowCount(); i++){
++            if(data){
++                Libros.estado = data;
+                 break;
+-
+             }
+         }
+-        System.out.print(Libros.getData()[0][2]);//******************
+-        model.fireTableDataChanged();
+     }
+ 
+     // ActionListener para los Jmenuitem
+@@ -154,16 +153,14 @@
+             // Se crea un jmenuitem al cual se le asigna el jmenuitem presionado
+             JMenuItem jm = (JMenuItem) e.getSource();
+ 
+-            System.out.print(Libros.getData()[0][2]); // *****************
+-
+-            // Sí se presiona el jmenuitem mostrar del jmenu personasMora
+-            // mostrar un cuadro de texto con las personas en mora
++            // Si se presiona el jmenuitem mostrar del jmenu personasMora se
++            //mostrara un cuadro de texto con las personas en mora
+             if (jm == mostrar) {
+                 // Print de prueba (Luego se cambiara)
+                 System.out.println("Presionado mostrar");
+             }
+ 
+-            // Al presionar el jmenuitem terror este mostrará un cuadro de txt donde
++            // Al presionar el jmenuitem terror este mostrara un cuadro de txt donde
+             // apareceran los nombre y el estado de cada libro de terror
+             if (jm == terror) {
+                 JOptionPane.showMessageDialog(null,
+@@ -174,7 +171,7 @@
+                                 "Nombre: " + Libros.getData()[4][0] + "    Estado: " + Libros.getData()[4][2] + "\n", "Estado Libros Terror", JOptionPane.PLAIN_MESSAGE);
+             }
+ 
+-            // Al presionar el jmenuitem novela este mostrará un cuadro de txt donde
++            // Al presionar el jmenuitem novela este mostrara un cuadro de txt donde
+             // apareceran los nombre y el estado de cada libro de novels Classics
+             if (jm == novela) {
+                 JOptionPane.showMessageDialog(null,
+@@ -185,7 +182,7 @@
+                                 "Nombre: " + Libros.getData()[9][0] + "    Estado: " + Libros.getData()[9][2] + "\n", "Estado Libros Novela", JOptionPane.INFORMATION_MESSAGE);
+             }
+ 
+-            // Al presionar el jmenuitem inge este mostrará un cuadro de txt donde
++            // Al presionar el jmenuitem inge este mostrara un cuadro de txt donde
+             // apareceran los nombre y el estado de cada libro de engineering
+             if (jm == inge) {
+                 JOptionPane.showMessageDialog(null,
+@@ -199,30 +196,19 @@
+     };
+ 
+     @Override
+-    public void actionPerformed(ActionEvent e) {     // ActionListener para los botones
++    public void actionPerformed(ActionEvent e) {     // ActionListener para los butones
+         JButton jb = (JButton) e.getSource();
+         if (jb == bCrearCuentas) {
+             setVisible(false);
+             new Interfaz_3();
+         }
+-        if (jb == bPrestarLibro) {
++        if(jb == bPrestarLibro){
+             Prestarlibro();
+         }
+         if (jb == bVolver) {
+             setVisible(false);
+             new Interfaz_1();
+         }
+-        if (jb == bRetornarLibro) {
+-            int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Dias que fue prestado el libro", "Retornar Libro"));
+-            int diasAtraso = dias - 7;
+ 
+-            if (diasAtraso > 0) {
+-                int multa = diasAtraso * 1000; // Calcular la multa
+-                JOptionPane.showMessageDialog(null, "Se debe cobrar una multa de " + multa + " pesos.");
+-            } else {
+-                JOptionPane.showMessageDialog(null, "No se debe cobrar ninguna multa.");
+-            }
+-        }
+     }
+ }
+-
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" name=\"Changes\" comment=\"PRUEBA Prestar libro\" />\r\n    <list id=\"0a5985e6-772f-4ab5-9bc7-7afe290d5433\" name=\"Changes by johan\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/Libros.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Libros.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"ecc96d05-5993-44b6-bd22-180bbb27c80c\" name=\"JLabel\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2PhXWK2eTa00LJL08xEDOB3pcdi\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/gpati/IdeaProjects/MiniProyecto1.1&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" name=\"Changes\" comment=\"\" />\r\n      <created>1683910319141</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1683910319141</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Inicio\">\r\n      <created>1683913003323</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683913003323</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Creacion de clases\">\r\n      <created>1683919987849</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683919987849</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Interfaz 1\">\r\n      <created>1683946866499</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683946866499</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Interfaz 1\">\r\n      <created>1683946881506</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683946881506</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Interfaz 2\">\r\n      <created>1684030579781</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684030579781</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Añado el mensaje de crear cuenta\">\r\n      <created>1684720247196</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684720247196</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Implementación de la lista de libros\">\r\n      <created>1684786724533</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684786724533</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Implementación de la lista de libros 2\">\r\n      <created>1684788999555</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684788999556</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Mejoras al JTABLE\">\r\n      <created>1684851853666</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684851853666</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"PRUEBA Prestar libro\">\r\n      <created>1684898383046</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684898383046</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"11\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Inicio\" />\r\n    <MESSAGE value=\"Creacion de clases\" />\r\n    <MESSAGE value=\"Interfaz 1\" />\r\n    <MESSAGE value=\"Interfaz 2\" />\r\n    <MESSAGE value=\"Añado el mensaje de crear cuenta\" />\r\n    <MESSAGE value=\"Implementación de la lista de libros\" />\r\n    <MESSAGE value=\"Implementación de la lista de libros 2\" />\r\n    <MESSAGE value=\"Mejoras al JTABLE\" />\r\n    <MESSAGE value=\"PRUEBA Prestar libro\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"PRUEBA Prestar libro\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 63fd8abbaab1648bac753f53da8b28d49b5bdf65)
++++ b/.idea/workspace.xml	(date 1684898961265)
+@@ -4,7 +4,16 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="PRUEBA Prestar libro" />
++    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Mejoras al JTABLE">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_05_2023_7_50_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_05_2023_7_50_p__m___Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2023_3_21_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_05_2023_3_21_p__m___Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_6_51_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_6_51_p__m___Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Interfaz_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_1.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Interfaz_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_2.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Interfaz_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_3.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Libros.java" afterDir="false" />
++    </list>
+     <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="">
+       <change beforePath="$PROJECT_DIR$/src/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Libros.java" afterDir="false" />
+     </list>
+@@ -25,6 +34,17 @@
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+     <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
++  <component name="LineStatusTrackerManager">
++    <file path="$PROJECT_DIR$/src/Libros.java">
++      <ranges>
++        <range start1="0" end1="0" start2="0" end2="3" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
++        <range start1="1" end1="3" start2="4" end2="4" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
++        <range start1="5" end1="21" start2="6" end2="22" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
++        <range start1="23" end1="23" start2="24" end2="25" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
++        <range start1="24" end1="25" start2="26" end2="26" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
++      </ranges>
++    </file>
++  </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+   </component>
+@@ -117,14 +137,7 @@
+       <option name="project" value="LOCAL" />
+       <updated>1684851853666</updated>
+     </task>
+-    <task id="LOCAL-00010" summary="PRUEBA Prestar libro">
+-      <created>1684898383046</created>
+-      <option name="number" value="00010" />
+-      <option name="presentableId" value="LOCAL-00010" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1684898383046</updated>
+-    </task>
+-    <option name="localTasksCounter" value="11" />
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -147,7 +160,6 @@
+     <MESSAGE value="Implementación de la lista de libros" />
+     <MESSAGE value="Implementación de la lista de libros 2" />
+     <MESSAGE value="Mejoras al JTABLE" />
+-    <MESSAGE value="PRUEBA Prestar libro" />
+-    <option name="LAST_COMMIT_MESSAGE" value="PRUEBA Prestar libro" />
++    <option name="LAST_COMMIT_MESSAGE" value="Mejoras al JTABLE" />
+   </component>
+ </project>
+\ No newline at end of file
