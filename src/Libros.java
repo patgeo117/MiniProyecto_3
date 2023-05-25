@@ -17,8 +17,7 @@ public class Libros {
         {"Introduction to Electrical Engineering", "INGENIERÍA", true, 115}};
 
     public static Object[][] getDataRow() {
-        Object[][] data1 = data;
-        return data1;
+        return data;
     }
 
     // Crear los nombres de las columnas

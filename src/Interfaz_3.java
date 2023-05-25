@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Interfaz_3 extends JFrame implements ActionListener {
@@ -18,7 +16,6 @@ public class Interfaz_3 extends JFrame implements ActionListener {
     JButton crearCuenta;
     JButton volver;
     // creo una lista de tipo bibliotecario
-    List<Bibliotecario> bibliotecarioList = new ArrayList<Bibliotecario>();
 
     public Interfaz_3() {
         // Configuración Jlabel
@@ -68,15 +65,8 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         // Se toma la Contraseña del JTestField
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
-        // Construyo la lista bibliotecario y le paso los datos
+        // Le envio los datos a Bibliotcario
         Bibliotecario bibliotecario = new Bibliotecario(name, password);
-        //
-        bibliotecarioList.add(bibliotecario);
-
-        for (Bibliotecario b : bibliotecarioList) {
-            System.out.println(b.name + " " + b.password);
-        }
-        System.out.println(" ");
     }
 
     @Override

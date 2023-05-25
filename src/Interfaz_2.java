@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.lang.*;
-import java.util.List;
 
 public class Interfaz_2 extends JFrame implements ActionListener {
     // Icono
@@ -42,7 +41,9 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     // Crear un componente JTable con el modelo de tabla
     JTable table = new JTable(model);
 
-    List<Prestamo> prestamolist = new ArrayList<>(); //***************
+    Prestamo[] registro = new Prestamo[table.getRowCount()];
+    //Prestamo[] deudores = new Prestamo[table.getRowCount()];
+
 
     public Interfaz_2() {
 
@@ -136,56 +137,63 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     public void Prestarlibro() {
         int indexRow = table.getSelectedRow();
         boolean data = (boolean) model.getValueAt(indexRow, 2);
-
         for (int i = 0; i <= table.getRowCount(); i++) {
             if (data && indexRow == i) {
                 // Obtengo los datos del usuario y los agrego a la lista en préstamo
                 String usuario = JOptionPane.showInputDialog(null, "Ingresa tu nombre completo: ");
                 String libro = (String)model.getValueAt(i, 0 );
 
-                model.setValueAt(false, indexRow, 2);
-                Libros.data[i][2] = false;
+                model.setValueAt(false, indexRow, 2); // Muestro el datp en la tabla
+                Libros.data[i][2] = false; // actizalizo e dato en la matriz
 
-                Prestamo prestamo = new Prestamo(usuario, libro); //***************
-                prestamolist.add(prestamo); //***************
+                if (registro[i] == null){
+                    registro[i] = new Prestamo();
+                }
+                registro[i].Usuarios(usuario, libro);
+
                 break;
             } else if (!data && indexRow == i) {
-                JOptionPane.showMessageDialog(null, "El libro Nn esta Disponible");
+                JOptionPane.showMessageDialog(null, "El libro N0 Esta Disponible");
                 break;
             }
         }
 
         model.fireTableDataChanged();
-        for(Prestamo p : prestamolist){ //*************
-            System.out.print(p.user + " " + p.libro);
-        }
+
     }
 
     public void RetornarLibro() {
         int indexRow = table.getSelectedRow();
-        boolean data = (boolean) model.getValueAt(indexRow, 2);
 
-        for (int j = 0; j <= table.getRowCount();) {
-            if(!data && indexRow == j) {
-                int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Dias que fue prestado el libro"));
-                int diasAtraso = dias - 7;
-                model.setValueAt(true, indexRow, 2);
-                Libros.data[j][2] = true;
+        for (int i = 0; i < table.getRowCount(); i++) {
+            if (indexRow == i) {
+                boolean data = (boolean) model.getValueAt(i, 2);
+                String usuario = JOptionPane.showInputDialog(null, "Ingresa tu nombre");
 
-                if (diasAtraso > 0) {
-                    Prestamo.multa = diasAtraso * 1000; // Calcular la multa
-                    JOptionPane.showMessageDialog(null, "Se debe cobrar una multa de " + Prestamo.multa + " pesos.");
+                if (!data) {
+                    int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Días que fue prestado el libro"));
+                    int diasAtraso = dias - 7;
+                    String libro = (String) model.getValueAt(i, 0);
+
+                    model.setValueAt(true, indexRow, 2);
+                    Libros.data[i][2] = true;
+
+                    if (diasAtraso > 0) {
+                        int multa = diasAtraso * 1000;
+                        if (registro != null) {
+                            registro[i].Usuarios(usuario, libro, multa);
+                        }
+
+                        JOptionPane.showMessageDialog(null, usuario + " por demora en la entrega tiene una multa de: " + multa);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se debe cobrar ninguna multa.");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se debe cobrar ninguna multa.");
+                    JOptionPane.showMessageDialog(null, "El libro ya está en la biblioteca");
                 }
+                break;
             }
-            else {
-                JOptionPane.showMessageDialog(null,"El libro ya esta en la biblioteca");
-            }
-            break;
-
         }
-        System.out.print(Libros.getDataRow()[0][2]);//******************
         model.fireTableDataChanged();
     }
 
