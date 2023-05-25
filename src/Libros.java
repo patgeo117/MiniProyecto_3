@@ -1,4 +1,5 @@
 public class Libros {
+    // se crea la base de datos de los libros
     static Object[][] data = new Object[][] {
         {"El resplandor", "TERROR", true, 101},
         {"It", "TERROR", true, 102},
@@ -16,13 +17,13 @@ public class Libros {
         {"Structural Analysis", "INGENIERÍA", true, 114},
         {"Introduction to Electrical Engineering", "INGENIERÍA", true, 115}};
 
+    // Método para pasarle los datos al model y al Jtable
     public static Object[][] getDataRow() {
         return data;
     }
 
     // Crear los nombres de las columnas
     public static String[] getNomColumnas() {
-
         return new String[]{"Título", "Categoría", "Estado", "Código"};
     }
 }

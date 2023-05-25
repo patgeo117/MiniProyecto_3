@@ -28,8 +28,6 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     // JLabel
     JLabel lCrearCuenta;
 
-    // Variable para la cantidad de días prestado
-
     // Crear un modelo de tabla y agregar los datos
     DefaultTableModel model = new DefaultTableModel(Libros.getDataRow(), Libros.getNomColumnas()) {
         // Se deshabilita la opción de modificar las filas y las columnas
@@ -40,9 +38,6 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     };
     // Crear un componente JTable con el modelo de tabla
     JTable table = new JTable(model);
-
-    Prestamo[] registro = new Prestamo[table.getRowCount()];
-
 
     public Interfaz_2() {
 
@@ -107,6 +102,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         bInfo = new JButton("Información");
         bInfo.setBounds(380, 60, 100, 40);
         bInfo.setBackground(Color.RED);
+        bInfo.addActionListener(this);
         add(bInfo);
 
         bVolver = new JButton("Volver");
@@ -132,32 +128,44 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         panel.add(new JScrollPane(table));
 
     }
+    public void MostrarInfo(){
+        // creo un iterador para recorrer multa, ListIterator recorre en cualquier dirección la lista (es un puntero)
+        ListIterator<Integer> data = Prestamo.multa.listIterator();
+        // StringBuilder permite concatenar diferentes cadenas de texto sin crear un nuevo object (es mutable, permite modificar su estado)
+        StringBuilder deudores = new StringBuilder();
+        boolean hayDeudores = false;
+
+        while (data.hasNext()) { // Me aseguro que recorra el data
+            int multa = data.next(); // recorro el siguiente dato
+            if (multa > 0) {
+                hayDeudores = true;
+                // Construir una cadena con la información de los deudores
+                deudores.append("Usuario: ").append(Prestamo.user).append(" con el libro ").append(Prestamo.book)
+                        .append(", tiene una multa: ").append(Prestamo.multa).append(" por ").append(Prestamo.DiasAtraso).append(" dias");
+            }
+            break;
+        }
+        if (hayDeudores) {
+            // se añade los append a el JOpcionPanel
+            JOptionPane.showMessageDialog(null, deudores.toString());
+        }
+    }
 
     public void Prestarlibro() {
-        int indexRow = table.getSelectedRow();
-        boolean data = (boolean) model.getValueAt(indexRow, 2);
+        int indexRow = table.getSelectedRow(); // Obtengo la fila seleccionada
+        boolean data = (boolean) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
         for (int i = 0; i <= table.getRowCount(); i++) {
-            if (data && indexRow == i) {
-                // Obtengo los datos del usuario y los agrego a la lista en préstamo
-                String usuario = JOptionPane.showInputDialog(null, "Ingresa tu nombre completo: ");
-                String libro = (String)model.getValueAt(i, 0 );
-
-                model.setValueAt(false, indexRow, 2); // Muestro el datp en la tabla
-                Libros.data[i][2] = false; // actizalizo e dato en la matriz
-
-                if (registro[i] == null){
-                    registro[i] = new Prestamo();
-                }
-                registro[i].Usuarios(usuario, libro);
-
-                break;
-            } else if (!data && indexRow == i) {
+            if (data && indexRow == i){ // validó que data = true y esté seleccionada la fila = i para evitar desbordamientos
+                model.setValueAt(false, indexRow, 2); // Muestro el dato en la tabla
+                Libros.data[i][2] = false; // actualizo el dato en la matriz
+                break; // aseguro que termine la ejecución si ejecuta el bloque de código
+            } else if (!data && indexRow == i) { //
                 JOptionPane.showMessageDialog(null, "El libro N0 Esta Disponible");
                 break;
             }
         }
 
-        model.fireTableDataChanged();
+        model.fireTableDataChanged(); // Actualiza la tabla
 
     }
 
@@ -169,24 +177,27 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                 boolean data = (boolean) model.getValueAt(i, 2);
                 String usuario = JOptionPane.showInputDialog(null, "Ingresa tu nombre");
 
-                if (!data) {
+                if (!data) { // data == false
                     int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Días que fue prestado el libro"));
                     int diasAtraso = dias - 7;
-                    String libro = (String) model.getValueAt(i, 0);
+                    String libro = (String) model.getValueAt(i, 0); // Obtengo el nombre del libro de acuerdo a la celda seleccionada
 
                     model.setValueAt(true, indexRow, 2);
                     Libros.data[i][2] = true;
 
                     if (diasAtraso > 0) {
                         int multa = diasAtraso * 1000;
-                        if (registro != null) {
-                            registro[i].Usuarios(usuario, libro, multa);
+                        Prestamo.DiasAtraso.add(diasAtraso);
+                        // Mando los datos al constructor de la instancia
+                        new Prestamo(usuario, libro, multa);
+                        for(int ignored : Prestamo.multa){ // recorro con el forech las multas
+                            JOptionPane.showMessageDialog(null, usuario + " por demora en la entrega tiene una multa de: " + multa);
+                            break;
                         }
-
-                        JOptionPane.showMessageDialog(null, usuario + " por demora en la entrega tiene una multa de: " + multa);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se debe cobrar ninguna multa.");
                     }
+
                 } else {
                     JOptionPane.showMessageDialog(null, "El libro ya está en la biblioteca");
                 }
@@ -204,13 +215,30 @@ public class Interfaz_2 extends JFrame implements ActionListener {
             // Se crea un jmenuitem al cual se le asigna el jmenuitem presionado
             JMenuItem jm = (JMenuItem) e.getSource();
 
-            System.out.print(Libros.data[0][2]); // *****************
-
             // Sí se presiona el jmenuitem mostrar del jmenu personasMora
-            // mostrar un cuadro de texto con las personas en mora
             if (jm == mostrar) {
-                // Print de prueba (Luego se cambiara)
-                System.out.println("Presionado mostrar");
+                // creo un iterador para recorrer multa, ListIterator recorre en cualquier dirección la lista (es un puntero)
+                ListIterator<Integer> data = Prestamo.multa.listIterator();
+                // StringBuilder permite concatenar diferentes cadenas de texto sin crear un nuevo object (es mutable, permite modificar su estado)
+                StringBuilder deudores = new StringBuilder();
+                boolean hayDeudores = false;
+
+                while (data.hasNext()) { // Me aseguro que recorra el data
+                    int multa = data.next(); // itero sobre la lista
+                    if (multa > 0) {
+                        hayDeudores = true;
+                        // Construir una cadena con la información de los deudores con StringBuilder
+                        deudores.append("Prestamo de ").append(Prestamo.book).append(" a ").append(Prestamo.user)
+                                .append(", multa: ").append(Prestamo.multa).append("\n");
+                    }
+                    break;
+                }
+                // Mostrar cuadro de texto con los deudores cuando es true
+                if (hayDeudores) {
+                    JOptionPane.showMessageDialog(null, deudores.toString());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sin deudores");
+                }
             }
 
             // Al presionar el jmenuitem terror este mostrará un cuadro de txt donde
@@ -232,7 +260,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                                 "Nombre: " + Libros.data[6][0] + "    Estado: " + Libros.data[6][2] + "\n" +
                                 "Nombre: " + Libros.data[7][0] + "    Estado: " + Libros.data[7][2] + "\n" +
                                 "Nombre: " + Libros.data[8][0] + "    Estado: " + Libros.data[8][2] + "\n" +
-                                "Nombre: " + Libros.data[9][0] + "    Estado: " + Libros.data[9][2] + "\n", "Estado Libros Novela", JOptionPane.INFORMATION_MESSAGE);
+                                "Nombre: " + Libros.data[9][0] + "    Estado: " + Libros.data[9][2] + "\n", "Estado Libros Novela", JOptionPane.PLAIN_MESSAGE);
             }
 
             // Al presionar el jmenuitem inge este mostrará un cuadro de txt donde
@@ -243,7 +271,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                                 "Nombre: " + Libros.data[11][0] + "    Estado: " + Libros.data[11][2] + "\n" +
                                 "Nombre: " + Libros.data[12][0] + "    Estado: " + Libros.data[12][2] + "\n" +
                                 "Nombre: " + Libros.data[13][0] + "    Estado: " + Libros.data[13][2] + "\n" +
-                                "Nombre: " + Libros.data[14][0] + "    Estado: " + Libros.data[14][2] + "\n", "Estado Libros Ingeniería", JOptionPane.INFORMATION_MESSAGE);
+                                "Nombre: " + Libros.data[14][0] + "    Estado: " + Libros.data[14][2] + "\n", "Estado Libros Ingeniería", JOptionPane.PLAIN_MESSAGE);
             }
         }
     };
@@ -265,6 +293,8 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         if (jb == bRetornarLibro) {
             RetornarLibro();
         }
+        if(jb == bInfo){
+            MostrarInfo();
+        }
     }
 }
-

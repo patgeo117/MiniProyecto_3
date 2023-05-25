@@ -2,19 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Prestamo {
-    static int multa;
-    static String user;
-    static String book;
-
-
-    public void Usuarios(String user, String book){
-        Prestamo.user = user;
-        Prestamo.book = book;
-    }
-    public void Usuarios(String user, String book, int multa){
-        Prestamo.user = user;
-        Prestamo.book = book;
-        Prestamo.multa += multa;
+    // se crean las litas que van a almacenar los diferentes datos que se vana mostrar
+    static List<Integer> multa = new ArrayList<>();
+    static List<String> user = new ArrayList<>();
+    static List<String> book = new ArrayList<>();
+    static List<Integer> DiasAtraso = new ArrayList<>();
+    // Se crea el constructor, al cual se le pasan los valores tomados de la interfaz dos
+    public Prestamo(String user, String book, int multa){
+        Prestamo.user.add(user);
+        Prestamo.book.add(book);
+        Prestamo.multa.add(multa);
     }
 
 }

@@ -1,0 +1,66 @@
+Index: src/Libros.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Libros {\r\n    static boolean estado = true;\r\n    static Object[][] data;\r\n\r\n    public static Object[][] getData() {\r\n        Object[][] data = new Object[][] {\r\n                {\"El resplandor\", \"TERROR\", true, 101},\r\n                {\"It\", \"TERROR\", true, 102},\r\n                {\"El Exorcista\", \"TERROR\", true, 103},\r\n                {\"Pet Sematary\", \"TERROR\", true, 104},\r\n                {\"Frankenstein\", \"TERROR\", true, 105},\r\n                {\"Cien años de soledad\", \"NOVELA\", true, 106},\r\n                {\"1984\", \"NOVELA\", true, 107},\r\n                {\"El gran Gatsby\", \"NOVELA\", true, 108},\r\n                {\"Orgullo y prejuicio\", \"NOVELA\", true, 109},\r\n                {\"Don Quijote de la Mancha\", \"NOVELA\", true, 110},\r\n                {\"Circuit Analysis: Theory and Practice\", \"INGENIERÍA\", true, 111},\r\n                {\"Mechanics of Materials\", \"INGENIERÍA\", true, 112},\r\n                {\"Introduction to Chemical Engineering Thermodynamics\", \"INGENIERÍA\", true, 113},\r\n                {\"Structural Analysis\", \"INGENIERÍA\", true, 114},\r\n                {\"Introduction to Electrical Engineering\", \"INGENIERÍA\", true, 115}\r\n        };\r\n        return data;\r\n    }\r\n\r\n    // Crear los nombres de las columnas\r\n    public static String[] getNomColumnas() {\r\n\r\n        return new String[]{\"Título\", \"Categoría\", \"Estado\", \"Código\"};\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Libros.java b/src/Libros.java
+--- a/src/Libros.java	(revision 53d96b70bb1ab413e3ac86806df525c40359bfe1)
++++ b/src/Libros.java	(date 1684899363314)
+@@ -1,6 +1,5 @@
+ public class Libros {
+     static boolean estado = true;
+-    static Object[][] data;
+ 
+     public static Object[][] getData() {
+         Object[][] data = new Object[][] {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" name=\"Changes\" comment=\"Revert &quot;PRUEBA Prestar libro&quot;&#10;&#10;This reverts commit 33452917\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Interfaz_1.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Interfaz_1.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Interfaz_2.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Interfaz_2.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Interfaz_3.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Interfaz_3.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Libros.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Libros.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"0a5985e6-772f-4ab5-9bc7-7afe290d5433\" name=\"Changes by johan\" comment=\"\" />\r\n    <list id=\"ecc96d05-5993-44b6-bd22-180bbb27c80c\" name=\"JLabel\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2PhXWK2eTa00LJL08xEDOB3pcdi\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/gpati/IdeaProjects/MiniProyecto1.1&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" name=\"Changes\" comment=\"\" />\r\n      <created>1683910319141</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1683910319141</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Inicio\">\r\n      <created>1683913003323</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683913003323</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Creacion de clases\">\r\n      <created>1683919987849</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683919987849</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Interfaz 1\">\r\n      <created>1683946866499</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683946866499</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Interfaz 1\">\r\n      <created>1683946881506</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683946881506</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Interfaz 2\">\r\n      <created>1684030579781</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684030579781</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Añado el mensaje de crear cuenta\">\r\n      <created>1684720247196</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684720247196</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Implementación de la lista de libros\">\r\n      <created>1684786724533</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684786724533</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Implementación de la lista de libros 2\">\r\n      <created>1684788999555</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684788999556</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Mejoras al JTABLE\">\r\n      <created>1684851853666</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684851853666</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"10\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Inicio\" />\r\n    <MESSAGE value=\"Creacion de clases\" />\r\n    <MESSAGE value=\"Interfaz 1\" />\r\n    <MESSAGE value=\"Interfaz 2\" />\r\n    <MESSAGE value=\"Añado el mensaje de crear cuenta\" />\r\n    <MESSAGE value=\"Implementación de la lista de libros\" />\r\n    <MESSAGE value=\"Implementación de la lista de libros 2\" />\r\n    <MESSAGE value=\"Mejoras al JTABLE\" />\r\n    <MESSAGE value=\"Revert &quot;PRUEBA Prestar libro&quot;&#10;&#10;This reverts commit 33452917\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Revert &quot;PRUEBA Prestar libro&quot;&#10;&#10;This reverts commit 33452917\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 53d96b70bb1ab413e3ac86806df525c40359bfe1)
++++ b/.idea/workspace.xml	(date 1684942515908)
+@@ -4,11 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Revert &quot;PRUEBA Prestar libro&quot;&#10;&#10;This reverts commit 33452917">
++    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Cambio version">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Interfaz_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_1.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Interfaz_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_2.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Interfaz_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_3.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Libros.java" afterDir="false" />
+     </list>
+     <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="" />
+@@ -121,7 +118,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1684851853666</updated>
+     </task>
+-    <option name="localTasksCounter" value="10" />
++    <task id="LOCAL-00010" summary="Cambio version">
++      <created>1684899335513</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1684899335513</updated>
++    </task>
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -145,6 +149,7 @@
+     <MESSAGE value="Implementación de la lista de libros 2" />
+     <MESSAGE value="Mejoras al JTABLE" />
+     <MESSAGE value="Revert &quot;PRUEBA Prestar libro&quot;&#10;&#10;This reverts commit 33452917" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;PRUEBA Prestar libro&quot;&#10;&#10;This reverts commit 33452917" />
++    <MESSAGE value="Cambio version" />
++    <option name="LAST_COMMIT_MESSAGE" value="Cambio version" />
+   </component>
+ </project>
+\ No newline at end of file

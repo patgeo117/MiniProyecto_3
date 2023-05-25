@@ -1,0 +1,100 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" name=\"Changes\" comment=\"implementación de préstamo y retornar\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_19_p__m___Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_19_p__m___Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_29_p__m___Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_29_p__m___Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_31_p__m___Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_31_p__m___Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_35_p__m___Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_35_p__m___Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Interfaz_2.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Interfaz_2.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Libros.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Libros.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"0a5985e6-772f-4ab5-9bc7-7afe290d5433\" name=\"Changes by johan\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/Interfaz_2.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Interfaz_2.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Prestamo.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Prestamo.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"ecc96d05-5993-44b6-bd22-180bbb27c80c\" name=\"JLabel\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"LineStatusTrackerManager\">\r\n    <file path=\"$PROJECT_DIR$/src/Interfaz_2.java\">\r\n      <ranges>\r\n        <range start1=\"7\" end1=\"7\" start2=\"7\" end2=\"8\" changelist=\"0a5985e6-772f-4ab5-9bc7-7afe290d5433\" />\r\n        <range start1=\"33\" end1=\"34\" start2=\"34\" end2=\"35\" changelist=\"0a5985e6-772f-4ab5-9bc7-7afe290d5433\" />\r\n        <range start1=\"43\" end1=\"45\" start2=\"44\" end2=\"45\" changelist=\"0a5985e6-772f-4ab5-9bc7-7afe290d5433\" />\r\n        <range start1=\"141\" end1=\"141\" start2=\"141\" end2=\"145\" changelist=\"0a5985e6-772f-4ab5-9bc7-7afe290d5433\" />\r\n        <range start1=\"142\" end1=\"143\" start2=\"146\" end2=\"150\" changelist=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" />\r\n        <range start1=\"144\" end1=\"145\" start2=\"151\" end2=\"154\" changelist=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" />\r\n        <range start1=\"147\" end1=\"148\" start2=\"156\" end2=\"157\" changelist=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" />\r\n        <range start1=\"149\" end1=\"149\" start2=\"158\" end2=\"162\" changelist=\"0a5985e6-772f-4ab5-9bc7-7afe290d5433\" />\r\n        <range start1=\"150\" end1=\"150\" start2=\"163\" end2=\"191\" changelist=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" />\r\n        <range start1=\"159\" end1=\"160\" start2=\"200\" end2=\"201\" changelist=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" />\r\n        <range start1=\"172\" end1=\"177\" start2=\"213\" end2=\"218\" changelist=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" />\r\n        <range start1=\"183\" end1=\"188\" start2=\"224\" end2=\"229\" changelist=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" />\r\n        <range start1=\"194\" end1=\"199\" start2=\"235\" end2=\"240\" changelist=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" />\r\n        <range start1=\"218\" end1=\"227\" start2=\"259\" end2=\"260\" changelist=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" />\r\n      </ranges>\r\n    </file>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2PhXWK2eTa00LJL08xEDOB3pcdi\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/gpati/IdeaProjects/MiniProyecto1.1&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" name=\"Changes\" comment=\"\" />\r\n      <created>1683910319141</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1683910319141</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Inicio\">\r\n      <created>1683913003323</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683913003323</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Creacion de clases\">\r\n      <created>1683919987849</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683919987849</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Interfaz 1\">\r\n      <created>1683946866499</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683946866499</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Interfaz 1\">\r\n      <created>1683946881506</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683946881506</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Interfaz 2\">\r\n      <created>1684030579781</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684030579781</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Añado el mensaje de crear cuenta\">\r\n      <created>1684720247196</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684720247196</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Implementación de la lista de libros\">\r\n      <created>1684786724533</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684786724533</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Implementación de la lista de libros 2\">\r\n      <created>1684788999555</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684788999556</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Mejoras al JTABLE\">\r\n      <created>1684851853666</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684851853666</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"10\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Inicio\" />\r\n    <MESSAGE value=\"Creacion de clases\" />\r\n    <MESSAGE value=\"Interfaz 1\" />\r\n    <MESSAGE value=\"Interfaz 2\" />\r\n    <MESSAGE value=\"Añado el mensaje de crear cuenta\" />\r\n    <MESSAGE value=\"Implementación de la lista de libros\" />\r\n    <MESSAGE value=\"Implementación de la lista de libros 2\" />\r\n    <MESSAGE value=\"Mejoras al JTABLE\" />\r\n    <MESSAGE value=\"Revert &quot;PRUEBA Prestar libro&quot;&#10;&#10;This reverts commit 33452917\" />\r\n    <MESSAGE value=\"implementación de préstamo y retornar\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"implementación de préstamo y retornar\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision e473f89d16db90bffb23617b7d7c2fcc540a4505)
++++ b/.idea/workspace.xml	(date 1684950188824)
+@@ -4,19 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="implementación de préstamo y retornar">
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_19_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_19_p__m___Changes_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_29_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_29_p__m___Changes_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_31_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_31_p__m___Changes_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_35_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_05_2023_10_35_p__m___Changes_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Interfaz_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_2.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Libros.java" afterDir="false" />
+-    </list>
+-    <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="">
+-      <change beforePath="$PROJECT_DIR$/src/Interfaz_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz_2.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Prestamo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Prestamo.java" afterDir="false" />
+-    </list>
++    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="implementación de préstamo y retornar 2.0" />
++    <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="Changes by johan" />
+     <list id="ecc96d05-5993-44b6-bd22-180bbb27c80c" name="JLabel" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -34,26 +23,6 @@
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+     <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+-  <component name="LineStatusTrackerManager">
+-    <file path="$PROJECT_DIR$/src/Interfaz_2.java">
+-      <ranges>
+-        <range start1="7" end1="7" start2="7" end2="8" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+-        <range start1="33" end1="34" start2="34" end2="35" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+-        <range start1="43" end1="45" start2="44" end2="45" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+-        <range start1="141" end1="141" start2="141" end2="145" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+-        <range start1="142" end1="143" start2="146" end2="150" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+-        <range start1="144" end1="145" start2="151" end2="154" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+-        <range start1="147" end1="148" start2="156" end2="157" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+-        <range start1="149" end1="149" start2="158" end2="162" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+-        <range start1="150" end1="150" start2="163" end2="191" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+-        <range start1="159" end1="160" start2="200" end2="201" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+-        <range start1="172" end1="177" start2="213" end2="218" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+-        <range start1="183" end1="188" start2="224" end2="229" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+-        <range start1="194" end1="199" start2="235" end2="240" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+-        <range start1="218" end1="227" start2="259" end2="260" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+-      </ranges>
+-    </file>
+-  </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+   </component>
+@@ -146,7 +115,28 @@
+       <option name="project" value="LOCAL" />
+       <updated>1684851853666</updated>
+     </task>
+-    <option name="localTasksCounter" value="10" />
++    <task id="LOCAL-00010" summary="implementación de préstamo y retornar">
++      <created>1684948749209</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1684948749209</updated>
++    </task>
++    <task id="LOCAL-00011" summary="Changes by johan">
++      <created>1684948756401</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1684948756401</updated>
++    </task>
++    <task id="LOCAL-00012" summary="implementación de préstamo y retornar 2.0">
++      <created>1684948894013</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1684948894013</updated>
++    </task>
++    <option name="localTasksCounter" value="13" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -171,6 +161,8 @@
+     <MESSAGE value="Mejoras al JTABLE" />
+     <MESSAGE value="Revert &quot;PRUEBA Prestar libro&quot;&#10;&#10;This reverts commit 33452917" />
+     <MESSAGE value="implementación de préstamo y retornar" />
+-    <option name="LAST_COMMIT_MESSAGE" value="implementación de préstamo y retornar" />
++    <MESSAGE value="Changes by johan" />
++    <MESSAGE value="implementación de préstamo y retornar 2.0" />
++    <option name="LAST_COMMIT_MESSAGE" value="implementación de préstamo y retornar 2.0" />
+   </component>
+ </project>
+\ No newline at end of file
