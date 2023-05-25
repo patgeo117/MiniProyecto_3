@@ -42,7 +42,6 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JTable table = new JTable(model);
 
     Prestamo[] registro = new Prestamo[table.getRowCount()];
-    //Prestamo[] deudores = new Prestamo[table.getRowCount()];
 
 
     public Interfaz_2() {
