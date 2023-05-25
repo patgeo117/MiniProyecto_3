@@ -140,8 +140,8 @@ public class Interfaz_2 extends JFrame implements ActionListener {
             if (multa > 0) {
                 hayDeudores = true;
                 // Construir una cadena con la información de los deudores
-                deudores.append("Usuario: ").append(Prestamo.user).append(" con el libro ").append(Prestamo.book)
-                        .append(", tiene una multa: ").append(Prestamo.multa).append(" por ").append(Prestamo.DiasAtraso).append(" dias");
+                deudores.append("Usuarios: ").append(Prestamo.user).append("\n").append("Libros: ").append(Prestamo.book)
+                        .append("\n").append("Multa correspondiente: ").append(Prestamo.multa).append("\n").append("Dias de atraso: ").append(Prestamo.DiasAtraso);
             }
             break;
         }
@@ -160,7 +160,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                 Libros.data[i][2] = false; // actualizo el dato en la matriz
                 break; // aseguro que termine la ejecución si ejecuta el bloque de código
             } else if (!data && indexRow == i) { //
-                JOptionPane.showMessageDialog(null, "El libro N0 Esta Disponible");
+                JOptionPane.showMessageDialog(null, "El libro no se encuentra Disponible por el momento");
                 break;
             }
         }
@@ -176,30 +176,37 @@ public class Interfaz_2 extends JFrame implements ActionListener {
             if (indexRow == i) {
                 boolean data = (boolean) model.getValueAt(i, 2);
                 String usuario = JOptionPane.showInputDialog(null, "Ingresa tu nombre");
+                boolean validarUser = false;
+                // valido que el usuario tenga datos para control del boron cancel
+                if(usuario == null){
+                    JOptionPane.showMessageDialog(null, "Acción Cancelada");
+                }else if(!usuario.equals(" ")){
+                    validarUser = true;
+                }
+                //valido que data no sea nulo (confirmar que tenga datos)
+                if (!data ) { // data == false
+                    if(validarUser){
+                        int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Días que fue prestado el libro"));
+                        int diasAtraso = dias - 7;
+                        String libro = (String) model.getValueAt(i, 0); // Obtengo el nombre del libro de acuerdo a la celda seleccionada
+                        model.setValueAt(true, indexRow, 2);
+                        Libros.data[i][2] = true;
 
-                if (!data) { // data == false
-                    int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Días que fue prestado el libro"));
-                    int diasAtraso = dias - 7;
-                    String libro = (String) model.getValueAt(i, 0); // Obtengo el nombre del libro de acuerdo a la celda seleccionada
-
-                    model.setValueAt(true, indexRow, 2);
-                    Libros.data[i][2] = true;
-
-                    if (diasAtraso > 0) {
-                        int multa = diasAtraso * 1000;
-                        Prestamo.DiasAtraso.add(diasAtraso);
-                        // Mando los datos al constructor de la instancia
-                        new Prestamo(usuario, libro, multa);
-                        for(int ignored : Prestamo.multa){ // recorro con el forech las multas
-                            JOptionPane.showMessageDialog(null, usuario + " por demora en la entrega tiene una multa de: " + multa);
-                            break;
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se debe cobrar ninguna multa.");
+                        if (diasAtraso > 0) {
+                                int multa = diasAtraso * 1000;
+                                Prestamo.DiasAtraso.add(diasAtraso);
+                                // Mando los datos al constructor de la instancia
+                                new Prestamo(usuario, libro, multa);
+                                for(int ignored : Prestamo.multa){ // recorro con el forech las multas
+                                    JOptionPane.showMessageDialog(null, usuario + " por demora en la entrega tiene una multa de: " + multa);
+                                    break;
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "No se debe cobrar ninguna multa.");
+                            }
                     }
-
                 } else {
-                    JOptionPane.showMessageDialog(null, "El libro ya está en la biblioteca");
+                    JOptionPane.showMessageDialog(null, "El libro ya esta en la biblioteca");
                 }
                 break;
             }
@@ -215,7 +222,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
             // Se crea un jmenuitem al cual se le asigna el jmenuitem presionado
             JMenuItem jm = (JMenuItem) e.getSource();
 
-            // Sí se presiona el jmenuitem mostrar del jmenu personasMora
+            // Sí se presiona el Jmenuitem mostrar del jmenu personasMora
             if (jm == mostrar) {
                 // creo un iterador para recorrer multa, ListIterator recorre en cualquier dirección la lista (es un puntero)
                 ListIterator<Integer> data = Prestamo.multa.listIterator();
@@ -228,8 +235,8 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                     if (multa > 0) {
                         hayDeudores = true;
                         // Construir una cadena con la información de los deudores con StringBuilder
-                        deudores.append("Prestamo de ").append(Prestamo.book).append(" a ").append(Prestamo.user)
-                                .append(", multa: ").append(Prestamo.multa).append("\n");
+                        deudores.append("Usuarios en Mora: ").append(Prestamo.user).append("\n").append("Libros prestados: ").append(Prestamo.book).append("\n")
+                                .append("Multa correspondiente: ").append(Prestamo.multa).append("\n");
                     }
                     break;
                 }
@@ -237,7 +244,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                 if (hayDeudores) {
                     JOptionPane.showMessageDialog(null, deudores.toString());
                 } else {
-                    JOptionPane.showMessageDialog(null, "Sin deudores");
+                    JOptionPane.showMessageDialog(null, "Todos los usuarios a paz y salvo");
                 }
             }
 
