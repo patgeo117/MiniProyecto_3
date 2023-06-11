@@ -47,11 +47,11 @@ Head local ( listo para enviar -  Push) → GitHub
 ## Fusion
 - Fast-Forward: La fusión se hace automática, no hay conflictos por resolver.
 - Manual Merge: La fusión hay que hacerla manual, para resolver conflictos de duplicación de contenido.
-
-
+---
     # nos cambiamos a la rama principal que quedará de la fusión
     git checkout rama-principal
 
     # ejecutamos el comando merge con la rama secundaria a 
     fusionar
     git merge rama-secundaria
+---
