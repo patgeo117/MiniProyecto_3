@@ -1,13 +1,17 @@
+package Interfaz;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
+import Bibliotecarios.UsuarioMaestro;
+import Bibliotecarios.Bibliotecario;
 
 public class Interfaz_1 extends JFrame {
 
     UsuarioMaestro usuarioMaestro = new UsuarioMaestro();
     // Iconos
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/LoginIcon.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/LoginIcon2.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/LoginIcon.png")));
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/LoginIcon2.png")));
 
     // JText Field
     JTextField txtUsuario;
@@ -72,7 +76,7 @@ public class Interfaz_1 extends JFrame {
                 setVisible(false);
                 new Interfaz_2();
             }
-            // Se realizan las validaciones del Bibliotecario Maestro
+            // Se realizan las validaciones del Bibliotecarios.Bibliotecario Maestro
             else if (Usuario.equals(usuarioMaestro.setUsuario()) && Contrasena.equals(usuarioMaestro.setContrasena())) { // validó la contraseña
                 setVisible(false);
                 Interfaz_2 interfaz2 = new Interfaz_2();

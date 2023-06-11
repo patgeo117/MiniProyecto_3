@@ -1,3 +1,7 @@
+package Interfaz;
+
+import Interfaz.Interfaz_2;
+import static Bibliotecarios.Bibliotecario.Bibliotecarios;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -5,7 +9,7 @@ import java.util.Objects;
 
 public class Interfaz_3 extends JFrame implements ActionListener {
     // icono
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/LoginIcon.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/LoginIcon.png")));
     // Jlabel
     JLabel lUsuario;
     JLabel lContrasena;
@@ -64,8 +68,8 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         // Se toma la Contraseña del JTestField
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
-        // Le envió los datos a Bibliotecario
-        Bibliotecario bibliotecario = new Bibliotecario(name, password);
+        // Le envió los datos a Bibliotecarios.Bibliotecario
+        Bibliotecarios(name, password);
     }
 
     @Override

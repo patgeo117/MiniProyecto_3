@@ -1,6 +1,8 @@
+package PersistenciaDatos;
+
 public class Libros {
     // se crea la base de datos de los libros
-    static Object[][] data = new Object[][] {
+    public static Object[][] data = new Object[][] {
         {"El resplandor", "TERROR", true, 101},
         {"It", "TERROR", true, 102},
         {"El Exorcista", "TERROR", true, 103},
