@@ -3,7 +3,7 @@ Manejo de una biblioteca y persistencia de datos.
 Realice una aplicación en java que permita manejar con propiedades de persistencia los préstamos
 de libros en una biblioteca. Deben cumplirse las siguientes condiciones:
 1. Deben existir tres categorías de libros: terror, novelas clásicas, ingeniería.
-2. Por cada categoría deben existir al menos 5 libros.
+4. Por cada categoría deben existir al menos 5 libros.
 3. Los libros y las categorías pueden ser añadidos o eliminados por los bibliotecarios para
 actualizar a la biblioteca.
 4. Deben existir cuentas para cada bibliotecario que puedan acceder al manejo de la
@@ -27,3 +27,13 @@ con la biblioteca.
 utilizando los conceptos vistos en clase de serialización de objetos utilizando archivos
 binarios (*.bin, *.ser). 
 
+## Conceptos
+
+- Git and GitHub 
+- Peristencia en Archivos .bin
+
+## Flujo de datos
+Zona de trabajo local (add) → Espacio de confirmación de los cambio (Traqueo- commit) →
+Head local ( listo para enviar -  Push) → GitHub
+
+![Flujo Básico](https://jonmircha.com/img/blog/git-flow.png)
