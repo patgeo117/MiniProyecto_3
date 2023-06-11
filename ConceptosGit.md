@@ -35,6 +35,10 @@ Head local ( listo para enviar -  Push) → GitHub
 
     # añadir la rama al remote
     git push -u origin  nombre de la rama
+    
+    # eliminar rama del remote
+    git push origin --delete master
+
 > El salto entre ramas afecta que archivos se subiran en el push.
 
 > Cada rama que se crea nueva toma como referencia la rama
