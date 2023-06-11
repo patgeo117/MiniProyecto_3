@@ -55,3 +55,42 @@ Head local ( listo para enviar -  Push) → GitHub
     fusionar
     git merge rama-secundaria
 ---
+## Commit
+    # sin editar el mensaje del último commit
+    git commit --amend --no-edit
+
+    # editando el mensaje del último commit (sin haber echo el push)
+    git commit --amend -m "nuevo mensaje para el último commit"
+
+    # eliminar el último commit
+    git reset --hard HEAD~1
+
+    # cambiar a un commit en particular (Viajar en el tiempo)
+    git checkout id-commit
+---
+## Historial 
+    git log ...
+    # muestra en una sola línea por cambio
+    git log --oneline
+--- 
+## Reset Historial
+    # nos muestra el listado de archivos nuevos (untracked), borrados o editados
+    git status
+    
+    # deshace todos los cambios después del commit indicado, 
+    preservando los cambios localmente
+    git reset id-commit
+    
+    # desecha todo el historial y regresa al commit especificado
+    git reset --hard id-commit
+--- 
+## Remotos 
+    # muestra los orígenes remotos del repositorio
+    git remote
+
+    # muestra los orígenes remotos con detalle
+    git remote -v
+
+    # descargar una rama remota a local diferente a la principal
+    git checkout --track -b rama-remota origin/rama-remota
+---
