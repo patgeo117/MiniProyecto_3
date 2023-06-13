@@ -25,7 +25,7 @@ categoría.
 con la biblioteca.
 11. Los datos de los libros, usuarios y bibliotecarios deben almacenarse de forma persistente
 utilizando los conceptos vistos en clase de serialización de objetos utilizando archivos
-binarios (*.bin, *.ser). 
+binarios (*.bin, *.ser)...
 
 ## Conceptos
 
