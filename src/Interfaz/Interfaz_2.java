@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.lang.*;
 import PersistenciaDatos.Libros;
+import PersistenciaDatos.ManejoArchivo;
 import PersistenciaDatos.Prestamo;
 
 public class Interfaz_2 extends JFrame implements ActionListener {
@@ -31,9 +32,11 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JMenuItem inge;
     // JLabel
     JLabel lCrearCuenta;
+    // Rutas archivos
+    String rutaArchivo = "src/Archivos_Bin/Libros.bin";
 
     // Crear un modelo de tabla y agregar los datos
-    DefaultTableModel model = new DefaultTableModel(Libros.getDataRow(), Libros.getNomColumnas()) {
+    DefaultTableModel model = new DefaultTableModel((Object[][]) ManejoArchivo.getDataRow(rutaArchivo), ManejoArchivo.getNomColumnas()) {
         // Se deshabilita la opción de modificar las filas y las columnas
         @Override
         public boolean isCellEditable(int row, int column) {
