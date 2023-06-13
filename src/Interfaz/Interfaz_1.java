@@ -1,3 +1,8 @@
+package Interfaz;
+
+import Bibliotecarios.Bibliotecario;
+import Bibliotecarios.UsuarioMaestro;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
@@ -19,10 +24,12 @@ public class Interfaz_1 extends JFrame {
     // Jbutton
     JButton bLogin;
 
-    //Se añade al Super usuario predeterminado a la lista de super usuarios
-    UsuarioMaestro usuarioMaestro = new UsuarioMaestro("Maestro","Maestro");
+    //Se añade al Superusuario predeterminado a la lista de superusuarios
+
 
     public Interfaz_1() {
+
+        new UsuarioMaestro("Maestro","Maestro");
 
         // JTextField
         txtUsuario = new JTextField();

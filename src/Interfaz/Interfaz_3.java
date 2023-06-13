@@ -1,3 +1,9 @@
+package Interfaz;
+
+import static Bibliotecarios.Bibliotecario.Bibliotecarios;
+import Bibliotecarios.UsuarioMaestro;
+
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -5,7 +11,7 @@ import java.util.Objects;
 
 public class Interfaz_3 extends JFrame implements ActionListener {
     // icono
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/LoginIcon.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/LoginIcon.png")));
     // Jlabel
     JLabel lUsuario;
     JLabel lContrasena;
@@ -13,7 +19,7 @@ public class Interfaz_3 extends JFrame implements ActionListener {
     JTextField Usuario;
     JPasswordField Contrasena;
     // Jbutton
-    JButton cuentaUsusario;
+    JButton cuentaUsuario;
     JButton cuentaMaestro;
     JButton volver;
 
@@ -37,10 +43,10 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         add(Contrasena);
 
         // Configuración Jbutton
-        cuentaUsusario = new JButton("Crear Bibliotecario");
-        cuentaUsusario.setBounds(75, 160, 150, 30);
-        cuentaUsusario.addActionListener(this);
-        add(cuentaUsusario);
+        cuentaUsuario = new JButton("Crear Bibliotecario");
+        cuentaUsuario.setBounds(75, 160, 150, 30);
+        cuentaUsuario.addActionListener(this);
+        add(cuentaUsuario);
 
         cuentaMaestro = new JButton("Crear Master");
         cuentaMaestro.setBounds(90,200,120,30);
@@ -70,8 +76,8 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         // Se toma la Contraseña del JTestField
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
-        // Le envió los datos a Bibliotecario
-        Bibliotecario bibliotecario = new Bibliotecario(name, password);
+        // Le envió los datos a Bibliotecarios.Bibliotecario
+        Bibliotecarios(name, password);
     }
     public void getDataM(){
         // Se toma el usuario del JTextField
@@ -79,19 +85,19 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         // Se toma la Contraseña del JTestField
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
-        // Se le envia los datos a UsusarioMaestro
-        UsuarioMaestro usuarioMaestro = new UsuarioMaestro(name,password);
+        // Se le envía los datos a UsuarioMaestro
+        new UsuarioMaestro(name,password);
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton jb = (JButton) e.getSource();
-        // Al precionar el boton se toman los datos con la funcion y muestra una venana de aprovación
-        if (jb == cuentaUsusario) {
+        // Al precionar el botón se toman los datos con la función y muestra una ventana de aprobación
+        if (jb == cuentaUsuario) {
             getDataB();
             JOptionPane.showMessageDialog(null, "Cuenta creada...", " ",JOptionPane.INFORMATION_MESSAGE);
-            // vacia los JTextField
+            // vaciá los JTextField
             Usuario.setText("");
             Contrasena.setText("");
             System.out.println("Usuario normal creado");
@@ -100,7 +106,7 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         if (jb == cuentaMaestro){
             getDataM();
             JOptionPane.showMessageDialog(null, "Cuenta creada...", " ",JOptionPane.INFORMATION_MESSAGE);
-            // vacia los JTextField
+            // vaciá los JTextField
             Usuario.setText("");
             Contrasena.setText("");
             System.out.println("Usuario Maestro Creado");

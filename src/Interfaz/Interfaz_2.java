@@ -1,3 +1,5 @@
+package Interfaz;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -5,10 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.lang.*;
+import PersistenciaDatos.Libros;
+import PersistenciaDatos.ManejoArchivo;
+import PersistenciaDatos.Prestamo;
 
 public class Interfaz_2 extends JFrame implements ActionListener {
     // Icono
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/IconBiblioteca.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/IconBiblioteca.png")));
     // panel
     JPanel panel;
     // Botones
@@ -27,9 +32,11 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JMenuItem inge;
     // JLabel
     JLabel lCrearCuenta;
+    // Rutas archivos
+    String rutaArchivo = "src/Archivos_Bin/Libros.bin";
 
     // Crear un modelo de tabla y agregar los datos
-    DefaultTableModel model = new DefaultTableModel(Libros.getDataRow(), Libros.getNomColumnas()) {
+    DefaultTableModel model = new DefaultTableModel((Object[][]) ManejoArchivo.getDataRow(rutaArchivo), ManejoArchivo.getNomColumnas()) {
         // Se deshabilita la opción de modificar las filas y las columnas
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -49,7 +56,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         // Configuración Jmenubar
         menuBar = new JMenuBar();
 
-        estadoLibro = new JMenu("Estado Libros");
+        estadoLibro = new JMenu("Estado PersistenciaDatos.Libros");
         personasMora = new JMenu("Personas en Mora");
 
         mostrar = new JMenuItem("Mostrar");
@@ -140,7 +147,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
             if (multa > 0) {
                 hayDeudores = true;
                 // Construir una cadena con la información de los deudores
-                deudores.append("Usuarios: ").append(Prestamo.user).append("\n").append("Libros: ").append(Prestamo.book)
+                deudores.append("Usuarios: ").append(Prestamo.user).append("\n").append("PersistenciaDatos.Libros: ").append(Prestamo.book)
                         .append("\n").append("Multa correspondiente: ").append(Prestamo.multa).append("\n").append("Dias de atraso: ").append(Prestamo.DiasAtraso);
             }
             break;
@@ -177,7 +184,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                 boolean data = (boolean) model.getValueAt(i, 2);
                 String usuario = JOptionPane.showInputDialog(null, "Ingresa tu nombre");
                 boolean validarUser = false;
-                // valido que el usuario tenga datos para control del boron cancel
+                // validó que el usuario tenga datos para control del boron cancel
                 if(usuario == null){
                     JOptionPane.showMessageDialog(null, "Acción Cancelada");
                 }else if(!usuario.equals(" ")){
@@ -235,7 +242,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                     if (multa > 0) {
                         hayDeudores = true;
                         // Construir una cadena con la información de los deudores con StringBuilder
-                        deudores.append("Usuarios en Mora: ").append(Prestamo.user).append("\n").append("Libros prestados: ").append(Prestamo.book).append("\n")
+                        deudores.append("Usuarios en Mora: ").append(Prestamo.user).append("\n").append("PersistenciaDatos.Libros prestados: ").append(Prestamo.book).append("\n")
                                 .append("Multa correspondiente: ").append(Prestamo.multa).append("\n");
                     }
                     break;
@@ -256,7 +263,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                                 "Nombre: " + Libros.data[1][0] + "    Estado: " + Libros.data[1][2] + "\n" +
                                 "Nombre: " + Libros.data[2][0] + "    Estado: " + Libros.data[2][2] + "\n" +
                                 "Nombre: " + Libros.data[3][0] + "    Estado: " + Libros.data[3][2] + "\n" +
-                                "Nombre: " + Libros.data[4][0] + "    Estado: " + Libros.data[4][2] + "\n", "Estado Libros Terror", JOptionPane.PLAIN_MESSAGE);
+                                "Nombre: " + Libros.data[4][0] + "    Estado: " + Libros.data[4][2] + "\n", "Estado PersistenciaDatos.Libros Terror", JOptionPane.PLAIN_MESSAGE);
             }
 
             // Al presionar el jmenuitem novela este mostrará un cuadro de txt donde
@@ -267,7 +274,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                                 "Nombre: " + Libros.data[6][0] + "    Estado: " + Libros.data[6][2] + "\n" +
                                 "Nombre: " + Libros.data[7][0] + "    Estado: " + Libros.data[7][2] + "\n" +
                                 "Nombre: " + Libros.data[8][0] + "    Estado: " + Libros.data[8][2] + "\n" +
-                                "Nombre: " + Libros.data[9][0] + "    Estado: " + Libros.data[9][2] + "\n", "Estado Libros Novela", JOptionPane.PLAIN_MESSAGE);
+                                "Nombre: " + Libros.data[9][0] + "    Estado: " + Libros.data[9][2] + "\n", "Estado PersistenciaDatos.Libros Novela", JOptionPane.PLAIN_MESSAGE);
             }
 
             // Al presionar el jmenuitem inge este mostrará un cuadro de txt donde
@@ -278,7 +285,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
                                 "Nombre: " + Libros.data[11][0] + "    Estado: " + Libros.data[11][2] + "\n" +
                                 "Nombre: " + Libros.data[12][0] + "    Estado: " + Libros.data[12][2] + "\n" +
                                 "Nombre: " + Libros.data[13][0] + "    Estado: " + Libros.data[13][2] + "\n" +
-                                "Nombre: " + Libros.data[14][0] + "    Estado: " + Libros.data[14][2] + "\n", "Estado Libros Ingeniería", JOptionPane.PLAIN_MESSAGE);
+                                "Nombre: " + Libros.data[14][0] + "    Estado: " + Libros.data[14][2] + "\n", "Estado PersistenciaDatos.Libros Ingeniería", JOptionPane.PLAIN_MESSAGE);
             }
         }
     };

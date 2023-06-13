@@ -1,5 +1,8 @@
+package Main;
+
+
 public class Principal {
     public static void main(String[] args) {
-        new Interfaz_1();
+        new Interfaz.Interfaz_1();
     }
 }
