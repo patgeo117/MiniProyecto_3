@@ -4,8 +4,6 @@ import java.util.Objects;
 
 public class Interfaz_1 extends JFrame {
 
-    UsuarioMaestro usuarioMaestro = new UsuarioMaestro();
-    // Iconos
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/LoginIcon.png")));
     ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Recursos/LoginIcon2.png")));
 
@@ -21,6 +19,8 @@ public class Interfaz_1 extends JFrame {
     // Jbutton
     JButton bLogin;
 
+    //Se añade al Super usuario predeterminado a la lista de super usuarios
+    UsuarioMaestro usuarioMaestro = new UsuarioMaestro("Maestro","Maestro");
 
     public Interfaz_1() {
 
@@ -59,21 +59,31 @@ public class Interfaz_1 extends JFrame {
             char[] Clave = txtContrasena.getPassword();
             String Contrasena = new String(Clave);  // Se transforma la clave a String
 
-            boolean usuarioValido = false;  // me va ha permitir validar el bibliotecario
+            boolean bibliotecarioValido = false;  // me va ha permitir validar el bibliotecario
+            boolean maestroValido = false; // Permite validar el login del bibliotecario maestro
 
             // validación para los Bibliotecarios Normal
             for (int i = 0; i < Bibliotecario.name.size(); i++) { // Recorro la lista de bibliotecarios
                 if (Usuario.equals(Bibliotecario.name.get(i)) && Contrasena.equals(Bibliotecario.password.get(i))) {
-                    usuarioValido = true;
+                    bibliotecarioValido = true;
+                    System.out.println("Usuario normal activo");
                     break;
                 }
             }
-            if (usuarioValido) {
+
+            // Se realizan las validaciones para los Bibliotecarios Maestros
+            for(int i = 0; i < UsuarioMaestro.nameMaster.size(); i++) {
+                if (Usuario.equals(UsuarioMaestro.nameMaster.get(i)) && Contrasena.equals(UsuarioMaestro.passwordMaster.get(i))) {
+                    maestroValido = true;
+                    System.out.println("Usuario Maestro activo");
+                    break;
+                }
+            }
+            if (bibliotecarioValido) {
                 setVisible(false);
                 new Interfaz_2();
             }
-            // Se realizan las validaciones del Bibliotecario Maestro
-            else if (Usuario.equals(usuarioMaestro.setUsuario()) && Contrasena.equals(usuarioMaestro.setContrasena())) { // validó la contraseña
+            else if (maestroValido) {
                 setVisible(false);
                 Interfaz_2 interfaz2 = new Interfaz_2();
                 // Se habilita el botón crear cuenta
