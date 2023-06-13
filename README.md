@@ -39,7 +39,7 @@ Head local ( listo para enviar - Push) → GitHub
 ![Flujo Básico](https://jonmircha.com/img/blog/git-flow.png)
 
 ## Ramas Git
-- Crear rama
+    # Crear rama
     git branch nombre-rama
 
     # Cambiar de rama
