@@ -60,7 +60,7 @@ Head local ( listo para enviar - Push) → GitHub
     # Listar todas las ramas del repositorio
     git branch
 
-    #Lista rama no fusionadas a la rama actual
+    # Lista rama no fusionadas a la rama actual
     git branch --no-merged
 
     # ista rama fusionadas a la rama actual
