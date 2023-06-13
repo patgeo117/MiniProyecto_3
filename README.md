@@ -38,7 +38,55 @@ Head local ( listo para enviar - Push) → GitHub
 
 ![Flujo Básico](https://jonmircha.com/img/blog/git-flow.png)
 
-# Ejecutamos el comando merge con la rama secundaria a fusionar
+## Ramas Git
+- Crear rama
+  - 
+      git branch nombre-rama
+- Cambiar de rama
+  - 
+      git checkout nombre-rama
+- Crear una rama y cambiarte a ella
+  - 
+      git checkout -b rama 
+- Eliminar rama
+  - 
+      git branch -d nombre-rama
+- Eliminar ramas remotas
+  - 
+      git push origin --delete nombre-rama
+- Eliminar rama (forzado)
+  - 
+      git branch -D nombre-rama
+- Listar todas las ramas del repositorio
+  - 
+      git branch
+- Lista rama no fusionadas a la rama actual
+  - 
+      git branch --no-merged
+- Lista rama fusionadas a la rama actual
+  - 
+      git branch --merged
+- añadir la rama al remote
+  - 
+      git push -u origin nombre de la rama
+    
+- Eliminar rama del remote
+  - 
+      git push origin --delete master
+
+> El salto entre ramas afecta que archivos se subirán en el push.
+
+> Cada rama que se crea nueva toma como referencia la rama
+> en donde te encuentras
+--- 
+## Fusion
+- Fast-Forward: La fusión se hace automática, no hay conflictos por resolver.
+- Manual Merge: La fusión hay que hacerla manual, para resolver conflictos de duplicación de contenido.
+---
+    # nos cambiamos a la rama principal que quedará de la fusión
+    git checkout rama-principal
+    # ejecutamos el comando merge con la rama secundaria a 
+    fusionar
     git merge rama-secundaria
 ---
 ## Commit
