@@ -39,40 +39,38 @@ Head local ( listo para enviar - Push) → GitHub
 ![Flujo Básico](https://jonmircha.com/img/blog/git-flow.png)
 
 ## Ramas Git
-- Crear rama
-  - 
-      git branch nombre-rama
-- Cambiar de rama
-  - 
-      git checkout nombre-rama
-- Crear una rama y cambiarte a ella
-  - 
-      git checkout -b rama 
-- Eliminar rama
-  - 
-      git branch -d nombre-rama
-- Eliminar ramas remotas
-  - 
-      git push origin --delete nombre-rama
-- Eliminar rama (forzado)
-  - 
-      git branch -D nombre-rama
-- Listar todas las ramas del repositorio
-  - 
-      git branch
-- Lista rama no fusionadas a la rama actual
-  - 
-      git branch --no-merged
-- Lista rama fusionadas a la rama actual
-  - 
-      git branch --merged
-- añadir la rama al remote
-  - 
-      git push -u origin nombre de la rama
+    # Crear rama
+    git branch nombre-rama
+
+    # Cambiar de rama
+    git checkout nombre-rama
+
+    # Crear una rama y cambiarte a ella
+    git checkout -b rama
+
+    # Eliminar rama
+    git branch -d nombre-rama
+
+    # Eliminar ramas remotas
+    git push origin --delete nombre-rama
+
+    # Eliminar rama (forzado)
+    git branch -D nombre-rama
+
+    # Listar todas las ramas del repositorio
+    git branch
+
+    #Lista rama no fusionadas a la rama actual
+    git branch --no-merged
+
+    # ista rama fusionadas a la rama actual
+     git branch --merged
+
+    # añadir la rama al remote
+    git push -u origin nombre de la rama
     
-- Eliminar rama del remote
-  - 
-      git push origin --delete master
+    # Eliminar rama del remote
+    git push origin --delete master
 
 > El salto entre ramas afecta que archivos se subirán en el push.
 
