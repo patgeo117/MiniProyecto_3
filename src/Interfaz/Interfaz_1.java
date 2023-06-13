@@ -29,7 +29,9 @@ public class Interfaz_1 extends JFrame {
 
     public Interfaz_1() {
 
-        new UsuarioMaestro("Maestro","Maestro");
+        Bibliotecario bibliotecario = new Bibliotecario();
+
+        new UsuarioMaestro("Maestro", "Maestro");
 
         // JTextField
         txtUsuario = new JTextField();
@@ -70,16 +72,14 @@ public class Interfaz_1 extends JFrame {
             boolean maestroValido = false; // Permite validar el login del bibliotecario maestro
 
             // validación para los Bibliotecarios Normal
-            for (int i = 0; i < Bibliotecario.name.size(); i++) { // Recorro la lista de bibliotecarios
-                if (Usuario.equals(Bibliotecario.name.get(i)) && Contrasena.equals(Bibliotecario.password.get(i))) {
-                    bibliotecarioValido = true;
-                    System.out.println("Usuario normal activo");
-                    break;
-                }
+            if (Usuario.equals(bibliotecario.setName()) && Contrasena.equals(bibliotecario.setPassword())) {
+                bibliotecarioValido = true;
+                System.out.println("Usuario normal activo");
             }
 
+
             // Se realizan las validaciones para los Bibliotecarios Maestros
-            for(int i = 0; i < UsuarioMaestro.nameMaster.size(); i++) {
+            for (int i = 0; i < UsuarioMaestro.nameMaster.size(); i++) {
                 if (Usuario.equals(UsuarioMaestro.nameMaster.get(i)) && Contrasena.equals(UsuarioMaestro.passwordMaster.get(i))) {
                     maestroValido = true;
                     System.out.println("Usuario Maestro activo");
@@ -89,8 +89,7 @@ public class Interfaz_1 extends JFrame {
             if (bibliotecarioValido) {
                 setVisible(false);
                 new Interfaz_2();
-            }
-            else if (maestroValido) {
+            } else if (maestroValido) {
                 setVisible(false);
                 Interfaz_2 interfaz2 = new Interfaz_2();
                 // Se habilita el botón crear cuenta

@@ -1,8 +1,7 @@
 package Interfaz;
 
-import static Bibliotecarios.Bibliotecario.Bibliotecarios;
+import Bibliotecarios.Bibliotecario;
 import Bibliotecarios.UsuarioMaestro;
-
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -49,7 +48,7 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         add(cuentaUsuario);
 
         cuentaMaestro = new JButton("Crear Master");
-        cuentaMaestro.setBounds(90,200,120,30);
+        cuentaMaestro.setBounds(90, 200, 120, 30);
         cuentaMaestro.addActionListener(this);
         add(cuentaMaestro);
 
@@ -71,22 +70,25 @@ public class Interfaz_3 extends JFrame implements ActionListener {
     }
 
     public void getDataB() {
+        Bibliotecario bibliotecario = new Bibliotecario();
         // Se toma el usuario del JTextField
         String name = Usuario.getText();
         // Se toma la Contraseña del JTestField
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
-        // Le envió los datos a Bibliotecarios.Bibliotecario
-        Bibliotecarios(name, password);
+
+        bibliotecario.getName(name);
+        bibliotecario.getPassword(password);
     }
-    public void getDataM(){
+
+    public void getDataM() {
         // Se toma el usuario del JTextField
         String name = Usuario.getText();
         // Se toma la Contraseña del JTestField
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
         // Se le envía los datos a UsuarioMaestro
-        new UsuarioMaestro(name,password);
+        new UsuarioMaestro(name, password);
     }
 
 
@@ -96,22 +98,22 @@ public class Interfaz_3 extends JFrame implements ActionListener {
         // Al precionar el botón se toman los datos con la función y muestra una ventana de aprobación
         if (jb == cuentaUsuario) {
             getDataB();
-            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
             // vaciá los JTextField
             Usuario.setText("");
             Contrasena.setText("");
             System.out.println("Usuario normal creado");
 
         }
-        if (jb == cuentaMaestro){
+        if (jb == cuentaMaestro) {
             getDataM();
-            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
             // vaciá los JTextField
             Usuario.setText("");
             Contrasena.setText("");
             System.out.println("Usuario Maestro Creado");
         }
-        if (jb == volver){
+        if (jb == volver) {
             setVisible(false);
             Interfaz_2 interfaz2 = new Interfaz_2();
             interfaz2.bCrearCuentas.setVisible(true);
