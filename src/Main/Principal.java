@@ -15,9 +15,9 @@ public class Principal {
         //ManejoArchivo.CrearArchivo(rutaArchivo, (Serializable) Libros.getDataRow());
         new InLogin();
 
-        //HashMap<String, String> s = new HashMap<>();
-        // Pasamos los valores por defecto
-        /*s.put("Master", "Master");
+       /* HashMap<String, String> s = new HashMap<>();
+        //Pasamos los valores por defecto
+        s.put("Master", "Master");
         InCrearUs.setDataM(s);*/
     }
 }

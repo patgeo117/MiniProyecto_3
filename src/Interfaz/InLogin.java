@@ -31,7 +31,6 @@ public class InLogin extends JFrame {
     Bibliotecario bibliotecario = new Bibliotecario();
 
 
-
     public InLogin() {
 
         // JTextField
@@ -73,7 +72,7 @@ public class InLogin extends JFrame {
             boolean maestroValido = false; // Permite validar el login del bibliotecario maestro
 
             // validación para los Bibliotecarios Normal
-            try{
+            try {
                 FileInputStream inputB = new FileInputStream("src/Archivos_Bin/dataBibliotecarios.bin");
                 ObjectInputStream leerB = new ObjectInputStream(inputB);
 
@@ -82,18 +81,18 @@ public class InLogin extends JFrame {
                 inputB.close();
                 leerB.close();
 
-                for(String clave : newHash.keySet()){
+                for (String clave : newHash.keySet()) {
                     String valor = newHash.get(clave);
                     if (Usuario.equals(clave) && Contrasena.equals(valor)) {
                         bibliotecarioValido = true;
                     }
                 }
-            }catch (IOException | ClassNotFoundException error) {
+            } catch (IOException | ClassNotFoundException error) {
                 error.printStackTrace();
             }
 
             // Validaciones para los bibliotecarios Maestros
-            try{
+            try {
                 FileInputStream inputM = new FileInputStream("src/Archivos_Bin/dataMaestros.bin");
                 ObjectInputStream leerM = new ObjectInputStream(inputM);
 
@@ -102,14 +101,14 @@ public class InLogin extends JFrame {
                 inputM.close();
                 leerM.close();
 
-                for(String key : newMaster.keySet()){
+                for (String key : newMaster.keySet()) {
                     String value = newMaster.get(key);
                     // Se realizan las validaciones para los Bibliotecarios Maestros
                     if (Usuario.equals(key) && Contrasena.equals(value)) {
                         maestroValido = true;
                     }
                 }
-            }catch (IOException | ClassNotFoundException error) {
+            } catch (IOException | ClassNotFoundException error) {
                 error.printStackTrace();
             }
 

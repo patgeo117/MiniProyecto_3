@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bibliotecario {
-    private static String name;
-    private static String password;
+    private String name;
+    private String password;
 
-    public void setName(String name) {
-        Bibliotecario.name = name;
+    public void getName(String name) {
+        this.name = name;
     }
 
-    public String getName() {
+    public String setName() {
         return name;
     }
 
-    public void setPassword(String password) {
-        Bibliotecario.password = password;
+    public void getPassword(String password) {
+        this.password = password;
     }
 
-    public String getPassword() {
+    public String setPassword() {
         return password;
     }
 }

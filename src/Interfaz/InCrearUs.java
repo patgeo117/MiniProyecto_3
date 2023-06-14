@@ -23,9 +23,6 @@ public class InCrearUs extends JFrame implements ActionListener {
     JButton cuentaMaestro;
     JButton volver;
 
-    boolean llabeUibliotecario = false;
-    boolean llaveMaestro = false;
-
     public InCrearUs() {
         // Configuración Jlabel
         lUsuario = new JLabel("Usuario");
@@ -95,6 +92,8 @@ public class InCrearUs extends JFrame implements ActionListener {
 
         // Guardo los datos en el bin
         setDataB(dataBibliotecarios);
+
+        //validarUser();
     }
 
     // Escribir en archivo
@@ -135,10 +134,6 @@ public class InCrearUs extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        for(String clave : newHash.keySet()){
-            newHash.remove(clave);
-        }
-
         // retorno los datos del bin
         return newHash;
     }
@@ -161,6 +156,8 @@ public class InCrearUs extends JFrame implements ActionListener {
 
         // Guardo los datos en el bin
         setDataM(dataMaestro);
+
+        //validarUser();
     }
 
     // Escribir en archivo Maestro
@@ -200,14 +197,16 @@ public class InCrearUs extends JFrame implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         // retorno los datos del bin
         return newMaster;
     }
 
-    public boolean userExiste(String nameUser, HashMap<String, String> users){
+    public boolean userExiste(String nameUser, HashMap<String, String> users) {
         return users.containsKey(nameUser); // devuelve true si la calve existe y false si no
     }
-    public void crearUser(){
+
+    public void validarUser() {
         // Obtengo los datos de los archivos bin
         HashMap<String, String> usuarioMaestro = getDataM();
         HashMap<String, String> usuarioBibliotecario = getDataB();
@@ -216,30 +215,24 @@ public class InCrearUs extends JFrame implements ActionListener {
         String name = Usuario.getText();
 
 
-        boolean maestroExsite = userExiste(name, usuarioMaestro );
+        boolean maestroExsite = userExiste(name, usuarioMaestro);
         boolean bibliotecarioExiste = userExiste(name, usuarioBibliotecario);
 
-        if(!maestroExsite){
+        if (bibliotecarioExiste) {
+            JOptionPane.showMessageDialog(null, "Usuario Bibliotecario ya existe");
 
-
-        } else if (!bibliotecarioExiste) {
-                dataMaestros();
-                JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
-                // vaciá los JTextField
-                Usuario.setText("");
-                Contrasena.setText("");
-                System.out.println("Usuario Maestro Creado");
-        }else {
-            JOptionPane.showMessageDialog(null,"Usuario ya existe");
+        }
+        if (maestroExsite) {
+            JOptionPane.showMessageDialog(null, "Usuario Maestro ya existe");
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton jb = (JButton) e.getSource();
+
         // Al precionar el botón se toman los datos con la función y muestra una ventana de aprobación
         if (jb == cuentaUsuario) {
-            crearUser();
             // llamo al método encargado de crear los usuarios
             dataBibliotecarios();
             JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
@@ -250,7 +243,12 @@ public class InCrearUs extends JFrame implements ActionListener {
 
         }
         if (jb == cuentaMaestro) {
-            crearUser();
+            dataMaestros();
+            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
+            // vaciá los JTextField
+            Usuario.setText("");
+            Contrasena.setText("");
+            System.out.println("Usuario Maestro Creado");
         }
         if (jb == volver) {
             setVisible(false);
