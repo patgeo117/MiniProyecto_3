@@ -22,5 +22,9 @@ public class Libros implements Serializable {
             {"Structural Analysis", "INGENIERÍA", true},
             {"Introduction to Electrical Engineering", "INGENIERÍA", true}
     };
+
+    public static Object getDataRow(){
+        return data;
+    }
 }
 

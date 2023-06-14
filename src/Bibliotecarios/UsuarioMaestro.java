@@ -1,17 +1,25 @@
 package Bibliotecarios;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class UsuarioMaestro {
-    // valores por defecto para el login del usuario maestro
-    public static List<String> nameMaster = new ArrayList<>();
-    public static List<String> passwordMaster = new ArrayList<>();
+    private static String name;
+    private static String password;
 
-    public UsuarioMaestro(String name, String password){
-        UsuarioMaestro.nameMaster.add(name);
-        UsuarioMaestro.passwordMaster.add(password);
+    public void setName(String name) {
+        UsuarioMaestro.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setPassword(String password) {
+        UsuarioMaestro.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

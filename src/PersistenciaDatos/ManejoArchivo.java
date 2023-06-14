@@ -1,6 +1,23 @@
 package PersistenciaDatos;
 import java.io.*;
 public class ManejoArchivo {
+
+    public static void CrearArchivo(String rutaArchivo,Serializable objeto) {
+        File archivoE = new File(rutaArchivo);
+        if (archivoE.exists()) {
+            System.out.println("El archivo ya existe.");
+            return;
+        }
+        try {
+            FileOutputStream archivo = new FileOutputStream(rutaArchivo);
+            ObjectOutputStream salida = new ObjectOutputStream(archivo);
+            salida.writeObject(objeto);
+            salida.close();
+            System.out.println("Se creo el archivo");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     public static Object getDataRow(String rutaArchivo) {
         Object objeto = null;
         File archivoE = new File(rutaArchivo);
@@ -13,8 +30,10 @@ public class ManejoArchivo {
                 // Leer objeto desde el archivo binario
                 objeto = entrada.readObject();
 
+                archivo.close();
                 entrada.close();
                 System.out.println("Archivo binario leído correctamente.");
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -24,7 +43,5 @@ public class ManejoArchivo {
         return objeto;
     }
 
-    public static String[] getNomColumnas() {
-        return new String[]{"Título", "Categoría", "Estado"};
-    }
+
 }

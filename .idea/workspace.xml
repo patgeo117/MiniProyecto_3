@@ -4,13 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="final">
+    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="cambios">
+      <change afterPath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/Interfaz_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/Interfaz_1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/Interfaz_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/Interfaz_3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/Libros.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Codigo_Ejemplo/Ejemplo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Codigo_Ejemplo/Ejemplo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/Interfaz_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/Interfaz_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/Interfaz_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Principal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersistenciaDatos/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersistenciaDatos/Libros.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersistenciaDatos/ManejoArchivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersistenciaDatos/ManejoArchivo.java" afterDir="false" />
     </list>
-    <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="FINAl" />
+    <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="FINAl">
+      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/Interfaz_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/Interfaz_3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
+    </list>
     <list id="ecc96d05-5993-44b6-bd22-180bbb27c80c" name="JLabel" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +43,46 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/Interfaz_3.java" root0="SKIP_INSPECTION" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/Interfaz/InCrearUs.java">
+      <ranges>
+        <range start1="8" end1="9" start2="8" end2="10" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="10" end1="11" start2="11" end2="12" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="24" end1="25" start2="25" end2="29" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="71" end1="73" start2="75" end2="83" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="79" end1="81" start2="89" end2="114" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="83" end1="84" start2="116" end2="149" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="89" end1="91" start2="154" end2="204" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="93" end1="93" start2="206" end2="235" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="99" end1="100" start2="241" end2="244" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="108" end1="114" start2="252" end2="253" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="117" end1="118" start2="256" end2="257" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="2" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="6" end1="7" start2="5" end2="5" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="8" end1="11" start2="6" end2="12" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="12" end1="15" start2="13" end2="23" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Interfaz/InLogin.java">
+      <ranges>
+        <range start1="7" end1="7" start2="7" end2="11" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="9" end1="10" start2="13" end2="14" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="26" end1="32" start2="30" end2="31" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="33" end1="34" start2="32" end2="35" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="74" end1="77" start2="75" end2="92" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="79" end1="79" start2="94" end2="100" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="80" end1="86" start2="101" end2="110" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="87" end1="87" start2="111" end2="113" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="88" end1="88" start2="114" end2="116" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="90" end1="91" start2="118" end2="119" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="93" end1="94" start2="121" end2="122" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -43,16 +95,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Trabajo",
-    "last_opened_file_path": "C:/Users/gpati/IdeaProjects/MiniProyecto1.1",
-    "settings.editor.selected.configurable": "preferences.fileTypes"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Trabajo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gpati/IdeaProjects/MiniProyecto1.1&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\johan\OneDrive\Documentos\Universidad\univalle\3cer semestre\POE\MiniProyecto_3" />
@@ -166,8 +219,18 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="58dcb965-5fe6-4291-b700-0e9a14319920" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="58dcb965-5fe6-4291-b700-0e9a14319920">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>

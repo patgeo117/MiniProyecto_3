@@ -4,6 +4,8 @@ import PersistenciaDatos.Libros;
 import PersistenciaDatos.ManejoArchivo;
 
 import java.io.*;
+import java.util.HashMap;
+
 public class Ejemplo {
     String rutaArchivo = "src/Archivos_Bin/Libros.bin";
    // Object datosLeidos = ManejoArchivo.leerArchivoBinario(rutaArchivo);
@@ -48,6 +50,7 @@ public class Ejemplo {
 
                 entrada.close();
                 System.out.println("Archivo binario leído correctamente.");
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

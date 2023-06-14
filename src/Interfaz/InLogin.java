@@ -5,9 +5,13 @@ import Bibliotecarios.UsuarioMaestro;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.HashMap;
 import java.util.Objects;
 
-public class Interfaz_1 extends JFrame {
+public class InLogin extends JFrame {
 
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/LoginIcon.png")));
     ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/LoginIcon2.png")));
@@ -24,14 +28,11 @@ public class Interfaz_1 extends JFrame {
     // Jbutton
     JButton bLogin;
 
-    //Se añade al Superusuario predeterminado a la lista de superusuarios
+    Bibliotecario bibliotecario = new Bibliotecario();
 
 
-    public Interfaz_1() {
 
-        Bibliotecario bibliotecario = new Bibliotecario();
-
-        new UsuarioMaestro("Maestro", "Maestro");
+    public InLogin() {
 
         // JTextField
         txtUsuario = new JTextField();
@@ -72,26 +73,53 @@ public class Interfaz_1 extends JFrame {
             boolean maestroValido = false; // Permite validar el login del bibliotecario maestro
 
             // validación para los Bibliotecarios Normal
-            if (Usuario.equals(bibliotecario.setName()) && Contrasena.equals(bibliotecario.setPassword())) {
-                bibliotecarioValido = true;
-                System.out.println("Usuario normal activo");
-            }
+            try{
+                FileInputStream inputB = new FileInputStream("src/Archivos_Bin/dataBibliotecarios.bin");
+                ObjectInputStream leerB = new ObjectInputStream(inputB);
 
+                HashMap<String, String> newHash = (HashMap<String, String>) leerB.readObject();
 
-            // Se realizan las validaciones para los Bibliotecarios Maestros
-            for (int i = 0; i < UsuarioMaestro.nameMaster.size(); i++) {
-                if (Usuario.equals(UsuarioMaestro.nameMaster.get(i)) && Contrasena.equals(UsuarioMaestro.passwordMaster.get(i))) {
-                    maestroValido = true;
-                    System.out.println("Usuario Maestro activo");
-                    break;
+                inputB.close();
+                leerB.close();
+
+                for(String clave : newHash.keySet()){
+                    String valor = newHash.get(clave);
+                    if (Usuario.equals(clave) && Contrasena.equals(valor)) {
+                        bibliotecarioValido = true;
+                    }
                 }
+            }catch (IOException | ClassNotFoundException error) {
+                error.printStackTrace();
             }
+
+            // Validaciones para los bibliotecarios Maestros
+            try{
+                FileInputStream inputM = new FileInputStream("src/Archivos_Bin/dataMaestros.bin");
+                ObjectInputStream leerM = new ObjectInputStream(inputM);
+
+                HashMap<String, String> newMaster = (HashMap<String, String>) leerM.readObject();
+
+                inputM.close();
+                leerM.close();
+
+                for(String key : newMaster.keySet()){
+                    String value = newMaster.get(key);
+                    // Se realizan las validaciones para los Bibliotecarios Maestros
+                    if (Usuario.equals(key) && Contrasena.equals(value)) {
+                        maestroValido = true;
+                    }
+                }
+            }catch (IOException | ClassNotFoundException error) {
+                error.printStackTrace();
+            }
+
+
             if (bibliotecarioValido) {
                 setVisible(false);
-                new Interfaz_2();
+                new InBiblioteca();
             } else if (maestroValido) {
                 setVisible(false);
-                Interfaz_2 interfaz2 = new Interfaz_2();
+                InBiblioteca interfaz2 = new InBiblioteca();
                 // Se habilita el botón crear cuenta
                 interfaz2.lCrearCuenta.setVisible(true);
                 interfaz2.bCrearCuentas.setVisible(true);

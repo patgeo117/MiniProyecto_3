@@ -7,11 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.lang.*;
+
 import PersistenciaDatos.Libros;
 import PersistenciaDatos.ManejoArchivo;
 import PersistenciaDatos.Prestamo;
+import Interfaz.InCrearLib;
+import Main.Principal;
 
-public class Interfaz_2 extends JFrame implements ActionListener {
+public class InBiblioteca extends JFrame implements ActionListener {
     // Icono
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/IconBiblioteca.png")));
     // panel
@@ -22,6 +25,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JButton bRetornarLibro;
     JButton bInfo;
     JButton bVolver;
+    JButton bCrearLib;
     // JMenuBar
     JMenuBar menuBar;
     JMenu estadoLibro;
@@ -32,11 +36,9 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     JMenuItem inge;
     // JLabel
     JLabel lCrearCuenta;
-    // Rutas archivos
-    String rutaArchivo = "src/Archivos_Bin/Libros.bin";
 
     // Crear un modelo de tabla y agregar los datos
-    DefaultTableModel model = new DefaultTableModel((Object[][]) ManejoArchivo.getDataRow(rutaArchivo), ManejoArchivo.getNomColumnas()) {
+    DefaultTableModel model = new DefaultTableModel((Object[][]) ManejoArchivo.getDataRow(Principal.rutaArchivo), InCrearLib.getNomColumnas()) {
         // Se deshabilita la opción de modificar las filas y las columnas
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -46,7 +48,7 @@ public class Interfaz_2 extends JFrame implements ActionListener {
     // Crear un componente JTable con el modelo de tabla
     JTable table = new JTable(model);
 
-    public Interfaz_2() {
+    public InBiblioteca() {
 
         // Configuración Panel
         panel = new JPanel();
@@ -112,6 +114,12 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         bInfo.addActionListener(this);
         add(bInfo);
 
+        bCrearLib = new JButton("Añadir Libro");
+        bCrearLib.setBounds(520, 60, 100, 40);
+        bCrearLib.setBackground(Color.RED);
+        bCrearLib.addActionListener(this);
+        add(bCrearLib);
+
         bVolver = new JButton("Volver");
         bVolver.setBounds(10, 10, 75, 30);
         bVolver.setBackground(Color.green);
@@ -162,18 +170,22 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         int indexRow = table.getSelectedRow(); // Obtengo la fila seleccionada
         boolean data = (boolean) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
         for (int i = 0; i <= table.getRowCount(); i++) {
-            if (data && indexRow == i){ // validó que data = true y esté seleccionada la fila = i para evitar desbordamientos
+            if (data && indexRow == i){// validó que data = true y esté seleccionada la fila = i para evitar desbordamientos
+                //ManejoArchivo.data = new Object[indexRow][2];
                 model.setValueAt(false, indexRow, 2); // Muestro el dato en la tabla
-                Libros.data[i][2] = false; // actualizo el dato en la matriz
+                //cambiarValor(ManejoArchivo.data,indexRow,2,false); // actualizo el dato en la matriz
                 break; // aseguro que termine la ejecución si ejecuta el bloque de código
             } else if (!data && indexRow == i) { //
                 JOptionPane.showMessageDialog(null, "El libro no se encuentra Disponible por el momento");
                 break;
             }
         }
-
         model.fireTableDataChanged(); // Actualiza la tabla
 
+        //ManejoArchivo.getDataRow(Principal.rutaArchivo);
+    }
+    public static void cambiarValor(Object[][] data, int fila, int columna, Object nuevoValor) {
+        data[fila][columna] = nuevoValor;
     }
 
     public void RetornarLibro() {
@@ -295,20 +307,24 @@ public class Interfaz_2 extends JFrame implements ActionListener {
         JButton jb = (JButton) e.getSource();
         if (jb == bCrearCuentas) {
             setVisible(false);
-            new Interfaz_3();
+            new InCrearUs();
         }
         if (jb == bPrestarLibro) {
             Prestarlibro();
         }
         if (jb == bVolver) {
             setVisible(false);
-            new Interfaz_1();
+            new InLogin();
         }
         if (jb == bRetornarLibro) {
             RetornarLibro();
         }
         if(jb == bInfo){
             MostrarInfo();
+        }
+        if(jb == bCrearLib){
+            setVisible(false);
+            new InCrearLib();
         }
     }
 }
