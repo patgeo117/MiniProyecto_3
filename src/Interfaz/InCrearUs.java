@@ -84,22 +84,24 @@ public class InCrearUs extends JFrame implements ActionListener {
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
 
-        if (validar & (name != null || password != null)) {
-            // Agrego nuevos  datos al Hasmap
-            dataBibliotecarios.put(name, password);
+        if (validar) {
+            if (!name.equals("") & !password.equals("")) {
+                // Agrego nuevos  datos al Hasmap
+                dataBibliotecarios.put(name, password);
 
-            // Guardo los datos en el bin
-            setDataB(dataBibliotecarios, "src/Archivos_Bin/dataBibliotecarios.bin");
+                // Guardo los datos en el bin
+                setDataB(dataBibliotecarios, "src/Archivos_Bin/dataBibliotecarios.bin");
 
-            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Datos vacios, Ingrese los datos", " ", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos vacios, Ingrese los datos", " ", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
 
         for (String key : dataBibliotecarios.keySet()) {
             String value = dataBibliotecarios.get(key);
-            System.out.println("key: " + key + "  " + "Value: " + value);
+            System.out.println("### key: " + key + "  " + "Value: " + value);
 
         }
     }
@@ -156,23 +158,23 @@ public class InCrearUs extends JFrame implements ActionListener {
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
 
-        if (validar & (name != null || password != null)) {
-            // Agrego nuevos  datos al Hasmap
-            dataMaestro.put(name, password);
+        if (validar) {
+            if (!name.equals("") & !password.equals("")) {
+                // Agrego nuevos  datos al Hasmap
+                dataMaestro.put(name, password);
 
-            // Guardo los datos en el bin
-            setDataM(dataMaestro, "src/Archivos_Bin/dataMaestros.bin");
+                // Guardo los datos en el bin
+                setDataM(dataMaestro, "src/Archivos_Bin/dataMaestros.bin");
 
-            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos vacios, Ingrese los datos", " ", JOptionPane.INFORMATION_MESSAGE);
 
-        }else{
-            JOptionPane.showMessageDialog(null, "Datos vacios, Ingrese los datos", " ", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
-
         for (String key : dataMaestro.keySet()) {
             String value = dataMaestro.get(key);
-
-            System.out.println("key: " + key + "  " + "Value: " + value);
+            System.out.println("*** key: " + key + "  " + "Value: " + value);
         }
 
     }
