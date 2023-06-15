@@ -61,72 +61,10 @@ public class InLogin extends JFrame {
         bLogin = new JButton("Log In");
         bLogin.setBackground(Color.BLUE);
         bLogin.setBounds(100, 190, 100, 30);
+
         // agregamos el método de escucha al botón
         bLogin.addActionListener(e -> {
-            // Se toman los valores del JtextField
-            String Usuario = txtUsuario.getText();
-            char[] Clave = txtContrasena.getPassword();
-            String Contrasena = new String(Clave);  // Se transforma la clave a String
-
-            boolean bibliotecarioValido = false;  // me va ha permitir validar el bibliotecario
-            boolean maestroValido = false; // Permite validar el login del bibliotecario maestro
-
-            // validación para los Bibliotecarios Normal
-            try {
-                FileInputStream inputB = new FileInputStream("src/Archivos_Bin/dataBibliotecarios.bin");
-                ObjectInputStream leerB = new ObjectInputStream(inputB);
-
-                HashMap<String, String> newHash = (HashMap<String, String>) leerB.readObject();
-
-                inputB.close();
-                leerB.close();
-
-                for (String clave : newHash.keySet()) {
-                    String valor = newHash.get(clave);
-                    if (Usuario.equals(clave) && Contrasena.equals(valor)) {
-                        bibliotecarioValido = true;
-                    }
-                }
-            } catch (IOException | ClassNotFoundException error) {
-                error.printStackTrace();
-            }
-
-            // Validaciones para los bibliotecarios Maestros
-            try {
-                FileInputStream inputM = new FileInputStream("src/Archivos_Bin/dataMaestros.bin");
-                ObjectInputStream leerM = new ObjectInputStream(inputM);
-
-                HashMap<String, String> newMaster = (HashMap<String, String>) leerM.readObject();
-
-                inputM.close();
-                leerM.close();
-
-                for (String key : newMaster.keySet()) {
-                    String value = newMaster.get(key);
-                    // Se realizan las validaciones para los Bibliotecarios Maestros
-                    if (Usuario.equals(key) && Contrasena.equals(value)) {
-                        maestroValido = true;
-                    }
-                }
-            } catch (IOException | ClassNotFoundException error) {
-                error.printStackTrace();
-            }
-
-
-            if (bibliotecarioValido) {
-                setVisible(false);
-                new InBiblioteca();
-            } else if (maestroValido) {
-                setVisible(false);
-                InBiblioteca interfaz2 = new InBiblioteca();
-                // Se habilita el botón crear cuenta
-                interfaz2.lCrearCuenta.setVisible(true);
-                interfaz2.bCrearCuentas.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario y/o Contraseña incorrecta. Vuelve a intentarlo");
-                txtUsuario.setText("");
-                txtContrasena.setText("");
-            }
+           loginUsers();
         });
 
         add(bLogin);
@@ -149,6 +87,73 @@ public class InLogin extends JFrame {
 
         setVisible(true);
 
+    }
+
+    public void loginUsers(){
+        // Se toman los valores del JtextField
+        String Usuario = txtUsuario.getText();
+        char[] Clave = txtContrasena.getPassword();
+        String Contrasena = new String(Clave);  // Se transforma la clave a String
+
+        boolean bibliotecarioValido = false;  // me va ha permitir validar el bibliotecario
+        boolean maestroValido = false; // Permite validar el login del bibliotecario maestro
+
+        // validación para los Bibliotecarios Normal
+        try {
+            FileInputStream inputB = new FileInputStream("src/Archivos_Bin/dataBibliotecarios.bin");
+            ObjectInputStream leerB = new ObjectInputStream(inputB);
+
+            HashMap<String, String> newHash = (HashMap<String, String>) leerB.readObject();
+
+            inputB.close();
+            leerB.close();
+
+            for (String clave : newHash.keySet()) {
+                String valor = newHash.get(clave);
+                if (Usuario.equals(clave) && Contrasena.equals(valor)) {
+                    bibliotecarioValido = true;
+                }
+            }
+        } catch (IOException | ClassNotFoundException error) {
+            error.printStackTrace();
+        }
+
+        // Validaciones para los bibliotecarios Maestros
+        try {
+            FileInputStream inputM = new FileInputStream("src/Archivos_Bin/dataMaestros.bin");
+            ObjectInputStream leerM = new ObjectInputStream(inputM);
+
+            HashMap<String, String> newMaster = (HashMap<String, String>) leerM.readObject();
+
+            inputM.close();
+            leerM.close();
+
+            for (String key : newMaster.keySet()) {
+                String value = newMaster.get(key);
+                // Se realizan las validaciones para los Bibliotecarios Maestros
+                if (Usuario.equals(key) && Contrasena.equals(value)) {
+                    maestroValido = true;
+                }
+            }
+        } catch (IOException | ClassNotFoundException error) {
+            error.printStackTrace();
+        }
+
+
+        if (bibliotecarioValido) {
+            setVisible(false);
+            new InBiblioteca();
+        } else if (maestroValido) {
+            setVisible(false);
+            InBiblioteca interfaz2 = new InBiblioteca();
+            // Se habilita el botón crear cuenta
+            interfaz2.lCrearCuenta.setVisible(true);
+            interfaz2.bCrearCuentas.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario y/o Contraseña incorrecta. Vuelve a intentarlo");
+            txtUsuario.setText("");
+            txtContrasena.setText("");
+        }
     }
 
 }

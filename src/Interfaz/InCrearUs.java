@@ -23,6 +23,9 @@ public class InCrearUs extends JFrame implements ActionListener {
     JButton cuentaMaestro;
     JButton volver;
 
+    // un booleano que va permitir verificar/crear un User cuadno sea true
+    boolean validar = false;
+
     public InCrearUs() {
         // Configuración Jlabel
         lUsuario = new JLabel("Usuario");
@@ -72,9 +75,6 @@ public class InCrearUs extends JFrame implements ActionListener {
 
     // Método que ba a guardar
     public void dataBibliotecarios() {
-        // Instancia de los bibliotecarios
-        //Bibliotecario bibliotecario = new Bibliotecario();
-
         // creo un HashMap que va a recibit los datos por defecto  de getData() (método que lee el bin);
         HashMap<String, String> dataBibliotecarios = getDataB();
 
@@ -84,23 +84,31 @@ public class InCrearUs extends JFrame implements ActionListener {
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
 
-        /*bibliotecario.setName(name);
-        bibliotecario.setPassword(password);*/
+        if (validar & (name != null || password != null)) {
+            // Agrego nuevos  datos al Hasmap
+            dataBibliotecarios.put(name, password);
 
-        // Agrego nuevos  datos al Hasmap
-        dataBibliotecarios.put(name, password);
+            // Guardo los datos en el bin
+            setDataB(dataBibliotecarios, "src/Archivos_Bin/dataBibliotecarios.bin");
 
-        // Guardo los datos en el bin
-        setDataB(dataBibliotecarios);
+            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
 
-        //validarUser();
+        } else {
+            JOptionPane.showMessageDialog(null, "Datos vacios, Ingrese los datos", " ", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        for (String key : dataBibliotecarios.keySet()) {
+            String value = dataBibliotecarios.get(key);
+            System.out.println("key: " + key + "  " + "Value: " + value);
+
+        }
     }
 
     // Escribir en archivo
-    public static void setDataB(HashMap<String, String> data) {
+    public static void setDataB(HashMap<String, String> data, String archivo) {
 
         try {
-            FileOutputStream outputB = new FileOutputStream("src/Archivos_Bin/dataBibliotecarios.bin");
+            FileOutputStream outputB = new FileOutputStream(archivo);
             ObjectOutputStream modifiB = new ObjectOutputStream(outputB);
 
             modifiB.writeObject(data);
@@ -133,7 +141,6 @@ public class InCrearUs extends JFrame implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         // retorno los datos del bin
         return newHash;
     }
@@ -142,29 +149,39 @@ public class InCrearUs extends JFrame implements ActionListener {
     public void dataMaestros() {
         // creo un HashMap que va a recibit los datos por defecto  de getData() (método que lee el bin);
         HashMap<String, String> dataMaestro = getDataM();
+
         // Se toma el usuario del JTextField
         String name = Usuario.getText();
         // Se toma la Contraseña del JTestField
         char[] clave = Contrasena.getPassword();
         String password = new String(clave);
 
-        /*bibliotecario.setName(name);
-        bibliotecario.setPassword(password);*/
+        if (validar & (name != null || password != null)) {
+            // Agrego nuevos  datos al Hasmap
+            dataMaestro.put(name, password);
 
-        // Agrego nuevos  datos al Hasmap
-        dataMaestro.put(name, password);
+            // Guardo los datos en el bin
+            setDataM(dataMaestro, "src/Archivos_Bin/dataMaestros.bin");
 
-        // Guardo los datos en el bin
-        setDataM(dataMaestro);
+            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
 
-        //validarUser();
+        }else{
+            JOptionPane.showMessageDialog(null, "Datos vacios, Ingrese los datos", " ", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        for (String key : dataMaestro.keySet()) {
+            String value = dataMaestro.get(key);
+
+            System.out.println("key: " + key + "  " + "Value: " + value);
+        }
+
     }
 
     // Escribir en archivo Maestro
-    public static void setDataM(HashMap<String, String> data) {
+    public static void setDataM(HashMap<String, String> data, String archivo) {
 
         try {
-            FileOutputStream outputM = new FileOutputStream("src/Archivos_Bin/dataMaestros.bin");
+            FileOutputStream outputM = new FileOutputStream(archivo);
             ObjectOutputStream modifiM = new ObjectOutputStream(outputM);
 
             modifiM.writeObject(data);
@@ -202,6 +219,7 @@ public class InCrearUs extends JFrame implements ActionListener {
         return newMaster;
     }
 
+    // Método que me retorna si la clave ya existe
     public boolean userExiste(String nameUser, HashMap<String, String> users) {
         return users.containsKey(nameUser); // devuelve true si la calve existe y false si no
     }
@@ -214,17 +232,15 @@ public class InCrearUs extends JFrame implements ActionListener {
         // Se toma el usuario del JTextField
         String name = Usuario.getText();
 
-
         boolean maestroExsite = userExiste(name, usuarioMaestro);
         boolean bibliotecarioExiste = userExiste(name, usuarioBibliotecario);
 
-        if (bibliotecarioExiste) {
-            JOptionPane.showMessageDialog(null, "Usuario Bibliotecario ya existe");
+        if (maestroExsite || bibliotecarioExiste) {
+            JOptionPane.showMessageDialog(null, "¡¡ ERROR !!, Usuario ya existe");
+        } else {
+            validar = true;
+        }
 
-        }
-        if (maestroExsite) {
-            JOptionPane.showMessageDialog(null, "Usuario Maestro ya existe");
-        }
     }
 
     @Override
@@ -233,22 +249,21 @@ public class InCrearUs extends JFrame implements ActionListener {
 
         // Al precionar el botón se toman los datos con la función y muestra una ventana de aprobación
         if (jb == cuentaUsuario) {
+            validarUser();
             // llamo al método encargado de crear los usuarios
             dataBibliotecarios();
-            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
             // vaciá los JTextField
             Usuario.setText("");
             Contrasena.setText("");
-            System.out.println("Usuario normal creado");
 
         }
         if (jb == cuentaMaestro) {
+            validarUser();
             dataMaestros();
-            JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
             // vaciá los JTextField
             Usuario.setText("");
             Contrasena.setText("");
-            System.out.println("Usuario Maestro Creado");
+
         }
         if (jb == volver) {
             setVisible(false);
