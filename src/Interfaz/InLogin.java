@@ -64,7 +64,7 @@ public class InLogin extends JFrame {
 
         // agregamos el método de escucha al botón
         bLogin.addActionListener(e -> {
-           loginUsers();
+            loginUsers();
         });
 
         add(bLogin);

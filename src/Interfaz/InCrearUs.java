@@ -6,7 +6,6 @@ import Bibliotecarios.UsuarioMaestro;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 import java.util.*;
 
 public class InCrearUs extends JFrame implements ActionListener {
@@ -166,11 +165,11 @@ public class InCrearUs extends JFrame implements ActionListener {
         }
 
         /* NOTA BUG:
-        * Si creo dos usuarios, uno como maestro y el otro como normal con el mismo nombre, se van a
-        * guardar en los dos archivos .bin.
-        * Para evitar esto nos debemos devolver a la ventana anterior y ya no nos permitira guardar
-        * con el mismo nombre (si ya existe)
-        * */
+         * Si creo dos usuarios, uno como maestro y el otro como normal con el mismo nombre, se van a
+         * guardar en los dos archivos .bin.
+         * Para evitar esto nos debemos devolver a la ventana anterior y ya no nos permitira guardar
+         * con el mismo nombre (si ya existe)
+         * */
     }
 
     @Override
@@ -197,11 +196,11 @@ public class InCrearUs extends JFrame implements ActionListener {
         }
         if (jb == volver) {
             setVisible(false);
-            InBiblioteca interfaz2 = new InBiblioteca();
-            interfaz2.bCrearCuentas.setVisible(true);
-            interfaz2.lCrearCuenta.setVisible(true);
+            new InBiblioteca();
+            InBiblioteca.bCrearCuentas.setVisible(true);
+            InBiblioteca.lCrearCuenta.setVisible(true);
+            InBiblioteca.lDeleteUser.setVisible(true);
+            InBiblioteca.bDeleteUser.setVisible(true);
         }
     }
 }
-
-

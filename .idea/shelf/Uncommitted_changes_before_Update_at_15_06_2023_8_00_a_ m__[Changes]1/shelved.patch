@@ -1,0 +1,123 @@
+Index: src/Interfaz/InCrearLib.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Interfaz;\r\n\r\nimport Bibliotecarios.Bibliotecario;\r\nimport org.w3c.dom.DOMStringList;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.io.*;\r\nimport java.util.ArrayList;\r\n\r\npublic class InCrearLib extends JFrame implements ActionListener {\r\n    // Jlabel\r\n    JLabel lNombreLibro;\r\n    JLabel lCategoriaLibro;\r\n    JLabel lEstadoLibro;\r\n    // JtextField\r\n    JTextField EstadoLibro;\r\n    JTextField NombreLibro;\r\n    JTextField CategoriaLibro;\r\n\r\n    // Jbutton\r\n    JButton AñadirLibro;\r\n    JButton volver;\r\n\r\n    public InCrearLib(){\r\n        // Configuración Jlabel\r\n        lNombreLibro = new JLabel(\"Nombre Del Libro\");\r\n        lNombreLibro.setBounds(100, 15, 100, 40);\r\n        add(lNombreLibro);\r\n\r\n        lCategoriaLibro = new JLabel(\"Categoría Del Libro\");\r\n        lCategoriaLibro.setBounds(100, 70, 120, 40);\r\n        add(lCategoriaLibro);\r\n\r\n        lEstadoLibro = new JLabel(\"Estado Del Libro\");\r\n        lEstadoLibro.setBounds(100, 120, 100, 40);\r\n        add(lEstadoLibro);\r\n\r\n\r\n        // Configuración JtextField\r\n        NombreLibro = new JTextField();\r\n        NombreLibro.setBounds(100, 50, 100, 25);\r\n        add(NombreLibro);\r\n\r\n        CategoriaLibro = new JTextField();\r\n        CategoriaLibro.setBounds(100, 105, 100, 25);\r\n        add(CategoriaLibro);\r\n\r\n        EstadoLibro = new JTextField(String.valueOf(true));\r\n        EstadoLibro.setBounds(100, 155, 100, 25);\r\n        EstadoLibro.setEditable(false);\r\n        add(EstadoLibro);\r\n\r\n        // Configuración Jbutton\r\n        AñadirLibro = new JButton(\"Crear Bibliotecario\");\r\n        AñadirLibro.setBounds(75, 200, 150, 30);\r\n        AñadirLibro.addActionListener(this);\r\n        add(AñadirLibro);\r\n\r\n        volver = new JButton(\"Volver\");\r\n        volver.setBounds(10, 10, 80, 20);\r\n        volver.addActionListener(this);\r\n        add(volver);\r\n\r\n\r\n        // Configuración de ventana\r\n        setLayout(null);\r\n        setSize(300, 280);\r\n        setTitle(\"Crear Cuenta\");\r\n        setLocationRelativeTo(null);\r\n        setResizable(false);\r\n        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\r\n        setVisible(true);\r\n    }\r\n    public void dataLibros() {\r\n        // creo un HashMap que va a recibit los datos por defecto de getData() (método que lee el bin);\r\n        Object[][] dataBibliotecarios = getDataB();\r\n\r\n        // Se toma el Nombre y la categoría del JTextField\r\n        String nombreLibro = NombreLibro.getText();\r\n        String categoriaLibro = CategoriaLibro.getText();\r\n\r\n        // Se toma el estado del JTestField\r\n        String estadoLibro = EstadoLibro.getText();\r\n\r\n        // Agrego nuevos  datos al Hasmap\r\n        Object[] nuevoLibro = {nombreLibro,categoriaLibro,estadoLibro};\r\n        //dataBibliotecarios.wait(nuevoLibro);\r\n\r\n        // Guardo los datos en el bin\r\n        setDataB(dataBibliotecarios);\r\n    }\r\n    public static void setDataB(Object[][] data) {\r\n\r\n        try {\r\n            FileOutputStream outputB = new FileOutputStream(\"src/Archivos_Bin/Libros.bin\");\r\n            ObjectOutputStream modifiB = new ObjectOutputStream(outputB);\r\n\r\n            modifiB.writeObject(data);\r\n\r\n            modifiB.close();\r\n            outputB.close();\r\n\r\n        } catch (Exception io) {\r\n            io.printStackTrace();\r\n        }\r\n    }\r\n    public Object[][] getDataB() {\r\n        // creo un nuevo HasMap que captura los datos del bin\r\n        //Object[]Ñ newObjeto = new Object();\r\n        try {\r\n            File file = new File(\"src/Archivos_Bin/Libros.bin\");\r\n            // Válido que el archivo exista\r\n            if (file.exists()) {\r\n                FileInputStream inputB = new FileInputStream(file);\r\n                ObjectInputStream leerB = new ObjectInputStream(inputB);\r\n\r\n                // leo el archivo y agregó los valores al HashMap\r\n                //newObjeto = (Object[][]) leerB.readObject();\r\n\r\n                leerB.close();\r\n                inputB.close();\r\n            }\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n        // retorno los datos del bin\r\n        return null;\r\n    }\r\n    public static String[] getNomColumnas() {\r\n        return new String[]{\"Título\", \"Categoría\", \"Estado\"};\r\n    }\r\n\r\n    @Override\r\n    public void actionPerformed(ActionEvent e) {\r\n        JButton jb = (JButton) e.getSource();\r\n        // Al precionar el botón se toman los datos con la función y muestra una ventana de aprobación\r\n        if (jb == AñadirLibro) {\r\n            // llamo al método encargado de capturar los datos ingresados\r\n            dataLibros();\r\n            JOptionPane.showMessageDialog(null, \"Libro Añadido...\", \" \", JOptionPane.INFORMATION_MESSAGE);\r\n            // vaciá los JTextField\r\n            NombreLibro.setText(\"\");\r\n            CategoriaLibro.setText(\"\");\r\n            System.out.println(\"Libro Creado\");\r\n        }\r\n        if(jb == volver){\r\n            setVisible(false);\r\n            new InBiblioteca();\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        new InCrearLib();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Interfaz/InCrearLib.java b/src/Interfaz/InCrearLib.java
+--- a/src/Interfaz/InCrearLib.java	
++++ b/src/Interfaz/InCrearLib.java	
+@@ -73,6 +73,8 @@
+         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+         setVisible(true);
+     }
++
++
+     public void dataLibros() {
+         // creo un HashMap que va a recibit los datos por defecto de getData() (método que lee el bin);
+         Object[][] dataBibliotecarios = getDataB();
+Index: src/Main/Principal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Main;\r\n\r\nimport Interfaz.InCrearLib;\r\nimport Interfaz.InLogin;\r\nimport Interfaz.InCrearUs;\r\n\r\nimport java.util.HashMap;\r\n\r\n\r\npublic class Principal {\r\n    public static String rutaArchivo = \"src/Archivos_Bin/Libros.bin\";\r\n    public static void main(String[] args) {\r\n        // InCrearUs.setDataM();\r\n        //ManejoArchivo.getDataRow(rutaArchivo);\r\n        //ManejoArchivo.CrearArchivo(rutaArchivo, (Serializable) Libros.getDataRow());\r\n        new InLogin();\r\n\r\n       /* HashMap<String, String> s = new HashMap<>();\r\n        //Pasamos los valores por defecto\r\n        s.put(\"Master\", \"Master\");\r\n        InCrearUs.setDataM(s);*/\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main/Principal.java b/src/Main/Principal.java
+--- a/src/Main/Principal.java	
++++ b/src/Main/Principal.java	
+@@ -3,6 +3,7 @@
+ import Interfaz.InCrearLib;
+ import Interfaz.InLogin;
+ import Interfaz.InCrearUs;
++import PersistenciaDatos.ManejoArchivo;
+ 
+ import java.util.HashMap;
+ 
+@@ -12,7 +13,7 @@
+     public static void main(String[] args) {
+         // InCrearUs.setDataM();
+         //ManejoArchivo.getDataRow(rutaArchivo);
+-        //ManejoArchivo.CrearArchivo(rutaArchivo, (Serializable) Libros.getDataRow());
++        //ManejoArchivo.CrearArchivo(rutaArchivo);
+         new InLogin();
+ 
+        /* HashMap<String, String> s = new HashMap<>();
+Index: src/PersistenciaDatos/ManejoArchivo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package PersistenciaDatos;\r\nimport java.io.*;\r\npublic class ManejoArchivo {\r\n\r\n    public static void CrearArchivo(String rutaArchivo,Serializable objeto) {\r\n        File archivoE = new File(rutaArchivo);\r\n        if (archivoE.exists()) {\r\n            System.out.println(\"El archivo ya existe.\");\r\n            return;\r\n        }\r\n        try {\r\n            FileOutputStream archivo = new FileOutputStream(rutaArchivo);\r\n            ObjectOutputStream salida = new ObjectOutputStream(archivo);\r\n            salida.writeObject(objeto);\r\n            salida.close();\r\n            System.out.println(\"Se creo el archivo\");\r\n        }catch (IOException e){\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n    public static Object getDataRow(String rutaArchivo) {\r\n        Object objeto = null;\r\n        File archivoE = new File(rutaArchivo);\r\n        if (archivoE.exists()) {\r\n           objeto = new Object();\r\n            try {\r\n                FileInputStream archivo = new FileInputStream(rutaArchivo);\r\n                ObjectInputStream entrada = new ObjectInputStream(archivo);\r\n\r\n                // Leer objeto desde el archivo binario\r\n                objeto = entrada.readObject();\r\n\r\n                archivo.close();\r\n                entrada.close();\r\n                System.out.println(\"Archivo binario leído correctamente.\");\r\n\r\n            } catch (IOException | ClassNotFoundException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }else {\r\n            System.out.println(\"No se encontró el archivo.\");\r\n        }\r\n        return objeto;\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/PersistenciaDatos/ManejoArchivo.java b/src/PersistenciaDatos/ManejoArchivo.java
+--- a/src/PersistenciaDatos/ManejoArchivo.java	
++++ b/src/PersistenciaDatos/ManejoArchivo.java	
+@@ -1,8 +1,37 @@
+ package PersistenciaDatos;
+ import java.io.*;
++import java.nio.file.Files;
++import java.nio.file.Path;
++import java.nio.file.Paths;
++
++import org.json.simple.JSONObject;
++import org.json.simple.parser.JSONParser;
++
+ public class ManejoArchivo {
+ 
+-    public static void CrearArchivo(String rutaArchivo,Serializable objeto) {
++    public static JSONObject jsonToBin() {
++        Path binFilePath = Paths.get("src/Archivos_Bin/Libros.bin");
++        JSONObject jsonObject = new JSONObject();
++
++        try {
++            byte[] fileBytes = Files.readAllBytes(binFilePath);
++
++            // Crear un objeto JSONParser
++            JSONParser jsonParser = new JSONParser();
++
++            // Convertir los bytes a una cadena JSON
++            String jsonString = new String(fileBytes);
++
++            // Parsear la cadena JSON y obtener el objeto JSONObject
++            jsonObject = (JSONObject) jsonParser.parse(jsonString);
++
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++        return jsonObject;
++    }
++
++    public static void CrearArchivo(String rutaArchivo) {
+         File archivoE = new File(rutaArchivo);
+         if (archivoE.exists()) {
+             System.out.println("El archivo ya existe.");
+@@ -11,7 +40,7 @@
+         try {
+             FileOutputStream archivo = new FileOutputStream(rutaArchivo);
+             ObjectOutputStream salida = new ObjectOutputStream(archivo);
+-            salida.writeObject(objeto);
++            //salida.writeObject(objeto);
+             salida.close();
+             System.out.println("Se creo el archivo");
+         }catch (IOException e){
+Index: MiniProyecto_2.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/src\" isTestSource=\"false\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/MiniProyecto_2.iml b/MiniProyecto_2.iml
+--- a/MiniProyecto_2.iml	
++++ b/MiniProyecto_2.iml	
+@@ -7,5 +7,7 @@
+     </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="github.jsurfer.jsonsimple" level="application" />
++    <orderEntry type="library" name="itest.json.simple.parser" level="application" />
+   </component>
+ </module>
+\ No newline at end of file

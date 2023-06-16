@@ -5,9 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Users">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_06_2023_11_15_a__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_06_2023_11_15_a__m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_06_2023_11_15_a__m___Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_06_2023_11_15_a__m___Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/dataBibliotecarios.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Archivos_Bin/dataBibliotecarios.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/dataMaestros.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Archivos_Bin/dataMaestros.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Principal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersistenciaDatos/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersistenciaDatos/Libros.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersistenciaDatos/ManejoArchivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersistenciaDatos/ManejoArchivo.java" afterDir="false" />
     </list>
-    <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="FINAl" />
+    <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="FINAl">
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Principal.java" afterDir="false" />
+    </list>
     <list id="ecc96d05-5993-44b6-bd22-180bbb27c80c" name="JLabel" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +39,29 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Interfaz_3.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/Main/Principal.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="2" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="4" end1="5" start2="3" end2="3" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="8" end1="9" start2="6" end2="7" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="10" end1="11" start2="8" end2="9" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="14" end1="15" start2="12" end2="13" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="17" end1="18" start2="15" end2="16" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="20" end1="21" start2="18" end2="19" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Interfaz/InCrearUs.java">
+      <ranges>
+        <range start1="8" end1="9" start2="8" end2="8" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="168" end1="173" start2="167" end2="172" changelist="0a5985e6-772f-4ab5-9bc7-7afe290d5433" />
+        <range start1="199" end1="202" start2="198" end2="203" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="205" end1="207" start2="206" end2="206" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -50,6 +86,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Main" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\johan\OneDrive\Documentos\Universidad\univalle\3cer semestre\POE\MiniProyecto_3" />
     </key>

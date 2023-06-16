@@ -1,18 +1,16 @@
 package Interfaz;
 
+import PersistenciaDatos.Libros;
+import PersistenciaDatos.ManejoArchivo;
+import PersistenciaDatos.Prestamo;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
-import java.lang.*;
-
-import PersistenciaDatos.Libros;
-import PersistenciaDatos.ManejoArchivo;
-import PersistenciaDatos.Prestamo;
-import Interfaz.InCrearLib;
-import Main.Principal;
+import java.util.ListIterator;
+import java.util.Objects;
 
 public class InBiblioteca extends JFrame implements ActionListener {
     // Icono
@@ -20,14 +18,14 @@ public class InBiblioteca extends JFrame implements ActionListener {
     // panel
     JPanel panel;
     // Botones
-    JButton bCrearCuentas;
+    static JButton bCrearCuentas;
     JButton bPrestarLibro;
     JButton bRetornarLibro;
     JButton bInfo;
     JButton bVolver;
     JButton bCrearLib;
 
-    JButton bDeleteUser;
+    static JButton bDeleteUser;
     // JMenuBar
     JMenuBar menuBar;
     JMenu estadoLibro;
@@ -38,11 +36,13 @@ public class InBiblioteca extends JFrame implements ActionListener {
     JMenuItem inge;
 
     // JLabel
-    JLabel lCrearCuenta;
-    JLabel lDeleteUser;
+    static JLabel lCrearCuenta;
+    static JLabel lDeleteUser;
+
+    ManejoArchivo manejoArchivo = new ManejoArchivo();
 
     // Crear un modelo de tabla y agregar los datos
-    DefaultTableModel model = new DefaultTableModel((Object[][]) ManejoArchivo.getDataRow(Principal.rutaArchivo), InCrearLib.getNomColumnas()) {
+    DefaultTableModel model = new DefaultTableModel(manejoArchivo.leerObjeto(), manejoArchivo.getNomColumnas()) {
         // Se deshabilita la opción de modificar las filas y las columnas
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -198,10 +198,6 @@ public class InBiblioteca extends JFrame implements ActionListener {
         }
         model.fireTableDataChanged(); // Actualiza la tabla
 
-        //ManejoArchivo.getDataRow(Principal.rutaArchivo);
-    }
-    public static void cambiarValor(Object[][] data, int fila, int columna, Object nuevoValor) {
-        data[fila][columna] = nuevoValor;
     }
 
     public void RetornarLibro() {
