@@ -98,7 +98,7 @@ public class InLogin extends JFrame {
         boolean bibliotecarioValido = false;  // me va ha permitir validar el bibliotecario
         boolean maestroValido = false; // Permite validar el login del bibliotecario maestro
 
-        // validación para los Bibliotecarios Normal
+        // validación para los Empleados Normal
         try {
             FileInputStream inputB = new FileInputStream("src/Archivos_Bin/dataBibliotecarios.bin");
             ObjectInputStream leerB = new ObjectInputStream(inputB);
@@ -130,7 +130,7 @@ public class InLogin extends JFrame {
 
             for (String key : newMaster.keySet()) {
                 String value = newMaster.get(key);
-                // Se realizan las validaciones para los Bibliotecarios Maestros
+                // Se realizan las validaciones para los Empleados Maestros
                 if (Usuario.equals(key) && Contrasena.equals(value)) {
                     maestroValido = true;
                 }
@@ -149,6 +149,9 @@ public class InLogin extends JFrame {
             // Se habilita el botón crear cuenta
             interfaz2.lCrearCuenta.setVisible(true);
             interfaz2.bCrearCuentas.setVisible(true);
+
+            interfaz2.lDeleteUser.setVisible(true);
+            interfaz2.bDeleteUser.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Usuario y/o Contraseña incorrecta. Vuelve a intentarlo");
             txtUsuario.setText("");

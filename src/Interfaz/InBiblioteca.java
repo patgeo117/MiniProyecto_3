@@ -26,6 +26,8 @@ public class InBiblioteca extends JFrame implements ActionListener {
     JButton bInfo;
     JButton bVolver;
     JButton bCrearLib;
+
+    JButton bDeleteUser;
     // JMenuBar
     JMenuBar menuBar;
     JMenu estadoLibro;
@@ -34,8 +36,10 @@ public class InBiblioteca extends JFrame implements ActionListener {
     JMenuItem terror;
     JMenuItem novela;
     JMenuItem inge;
+
     // JLabel
     JLabel lCrearCuenta;
+    JLabel lDeleteUser;
 
     // Crear un modelo de tabla y agregar los datos
     DefaultTableModel model = new DefaultTableModel((Object[][]) ManejoArchivo.getDataRow(Principal.rutaArchivo), InCrearLib.getNomColumnas()) {
@@ -88,6 +92,11 @@ public class InBiblioteca extends JFrame implements ActionListener {
         lCrearCuenta.setVisible(false);
         add(lCrearCuenta);
 
+        lDeleteUser = new JLabel("Eliminar Cuenta:");
+        lDeleteUser.setBounds(160, 480, 100, 20);
+        lDeleteUser.setVisible(false);
+        add(lDeleteUser);
+
         // Configuración Botones
         bCrearCuentas = new JButton("Crear");
         bCrearCuentas.setBounds(40, 500, 100, 20);
@@ -95,6 +104,13 @@ public class InBiblioteca extends JFrame implements ActionListener {
         bCrearCuentas.setVisible(false);
         bCrearCuentas.addActionListener(this);
         add(bCrearCuentas);
+
+        bDeleteUser = new JButton("Eliminar");
+        bDeleteUser.setBounds(160, 500, 100, 20);
+        bDeleteUser.setBackground(Color.green);
+        bDeleteUser.setVisible(false);
+        bDeleteUser.addActionListener(this);
+        add(bDeleteUser);
 
         bPrestarLibro = new JButton("Prestar");
         bPrestarLibro.setBounds(100, 60, 100, 40);
@@ -303,11 +319,15 @@ public class InBiblioteca extends JFrame implements ActionListener {
     };
 
     @Override
-    public void actionPerformed(ActionEvent e) {     // ActionListener para los botones
+    public void actionPerformed(ActionEvent e) {   // ActionListener para los botones
         JButton jb = (JButton) e.getSource();
         if (jb == bCrearCuentas) {
             setVisible(false);
             new InCrearUs();
+        }
+        if(jb == bDeleteUser){
+            setVisible(false);
+            new InDeleteUs();
         }
         if (jb == bPrestarLibro) {
             Prestarlibro();
