@@ -28,8 +28,6 @@ public class InLogin extends JFrame {
     // Jbutton
     JButton bLogin;
 
-    Bibliotecario bibliotecario = new Bibliotecario();
-
 
     public InLogin() {
 
