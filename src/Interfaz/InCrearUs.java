@@ -26,7 +26,7 @@ public class InCrearUs extends JFrame implements ActionListener {
     Bibliotecario bibliotecario = new Bibliotecario();
     UsuarioMaestro maestro = new UsuarioMaestro();
 
-    // un booleano que va permitir verificar/crear un User cuadno sea true
+    // un boolean que va permitir verificar/crear un User cuando sea true
     boolean validar = false;
 
     public InCrearUs() {
