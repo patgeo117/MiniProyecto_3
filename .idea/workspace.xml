@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Users">
-      <change afterPath="$PROJECT_DIR$/src/Bibliotecarios/SerizalizaDeseralizaUs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/dataBibliotecarios.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/dataMaestros.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/employees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/Employees.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/InLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Principal.java" afterDir="false" />
-    </list>
+    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Users" />
     <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="FINAl" />
     <list id="ecc96d05-5993-44b6-bd22-180bbb27c80c" name="JLabel" comment="" />
     <option name="SHOW_DIALOG" value="false" />
