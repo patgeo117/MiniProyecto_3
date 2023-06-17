@@ -1,9 +1,8 @@
 package Bibliotecarios;
 
-import java.io.*;
-import java.util.HashMap;
+public class UsuarioMaestro extends Employees {
 
-public class UsuarioMaestro {
-
-
+    public UsuarioMaestro(String key, String value){
+        super(key, value);
+    }
 }

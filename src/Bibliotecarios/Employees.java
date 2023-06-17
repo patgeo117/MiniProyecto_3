@@ -1,10 +1,12 @@
 package Bibliotecarios;
 
-public class employees {
+import java.io.Serializable;
+
+public class Employees implements Serializable {
     private String kay;
     private String value;
 
-    public employees(String key, String value){
+    public Employees(String key, String value){
         this.kay = key;
         this.value = value;
     }

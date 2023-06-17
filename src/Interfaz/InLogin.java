@@ -1,7 +1,6 @@
 package Interfaz;
 
-import Bibliotecarios.Bibliotecario;
-import Bibliotecarios.UsuarioMaestro;
+import Bibliotecarios.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +26,7 @@ public class InLogin extends JFrame {
 
     // Jbutton
     JButton bLogin;
+    SerizalizaDeseralizaUs SerizalizaDeseralizaUs = new SerizalizaDeseralizaUs();
 
 
     public InLogin() {
@@ -87,7 +87,7 @@ public class InLogin extends JFrame {
 
     }
 
-    public void loginUsers(){
+    public void loginUsers() {
         // Se toman los valores del JtextField
         String Usuario = txtUsuario.getText();
         char[] Clave = txtContrasena.getPassword();
@@ -98,43 +98,58 @@ public class InLogin extends JFrame {
 
         // validación para los Empleados Normal
         try {
-            FileInputStream inputB = new FileInputStream("src/Archivos_Bin/dataBibliotecarios.bin");
+            FileInputStream inputB = new FileInputStream("src/Archivos_Bin/dataB.bin");
             ObjectInputStream leerB = new ObjectInputStream(inputB);
 
-            HashMap<String, String> newHash = (HashMap<String, String>) leerB.readObject();
+            // creo un HashMap donde se van a almacenar los
+            HashMap<String, String> hashNormal = new HashMap<>();
+            // Creo un lista tipo Employees que almacena los datos agregados
+            System.out.println("**** Normals Users ****");
+            Employees[] temo = SerizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataB.bin");
+
+            for (Employees e : temo) {
+                hashNormal.put(e.getKey(), e.getValue());
+            }
 
             inputB.close();
             leerB.close();
 
-            for (String clave : newHash.keySet()) {
-                String valor = newHash.get(clave);
+            for (String clave : hashNormal.keySet()) {
+                String valor = hashNormal.get(clave);
                 if (Usuario.equals(clave) && Contrasena.equals(valor)) {
                     bibliotecarioValido = true;
                 }
             }
-        } catch (IOException | ClassNotFoundException error) {
-            error.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         // Validaciones para los bibliotecarios Maestros
         try {
-            FileInputStream inputM = new FileInputStream("src/Archivos_Bin/dataMaestros.bin");
-            ObjectInputStream leerM = new ObjectInputStream(inputM);
+            FileInputStream inputB = new FileInputStream("src/Archivos_Bin/dataM.bin");
+            ObjectInputStream leerB = new ObjectInputStream(inputB);
 
-            HashMap<String, String> newMaster = (HashMap<String, String>) leerM.readObject();
+            // creo un HashMap donde se van a almacenar los
+            HashMap<String, String> newMaster = new HashMap<>();
+            // Creo un lista tipo Employees que almacena los datos agregados
+            System.out.println("\n**** Normals Maestro ****");
+            Employees[] temo = SerizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataM.bin");
 
-            inputM.close();
-            leerM.close();
+            for (Employees e : temo) {
+                newMaster.put(e.getKey(), e.getValue());
+            }
 
-            for (String key : newMaster.keySet()) {
-                String value = newMaster.get(key);
-                // Se realizan las validaciones para los Empleados Maestros
-                if (Usuario.equals(key) && Contrasena.equals(value)) {
+            inputB.close();
+            leerB.close();
+
+            for (String clave : newMaster.keySet()) {
+                String valor = newMaster.get(clave);
+                if (Usuario.equals(clave) && Contrasena.equals(valor)) {
                     maestroValido = true;
                 }
             }
-        } catch (IOException | ClassNotFoundException error) {
-            error.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 
@@ -145,11 +160,13 @@ public class InLogin extends JFrame {
             setVisible(false);
             InBiblioteca interfaz2 = new InBiblioteca();
             // Se habilita el botón crear cuenta
+
             interfaz2.lCrearCuenta.setVisible(true);
             interfaz2.bCrearCuentas.setVisible(true);
 
             interfaz2.lDeleteUser.setVisible(true);
             interfaz2.bDeleteUser.setVisible(true);
+
         } else {
             JOptionPane.showMessageDialog(null, "Usuario y/o Contraseña incorrecta. Vuelve a intentarlo");
             txtUsuario.setText("");

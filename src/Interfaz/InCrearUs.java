@@ -1,6 +1,8 @@
 package Interfaz;
 
 import Bibliotecarios.Bibliotecario;
+import Bibliotecarios.Employees;
+import Bibliotecarios.SerizalizaDeseralizaUs;
 import Bibliotecarios.UsuarioMaestro;
 
 import javax.swing.*;
@@ -16,18 +18,18 @@ public class InCrearUs extends JFrame implements ActionListener {
     JLabel lUsuario;
     JLabel lContrasena;
     // JtextField
-    JTextField Usuario;
-    JPasswordField Contrasena;
+    public JTextField Usuario;
+    public JPasswordField Contrasena;
     // Jbutton
     JButton cuentaUsuario;
     JButton cuentaMaestro;
     JButton volver;
 
-    //Bibliotecario bibliotecario = new Bibliotecario();
-    //UsuarioMaestro maestro = new UsuarioMaestro();
 
     // un boolean que va permitir verificar/crear un User cuando sea true
     boolean validar = false;
+
+    SerizalizaDeseralizaUs serizalizaDeseralizaUs = new SerizalizaDeseralizaUs();
 
     public InCrearUs() {
         // Configuración Jlabel
@@ -76,11 +78,49 @@ public class InCrearUs extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    // Método que ba a guardar
-    public void dataBibliotecarios() {
-        // creo un HashMap que va a recibit los datos por defecto  de getData() (método que lee el bin);
-        HashMap<String, String> dataBibliotecarios = getDataB();
+    // Método para crear Usuarios normales
+    public void obtenerDataB() throws IOException, ClassNotFoundException {
+        // Se toma el usuario del JTextField
+        String name = Usuario.getText();
+        // Se toma la Contraseña del JTestField
+        char[] clave = Contrasena.getPassword();
+        String password = new String(clave);
 
+
+        if (validar) {
+            if (!name.equals("") & !password.equals("")) {
+                // Obtengo los datos del archivo .bin
+                Employees[] employees = serizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataB.bin");
+
+                // obtengo los datos del bibliotecario;
+                Bibliotecario bibliotecario = new Bibliotecario(name, password);
+
+                // creo una nueva lista con el tamaño de los empleados más el nuevo que se va h agregar
+                Employees[] nuevosEmployees = new Employees[employees.length + 1];
+
+                for (int i = 0; i < employees.length; i++) {
+                    nuevosEmployees[i] = employees[i];
+                }
+                nuevosEmployees[nuevosEmployees.length - 1] = bibliotecario;
+
+                serizalizaDeseralizaUs.setDataB(nuevosEmployees, "src/Archivos_Bin/dataB.bin");
+
+                JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
+
+                for (Employees e : nuevosEmployees) {
+                    System.out.println(e);
+                }
+                System.out.println("\n");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos vacios, Ingrese los datos", " ", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+
+    }
+
+    // Método para craar Usuarios Maestros
+    public void obtenerDataM() throws IOException, ClassNotFoundException {
         // Se toma el usuario del JTextField
         String name = Usuario.getText();
         // Se toma la Contraseña del JTestField
@@ -89,139 +129,67 @@ public class InCrearUs extends JFrame implements ActionListener {
 
         if (validar) {
             if (!name.equals("") & !password.equals("")) {
-                // Agrego nuevos  datos al Hasmap
-                dataBibliotecarios.put(name, password);
+                // Obtengo los datos del archivo .bin
+                Employees[] employees = serizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataM.bin");
 
-                // Guardo los datos en el bin
-                setDataB(dataBibliotecarios, "src/Archivos_Bin/dataBibliotecarios.bin");
+                // obtengo los datos del bibliotecario;
+                UsuarioMaestro usuarioMaestro = new UsuarioMaestro(name, password);
+
+                // creo una nueva lista con el tamaño de los empleados más el nuevo que se va h agregar
+                Employees[] nuevosEmployees = new Employees[employees.length + 1];
+
+                for (int i = 0; i < employees.length; i++) {
+                    nuevosEmployees[i] = employees[i];
+                }
+                nuevosEmployees[nuevosEmployees.length - 1] = usuarioMaestro;
+
+                serizalizaDeseralizaUs.setDataB(nuevosEmployees, "src/Archivos_Bin/dataM.bin");
 
                 JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
+
+                for (Employees e : nuevosEmployees) {
+                    System.out.println(e);
+                }
+                System.out.println("\n");
 
             } else {
                 JOptionPane.showMessageDialog(null, "Datos vacios, Ingrese los datos", " ", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-
-        for (String key : dataBibliotecarios.keySet()) {
-            String value = dataBibliotecarios.get(key);
-            System.out.println("### key: " + key + "  " + "Value: " + value);
-
-        }
     }
 
-    // Escribir en archivo
-    public static void setDataB(HashMap<String, String> data, String archivo) {
+    public void validarUser() {
+        // Obtengo los datos de los archivos bin
+        HashMap<String, String> usuarioMaestro = new HashMap<>();
+        HashMap<String, String> usuarioBibliotecario = new HashMap<>();
 
-        try {
-            FileOutputStream outputB = new FileOutputStream(archivo);
-            ObjectOutputStream modifiB = new ObjectOutputStream(outputB);
+        Employees[] tempMaestro = serizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataM.bin");
+        Employees[] tempNormal = serizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataB.bin");
 
-            modifiB.writeObject(data);
-
-            modifiB.close();
-            outputB.close();
-
-        } catch (Exception io) {
-            io.printStackTrace();
+        for (Employees m : tempMaestro) {
+            usuarioMaestro.put(m.getKey(), m.getValue());
         }
-    }
-
-    // leer archivos Bibliotecario
-    public HashMap<String, String> getDataB() {
-        // creo un nuevo HasMap que captura los datos del bin
-        HashMap<String, String> newHash = new HashMap<>();
-        try {
-            File file = new File("src/Archivos_Bin/dataBibliotecarios.bin");
-            // Válido que el archivo exista
-            if (file.exists()) {
-                FileInputStream inputB = new FileInputStream(file);
-                ObjectInputStream leerB = new ObjectInputStream(inputB);
-
-                // leo el archivo y agregó los valores al HashMap
-                newHash = (HashMap<String, String>) leerB.readObject();
-
-                leerB.close();
-                inputB.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (Employees n : tempNormal) {
+            usuarioBibliotecario.put(n.getKey(), n.getValue());
         }
-        // retorno los datos del bin
-        return newHash;
-    }
-
-
-    // Método que ba a guardar
-    public void dataMaestros() {
-        // creo un HashMap que va a recibit los datos por defecto  de getData() (método que lee el bin);
-        HashMap<String, String> dataMaestro = getDataM();
 
         // Se toma el usuario del JTextField
         String name = Usuario.getText();
-        // Se toma la Contraseña del JTestField
-        char[] clave = Contrasena.getPassword();
-        String password = new String(clave);
 
-        if (validar) {
-            if (!name.equals("") & !password.equals("")) {
-                // Agrego nuevos  datos al Hasmap
-                dataMaestro.put(name, password);
+        boolean maestroExiste = userExiste(name, usuarioMaestro);
+        boolean bibliotecarioExiste = userExiste(name, usuarioBibliotecario);
 
-                // Guardo los datos en el bin
-                setDataM(dataMaestro, "src/Archivos_Bin/dataMaestros.bin");
-
-                JOptionPane.showMessageDialog(null, "Cuenta creada...", " ", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Datos vacios, Ingrese los datos", " ", JOptionPane.INFORMATION_MESSAGE);
-
-            }
-        }
-        for (String key : dataMaestro.keySet()) {
-            String value = dataMaestro.get(key);
-            System.out.println("*** key: " + key + "  " + "Value: " + value);
+        if (maestroExiste || bibliotecarioExiste) {
+            JOptionPane.showMessageDialog(null, "¡¡ ERROR !!, Usuario ya existe");
+        } else {
+            validar = true;
         }
 
-    }
-    // Escribir en archivo Maestro
-    public static void setDataM(HashMap<String, String> data, String archivo) {
-
-        try {
-            FileOutputStream outputM = new FileOutputStream(archivo);
-            ObjectOutputStream modifiM = new ObjectOutputStream(outputM);
-
-            modifiM.writeObject(data);
-
-            modifiM.close();
-            outputM.close();
-
-        } catch (Exception io) {
-            io.printStackTrace();
-        }
-    }
-
-    // leer archivo maestro
-    public HashMap<String, String> getDataM() {
-        // creo un nuevo HasMap que captura los datos del bin
-        HashMap<String, String> newMaster = new HashMap<>();
-        try {
-            File file = new File("src/Archivos_Bin/dataMaestros.bin");
-            // Válido que el archivo exista
-            if (file.exists()) {
-                FileInputStream inputM = new FileInputStream(file);
-                ObjectInputStream leerM = new ObjectInputStream(inputM);
-
-                // leo el archivo y agregó los valores al HashMap
-                newMaster = (HashMap<String, String>) leerM.readObject();
-
-                leerM.close();
-                inputM.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // retorno los datos del bin
-        return newMaster;
+        /*NOTA BUG:
+         * Si creo dos usuarios, uno como maestro y el otro como normal con el mismo nombre, se van a
+         * guardar en los dos archivos .bin.
+         * Para evitar esto nos debemos devolver a la ventana anterior y ya no nos permitira guardar
+         * con el mismo nombre (si ya existe)*/
     }
 
 
@@ -230,29 +198,13 @@ public class InCrearUs extends JFrame implements ActionListener {
         return users.containsKey(nameUser); // devuelve true si la calve existe y false si no
     }
 
-    public void validarUser() {
-        // Obtengo los datos de los archivos bin
-        HashMap<String, String> usuarioMaestro = getDataM();
-        HashMap<String, String> usuarioBibliotecario = getDataB();
-
-        // Se toma el usuario del JTextField
-        String name = Usuario.getText();
-
-        boolean maestroExsite = userExiste(name, usuarioMaestro);
-        boolean bibliotecarioExiste = userExiste(name, usuarioBibliotecario);
-
-        if (maestroExsite || bibliotecarioExiste) {
-            JOptionPane.showMessageDialog(null, "¡¡ ERROR !!, Usuario ya existe");
-        } else {
-            validar = true;
-        }
-
-        /* NOTA BUG:
-         * Si creo dos usuarios, uno como maestro y el otro como normal con el mismo nombre, se van a
-         * guardar en los dos archivos .bin.
-         * Para evitar esto nos debemos devolver a la ventana anterior y ya no nos permitira guardar
-         * con el mismo nombre (si ya existe)
-         * */
+    public void cerrar() {
+        setVisible(false);
+        new InBiblioteca();
+        InBiblioteca.bCrearCuentas.setVisible(true);
+        InBiblioteca.lCrearCuenta.setVisible(true);
+        InBiblioteca.lDeleteUser.setVisible(true);
+        InBiblioteca.bDeleteUser.setVisible(true);
     }
 
     @Override
@@ -263,27 +215,34 @@ public class InCrearUs extends JFrame implements ActionListener {
         if (jb == cuentaUsuario) {
             validarUser();
             // llamo al método encargado de crear los usuarios
-            dataBibliotecarios();
+            try {
+                obtenerDataB();
+            } catch (IOException | ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+
             // vaciá los JTextField
             Usuario.setText("");
             Contrasena.setText("");
+            cerrar();
+
 
         }
         if (jb == cuentaMaestro) {
             validarUser();
-            dataMaestros();
+            try {
+                obtenerDataM();
+            } catch (IOException | ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
             // vaciá los JTextField
             Usuario.setText("");
             Contrasena.setText("");
+            cerrar();
 
         }
         if (jb == volver) {
-            setVisible(false);
-            new InBiblioteca();
-            InBiblioteca.bCrearCuentas.setVisible(true);
-            InBiblioteca.lCrearCuenta.setVisible(true);
-            InBiblioteca.lDeleteUser.setVisible(true);
-            InBiblioteca.bDeleteUser.setVisible(true);
+            cerrar();
         }
     }
 }

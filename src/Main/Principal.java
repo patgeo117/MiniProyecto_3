@@ -1,8 +1,7 @@
 package Main;
 
+import Bibliotecarios.*;
 import Interfaz.InLogin;
-
-import java.util.HashMap;
 
 import Bibliotecarios.UsuarioMaestro;
 public class Principal {
@@ -13,9 +12,11 @@ public class Principal {
         //ManejoArchivo.CrearArchivo(rutaArchivo);
         new InLogin();
 
-        /*HashMap<String, String> s = new HashMap<>();
-        //Pasamos los valores por defecto
-        s.put("Master", "Master");
-        UsuarioMaestro.setDataM(s, "src/Archivos_Bin/dataMaestros.bin");*/
+       /* UsuarioMaestro usuarioMaestro = new UsuarioMaestro("Master", "Master");
+        Employees[] nuevosEmployees = new Employees[1];
+        nuevosEmployees[0] = usuarioMaestro;
+
+        SerizalizaDeseralizaUs serizalizaDeseralizaUs = new SerizalizaDeseralizaUs();
+        serizalizaDeseralizaUs.setDataB(nuevosEmployees, "src/Archivos_Bin/dataM.bin");*/
     }
 }
