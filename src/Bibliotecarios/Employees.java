@@ -18,6 +18,6 @@ public class Employees implements Serializable {
     }
     // Describción de la clase
     public String toString(){
-        return ("La llave es: "+this.kay+" y su valor es: "+this.value);
+        return ("llave =  "+this.kay+" --> valor = "+this.value);
     }
 }

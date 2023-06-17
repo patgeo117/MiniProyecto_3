@@ -1,12 +1,9 @@
 package Interfaz;
 
 import Bibliotecarios.*;
+
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.HashMap;
 import java.util.Objects;
 
 public class InLogin extends JFrame {
@@ -96,61 +93,27 @@ public class InLogin extends JFrame {
         boolean maestroValido = false; // Permite validar el login del bibliotecario maestro
 
         // validación para los Empleados Normal
-        try {
-            FileInputStream inputB = new FileInputStream("src/Archivos_Bin/dataB.bin");
-            ObjectInputStream leerB = new ObjectInputStream(inputB);
+        // Creo un lista tipo Employees que almacena los datos agregados
+        System.out.println("**** Normals Users ****");
+        Employees[] temoNormal = SerizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataB.bin");
 
-            // creo un HashMap donde se van a almacenar los
-            HashMap<String, String> hashNormal = new HashMap<>();
-            // Creo un lista tipo Employees que almacena los datos agregados
-            System.out.println("**** Normals Users ****");
-            Employees[] temo = SerizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataB.bin");
-
-            for (Employees e : temo) {
-                hashNormal.put(e.getKey(), e.getValue());
+        for (Employees n : temoNormal) {
+            if (Usuario.equals(n.getKey()) & Contrasena.equals(n.getValue())) {
+                bibliotecarioValido = true;
+                break;
             }
-
-            inputB.close();
-            leerB.close();
-
-            for (String clave : hashNormal.keySet()) {
-                String valor = hashNormal.get(clave);
-                if (Usuario.equals(clave) && Contrasena.equals(valor)) {
-                    bibliotecarioValido = true;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         // Validaciones para los bibliotecarios Maestros
-        try {
-            FileInputStream inputB = new FileInputStream("src/Archivos_Bin/dataM.bin");
-            ObjectInputStream leerB = new ObjectInputStream(inputB);
+        System.out.println("\n**** Maestros ****");
+        Employees[] temoMaestro = SerizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataM.bin");
 
-            // creo un HashMap donde se van a almacenar los
-            HashMap<String, String> newMaster = new HashMap<>();
-            // Creo un lista tipo Employees que almacena los datos agregados
-            System.out.println("\n**** Normals Maestro ****");
-            Employees[] temo = SerizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataM.bin");
-
-            for (Employees e : temo) {
-                newMaster.put(e.getKey(), e.getValue());
+        for (Employees m : temoMaestro) {
+            if (Usuario.equals(m.getKey()) & Contrasena.equals(m.getValue())) {
+                maestroValido = true;
+                break;
             }
-
-            inputB.close();
-            leerB.close();
-
-            for (String clave : newMaster.keySet()) {
-                String valor = newMaster.get(clave);
-                if (Usuario.equals(clave) && Contrasena.equals(valor)) {
-                    maestroValido = true;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
 
         if (bibliotecarioValido) {
             setVisible(false);
