@@ -18,7 +18,7 @@ public class InCrearLib extends JFrame implements ActionListener {
     public static JTextField EstadoLibro;
 
     // Jbutton
-    JButton AñadirLibro;
+    JButton AgregarLibro;
     JButton volver;
 
     ManejoArchivo manejoArchivo = new ManejoArchivo();
@@ -54,10 +54,10 @@ public class InCrearLib extends JFrame implements ActionListener {
         add(EstadoLibro);
 
         // Configuración Jbutton
-        AñadirLibro = new JButton("Añadir Libro");
-        AñadirLibro.setBounds(75, 200, 150, 30);
-        AñadirLibro.addActionListener(this);
-        add(AñadirLibro);
+        AgregarLibro = new JButton("Añadir Libro");
+        AgregarLibro.setBounds(75, 200, 150, 30);
+        AgregarLibro.addActionListener(this);
+        add(AgregarLibro);
 
         volver = new JButton("Volver");
         volver.setBounds(10, 10, 80, 20);
@@ -79,7 +79,7 @@ public class InCrearLib extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JButton jb = (JButton) e.getSource();
         // Al precionar el botón se toman los datos con la función y muestra una ventana de aprobación
-        if (jb == AñadirLibro) {
+        if (jb == AgregarLibro) {
             String nombres = NombreLibro.getText();
             String categorias = (String) CategoriaLibro.getSelectedItem();
             String estados = EstadoLibro.getText();
@@ -101,6 +101,7 @@ public class InCrearLib extends JFrame implements ActionListener {
             InBiblioteca.lCrearCuenta.setVisible(true);
             InBiblioteca.lDeleteUser.setVisible(true);
             InBiblioteca.bDeleteUser.setVisible(true);
+            InBiblioteca.bDeleteBook.setVisible(true);
         }
     }
 }

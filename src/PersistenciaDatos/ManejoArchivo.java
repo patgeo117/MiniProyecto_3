@@ -11,10 +11,10 @@ public class ManejoArchivo {
     public  void escribirObjeto(Object[][] nuevosObjetos) {
         String RutaArchivo = "src/Archivos_Bin/Libros.bin";
 
-        // Leo el archivo y lo agrego un Onjecto
+        // Leo el archivo y lo agrego un object
         Object[][] objetosExistentes = leerObjeto();
 
-        // Creo una colecion de datos que no se pueden repetir.
+        // Creo una collection de datos que no se pueden repetir.
         Set<Object[]> conjuntoObjetos = new HashSet<>();
 
         // Valido que los datos no sean nulos 
@@ -28,7 +28,7 @@ public class ManejoArchivo {
         for (Object[] objetoNuevo : nuevosObjetos) {
             // verificar si el objetoNuevo ya está en conjuntoObjetos
             boolean objetoYaExiste = false;
-            // itero sobre cada dato de la colletion
+            // itero sobre cada dato de la collection
             for (Object[] objetoExistente : conjuntoObjetos) {
                 // verifico si los datos son iguales y si existe evito que se agregue el nuevo object
                 if (Arrays.equals(objetoNuevo, objetoExistente)) {
@@ -47,8 +47,25 @@ public class ManejoArchivo {
             FileOutputStream fileOutputStream = new FileOutputStream(RutaArchivo);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
-            // Agregó la nueva collecion que contiene lso datos del .bin y lo nuevos que se van a agregar.
+            // Agregó la nueva collection que contiene lso datos del .bin y lo nuevos que se van a agregar.
             objectOutputStream.writeObject(conjuntoObjetos.toArray(new Object[0][0]));
+
+            objectOutputStream.close();
+            fileOutputStream.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public  void setObjeto(Object[][] nuevosObjetos) {
+        String RutaArchivo = "src/Archivos_Bin/Libros.bin";
+
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(RutaArchivo);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+            // Agregó la nueva collection que contiene lso datos del .bin y lo nuevos que se van a agregar.
+            objectOutputStream.writeObject(nuevosObjetos);
 
             objectOutputStream.close();
             fileOutputStream.close();

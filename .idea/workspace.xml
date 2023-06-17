@@ -4,8 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Users" />
-    <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="FINAl" />
+    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Users">
+      <change afterPath="$PROJECT_DIR$/src/Filtros/filtro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Interfaz/InEstadoLibros.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_06_2023_2_50_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_06_2023_2_50_p__m___Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/Libros.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Archivos_Bin/Libros.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Codigo_Ejemplo/Ejemplo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Principal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersistenciaDatos/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersistenciaDatos/Libros.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersistenciaDatos/ManejoArchivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersistenciaDatos/ManejoArchivo.java" afterDir="false" />
+    </list>
+    <list id="7af130a7-0ef9-4f3a-97d5-fea73179c93c" name="Changes by johan" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Principal.java" afterDir="false" />
+    </list>
     <list id="ecc96d05-5993-44b6-bd22-180bbb27c80c" name="JLabel" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +40,36 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/Interfaz_3.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/Main/Principal.java">
+      <ranges>
+        <range start1="6" end1="7" start2="6" end2="6" changelist="7af130a7-0ef9-4f3a-97d5-fea73179c93c" />
+        <range start1="8" end1="9" start2="7" end2="7" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="11" end1="12" start2="9" end2="9" changelist="7af130a7-0ef9-4f3a-97d5-fea73179c93c" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Interfaz/InCrearUs.java">
+      <ranges>
+        <range start1="2" end1="6" start2="2" end2="3" changelist="7af130a7-0ef9-4f3a-97d5-fea73179c93c" />
+        <range start1="207" end1="207" start2="204" end2="205" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Interfaz/InLogin.java">
+      <ranges>
+        <range start1="3" end1="4" start2="3" end2="3" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="28" end1="29" start2="27" end2="27" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="30" end1="30" start2="28" end2="29" changelist="7af130a7-0ef9-4f3a-97d5-fea73179c93c" />
+        <range start1="160" end1="161" start2="159" end2="160" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="162" end1="162" start2="161" end2="163" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="163" end1="165" start2="164" end2="166" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="166" end1="169" start2="167" end2="168" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -167,8 +213,18 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="730a5b7c-eb6a-4c4e-9375-111a1086aed0" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="730a5b7c-eb6a-4c4e-9375-111a1086aed0">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>

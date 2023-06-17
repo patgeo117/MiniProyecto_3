@@ -1,7 +1,6 @@
 package Interfaz;
 
 import Bibliotecarios.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileInputStream;
@@ -26,8 +25,8 @@ public class InLogin extends JFrame {
 
     // Jbutton
     JButton bLogin;
-    SerizalizaDeseralizaUs SerizalizaDeseralizaUs = new SerizalizaDeseralizaUs();
 
+    SerizalizaDeseralizaUs SerizalizaDeseralizaUs = new SerizalizaDeseralizaUs();
 
     public InLogin() {
 
@@ -158,15 +157,15 @@ public class InLogin extends JFrame {
             new InBiblioteca();
         } else if (maestroValido) {
             setVisible(false);
-            InBiblioteca interfaz2 = new InBiblioteca();
+            new InBiblioteca();
             // Se habilita el botón crear cuenta
+            InBiblioteca.lCrearCuenta.setVisible(true);
+            InBiblioteca.bCrearCuentas.setVisible(true);
 
-            interfaz2.lCrearCuenta.setVisible(true);
-            interfaz2.bCrearCuentas.setVisible(true);
+            InBiblioteca.lDeleteUser.setVisible(true);
+            InBiblioteca.bDeleteUser.setVisible(true);
 
-            interfaz2.lDeleteUser.setVisible(true);
-            interfaz2.bDeleteUser.setVisible(true);
-
+            InBiblioteca.bDeleteBook.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Usuario y/o Contraseña incorrecta. Vuelve a intentarlo");
             txtUsuario.setText("");

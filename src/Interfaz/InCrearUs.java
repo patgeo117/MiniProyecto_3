@@ -1,9 +1,6 @@
 package Interfaz;
 
-import Bibliotecarios.Bibliotecario;
-import Bibliotecarios.Employees;
-import Bibliotecarios.SerizalizaDeseralizaUs;
-import Bibliotecarios.UsuarioMaestro;
+import Bibliotecarios.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -205,6 +202,7 @@ public class InCrearUs extends JFrame implements ActionListener {
         InBiblioteca.lCrearCuenta.setVisible(true);
         InBiblioteca.lDeleteUser.setVisible(true);
         InBiblioteca.bDeleteUser.setVisible(true);
+        InBiblioteca.bDeleteBook.setVisible(true);
     }
 
     @Override

@@ -1,11 +1,15 @@
 package Interfaz;
 
-import PersistenciaDatos.Libros;
+import Filtros.filtro;
 import PersistenciaDatos.ManejoArchivo;
 import PersistenciaDatos.Prestamo;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import javax.swing.JTable;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +28,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
     JButton bInfo;
     JButton bVolver;
     JButton bCrearLib;
+    static JButton bDeleteBook;
 
     static JButton bDeleteUser;
     // JMenuBar
@@ -40,6 +45,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
     static JLabel lDeleteUser;
 
     ManejoArchivo manejoArchivo = new ManejoArchivo();
+    filtro filtros = new filtro();
 
     // Crear un modelo de tabla y agregar los datos
     DefaultTableModel model = new DefaultTableModel(manejoArchivo.leerObjeto(), manejoArchivo.getNomColumnas()) {
@@ -51,12 +57,18 @@ public class InBiblioteca extends JFrame implements ActionListener {
     };
     // Crear un componente JTable con el modelo de tabla
     JTable table = new JTable(model);
+    // Creo un Sorter para ordenar los datos
+    //TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
+     // Ordenar por la segunda columna
 
     public InBiblioteca() {
 
+        //table.setRowSorter(sorter); // le paso el filtro a la tabla
+        //sorter.toggleSortOrder(1); // Ordeno por la segunda columna
+
         // Configuración Panel
         panel = new JPanel();
-        panel.setBounds(40, 120, 600, 350);
+        panel.setBounds(40, 120, 620, 350);
         add(panel);
 
         // Configuración Jmenubar
@@ -112,6 +124,13 @@ public class InBiblioteca extends JFrame implements ActionListener {
         bDeleteUser.addActionListener(this);
         add(bDeleteUser);
 
+        bDeleteBook = new JButton("Eliminar Libro");
+        bDeleteBook.setBounds(360, 500, 100, 20);
+        bDeleteBook.setBackground(Color.red);
+        bDeleteBook.setVisible(false);
+        bDeleteBook.addActionListener(this);
+        add(bDeleteBook);
+
         bPrestarLibro = new JButton("Prestar");
         bPrestarLibro.setBounds(100, 60, 100, 40);
         bPrestarLibro.setBackground(Color.RED);
@@ -157,9 +176,9 @@ public class InBiblioteca extends JFrame implements ActionListener {
         table.setPreferredScrollableViewportSize(new Dimension(600, 300));
         // se añade al panel y además se le agrega el método JScroll para que se visualice de forma correcta
         panel.add(new JScrollPane(table));
-
     }
-    public void MostrarInfo(){
+
+    public void MostrarInfo() {
         // creo un iterador para recorrer multa, ListIterator recorre en cualquier dirección la lista (es un puntero)
         ListIterator<Integer> data = Prestamo.multa.listIterator();
         // StringBuilder permite concatenar diferentes cadenas de texto sin crear un nuevo object (es mutable, permite modificar su estado)
@@ -181,68 +200,72 @@ public class InBiblioteca extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, deudores.toString());
         }
     }
+    public Object[][] DatosTabla(){
+        // Obtener el modelo de la tabla
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+    // Obtener el número de filas y columnas en la tabla
+        int numRows = model.getRowCount();
+        int numCols = model.getColumnCount();
+
+    // Crear un arreglo bidimensional para almacenar los datos
+        Object[][] data = new Object[numRows][numCols];
+
+    // Recorrer cada fila y columna de la tabla y almacenar los datos en el arreglo
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                data[row][col] = model.getValueAt(row, col);
+            }
+        }
+
+    // Retornar los datos como un Object[][]
+        return data;
+    }
 
     public void Prestarlibro() {
+
         int indexRow = table.getSelectedRow(); // Obtengo la fila seleccionada
-        boolean data = (boolean) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
+        String estado = (String) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
         for (int i = 0; i <= table.getRowCount(); i++) {
-            if (data && indexRow == i){// validó que data = true y esté seleccionada la fila = i para evitar desbordamientos
-                //ManejoArchivo.data = new Object[indexRow][2];
-                model.setValueAt(false, indexRow, 2); // Muestro el dato en la tabla
-                //cambiarValor(ManejoArchivo.data,indexRow,2,false); // actualizo el dato en la matriz
+
+            if (Objects.equals(estado, "true") && indexRow == i) {// validó que data = true y esté seleccionada la fila = i para evitar desbordamientos
+                model.setValueAt("false", indexRow, 2); // Muestro el dato en la tabla
                 break; // aseguro que termine la ejecución si ejecuta el bloque de código
-            } else if (!data && indexRow == i) { //
+
+            } else if (!Objects.equals(estado, "true") && indexRow == i) { //
                 JOptionPane.showMessageDialog(null, "El libro no se encuentra Disponible por el momento");
                 break;
             }
         }
         model.fireTableDataChanged(); // Actualiza la tabla
 
+        manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
     }
 
     public void RetornarLibro() {
-        int indexRow = table.getSelectedRow();
+        int indexRow = table.getSelectedRow(); // Obtengo la fila seleccionada
+        String estado = (String) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
+        for (int i = 0; i <= table.getRowCount(); i++) {
 
-        for (int i = 0; i < table.getRowCount(); i++) {
-            if (indexRow == i) {
-                boolean data = (boolean) model.getValueAt(i, 2);
-                String usuario = JOptionPane.showInputDialog(null, "Ingresa tu nombre");
-                boolean validarUser = false;
-                // validó que el usuario tenga datos para control del boron cancel
-                if(usuario == null){
-                    JOptionPane.showMessageDialog(null, "Acción Cancelada");
-                }else if(!usuario.equals(" ")){
-                    validarUser = true;
-                }
-                //valido que data no sea nulo (confirmar que tenga datos)
-                if (!data ) { // data == false
-                    if(validarUser){
-                        int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Días que fue prestado el libro"));
-                        int diasAtraso = dias - 7;
-                        String libro = (String) model.getValueAt(i, 0); // Obtengo el nombre del libro de acuerdo a la celda seleccionada
-                        model.setValueAt(true, indexRow, 2);
-                        Libros.data[i][2] = true;
+            if (Objects.equals(estado, "false") && indexRow == i) {// validó que data = true y esté seleccionada la fila = i para evitar desbordamientos
+                model.setValueAt("true", indexRow, 2); // Muestro el dato en la tabla
+                break; // aseguro que termine la ejecución si ejecuta el bloque de código
 
-                        if (diasAtraso > 0) {
-                                int multa = diasAtraso * 1000;
-                                Prestamo.DiasAtraso.add(diasAtraso);
-                                // Mando los datos al constructor de la instancia
-                                new Prestamo(usuario, libro, multa);
-                                for(int ignored : Prestamo.multa){ // recorro con el forech las multas
-                                    JOptionPane.showMessageDialog(null, usuario + " por demora en la entrega tiene una multa de: " + multa);
-                                    break;
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(null, "No se debe cobrar ninguna multa.");
-                            }
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "El libro ya esta en la biblioteca");
-                }
+            } else if (!Objects.equals(estado, "false") && indexRow == i) { //
+                JOptionPane.showMessageDialog(null, "El libro se encuentra Disponible");
                 break;
             }
         }
-        model.fireTableDataChanged();
+        model.fireTableDataChanged(); // Actualiza la tabla
+
+        manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
+    }
+
+    public void EliminarLibro(){
+        int indexRow = table.getSelectedRow();
+        model.removeRow(indexRow);
+        model.fireTableDataChanged(); // Actualiza la tabla
+        manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
     }
 
     // ActionListener para los Jmenuitem
@@ -279,37 +302,37 @@ public class InBiblioteca extends JFrame implements ActionListener {
                 }
             }
 
-            // Al presionar el jmenuitem terror este mostrará un cuadro de txt donde
-            // apareceran los nombre y el estado de cada libro de terror
+            // Al presionar el jmenuitem este mostrará un cuadro de txt donde
+            // apareceran el nombre, categoria y estado de cada libro
             if (jm == terror) {
-                JOptionPane.showMessageDialog(null,
-                        "Nombre: " + Libros.data[0][0] + "    Estado: " + Libros.data[0][2] + "\n" +
-                                "Nombre: " + Libros.data[1][0] + "    Estado: " + Libros.data[1][2] + "\n" +
-                                "Nombre: " + Libros.data[2][0] + "    Estado: " + Libros.data[2][2] + "\n" +
-                                "Nombre: " + Libros.data[3][0] + "    Estado: " + Libros.data[3][2] + "\n" +
-                                "Nombre: " + Libros.data[4][0] + "    Estado: " + Libros.data[4][2] + "\n", "Libros Terror", JOptionPane.PLAIN_MESSAGE);
-            }
+                JTable terrores = new JTable(model);// Se crea una tabla y se le pasa el modelo
+                TableRowSorter<TableModel> Filtro = new TableRowSorter<>(model); // Se crea un sorter para organizar los datos
+                terrores.setRowSorter(Filtro); // le aplico el filtro a la tabla
+                Filtro.setRowFilter(filtros.filter1); // Llamo a la función que me filtra los datos por categoria
+                terrores.setBounds(30,20,500,200);
+                InEstadoLibros estadoLibros = new InEstadoLibros();
+                estadoLibros.panel.add(new JScrollPane(terrores));
 
-            // Al presionar el jmenuitem novela este mostrará un cuadro de txt donde
-            // apareceran los nombre y el estado de cada libro de novels Classics
+            }
             if (jm == novela) {
-                JOptionPane.showMessageDialog(null,
-                        "Nombre: " + Libros.data[5][0] + "    Estado: " + Libros.data[5][2] + "\n" +
-                                "Nombre: " + Libros.data[6][0] + "    Estado: " + Libros.data[6][2] + "\n" +
-                                "Nombre: " + Libros.data[7][0] + "    Estado: " + Libros.data[7][2] + "\n" +
-                                "Nombre: " + Libros.data[8][0] + "    Estado: " + Libros.data[8][2] + "\n" +
-                                "Nombre: " + Libros.data[9][0] + "    Estado: " + Libros.data[9][2] + "\n", "Libros Novela", JOptionPane.PLAIN_MESSAGE);
+                JTable novelas = new JTable(model);
+                new JScrollPane(novelas);
+                TableRowSorter<TableModel> Filtro = new TableRowSorter<>(model);
+                novelas.setRowSorter(Filtro);
+                Filtro.setRowFilter(filtros.filter2);
+                novelas.setBounds(30,20,500,200);
+                InEstadoLibros estadoLibros = new InEstadoLibros();
+                estadoLibros.panel.add(new JScrollPane(novelas));
             }
-
-            // Al presionar el jmenuitem inge este mostrará un cuadro de txt donde
-            // apareceran los nombre y el estado de cada libro de engineering
             if (jm == inge) {
-                JOptionPane.showMessageDialog(null,
-                        "Nombre: " + Libros.data[10][0] + "    Estado: " + Libros.data[10][2] + "\n" +
-                                "Nombre: " + Libros.data[11][0] + "    Estado: " + Libros.data[11][2] + "\n" +
-                                "Nombre: " + Libros.data[12][0] + "    Estado: " + Libros.data[12][2] + "\n" +
-                                "Nombre: " + Libros.data[13][0] + "    Estado: " + Libros.data[13][2] + "\n" +
-                                "Nombre: " + Libros.data[14][0] + "    Estado: " + Libros.data[14][2] + "\n", "Libros Ingeniería", JOptionPane.PLAIN_MESSAGE);
+                JTable ingenieria = new JTable(model);
+                new JScrollPane(ingenieria);
+                TableRowSorter<TableModel> Filtro = new TableRowSorter<>(model);
+                ingenieria.setRowSorter(Filtro);
+                Filtro.setRowFilter(filtros.filter3);
+                ingenieria.setBounds(30,20,500,200);
+                InEstadoLibros estadoLibros = new InEstadoLibros();
+                estadoLibros.panel.add(new JScrollPane(ingenieria));
             }
         }
     };
@@ -321,7 +344,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
             setVisible(false);
             new InCrearUs();
         }
-        if(jb == bDeleteUser){
+        if (jb == bDeleteUser) {
             setVisible(false);
             new InDeleteUs();
         }
@@ -335,12 +358,15 @@ public class InBiblioteca extends JFrame implements ActionListener {
         if (jb == bRetornarLibro) {
             RetornarLibro();
         }
-        if(jb == bInfo){
+        if (jb == bInfo) {
             MostrarInfo();
         }
-        if(jb == bCrearLib){
+        if (jb == bCrearLib) {
             setVisible(false);
             new InCrearLib();
+        }
+        if(jb == bDeleteBook){
+            EliminarLibro();
         }
     }
 }
