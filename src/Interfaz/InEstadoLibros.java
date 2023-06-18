@@ -9,10 +9,11 @@ public class InEstadoLibros extends JFrame implements ActionListener {
     public JPanel panel ;
     JButton ok;
     public InEstadoLibros(){
+        // Panel
         panel = new JPanel();
         panel.setBounds(20,20,520,150);
         add(panel);
-
+        // Botones
         ok = new JButton("OK");
         ok.setBounds(250, 240, 60, 20);
         ok.setBackground(Color.green);

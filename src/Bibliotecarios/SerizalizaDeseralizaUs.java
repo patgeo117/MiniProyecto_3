@@ -4,6 +4,7 @@ import java.io.*;
 
 public class SerizalizaDeseralizaUs {
 
+    // Metodo que se encarga de escribir los nuvos datos en el bin
     public void setDataB(Employees[] employees, String archivo) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(archivo);
@@ -18,6 +19,7 @@ public class SerizalizaDeseralizaUs {
         }
     }
 
+    // Metodo que se encarga de leer los datos del bin
     public Employees[] getDataB(String archivo) {
         Employees[] users = new Employees[0];
         try {

@@ -22,7 +22,6 @@ public class InCrearUs extends JFrame implements ActionListener {
     JButton cuentaMaestro;
     JButton volver;
 
-
     // un boolean que va permitir verificar/crear un User cuando sea true
     boolean validar = false;
 
@@ -98,7 +97,7 @@ public class InCrearUs extends JFrame implements ActionListener {
                 for (int i = 0; i < employees.length; i++) {
                     nuevosEmployees[i] = employees[i];
                 }
-                nuevosEmployees[nuevosEmployees.length - 1] = bibliotecario;
+                nuevosEmployees[nuevosEmployees.length - 1] = bibliotecario; // el nuevo dato se agrega en la última pocisión
 
                 serizalizaDeseralizaUs.setDataB(nuevosEmployees, "src/Archivos_Bin/dataB.bin");
 
@@ -138,7 +137,7 @@ public class InCrearUs extends JFrame implements ActionListener {
                 for (int i = 0; i < employees.length; i++) {
                     nuevosEmployees[i] = employees[i];
                 }
-                nuevosEmployees[nuevosEmployees.length - 1] = usuarioMaestro;
+                nuevosEmployees[nuevosEmployees.length - 1] = usuarioMaestro; // el nuevo dato se agrega en la última pocisión
 
                 serizalizaDeseralizaUs.setDataB(nuevosEmployees, "src/Archivos_Bin/dataM.bin");
 
@@ -164,7 +163,7 @@ public class InCrearUs extends JFrame implements ActionListener {
         Employees[] tempNormal = serizalizaDeseralizaUs.getDataB("src/Archivos_Bin/dataB.bin");
 
         for (Employees m : tempMaestro) {
-            usuarioMaestro.put(m.getKey(), m.getValue());
+            usuarioMaestro.put(m.getKey(), m.getValue()); // agrego los datos al hasMap
         }
         for (Employees n : tempNormal) {
             usuarioBibliotecario.put(n.getKey(), n.getValue());
@@ -188,7 +187,6 @@ public class InCrearUs extends JFrame implements ActionListener {
          * Para evitar esto nos debemos devolver a la ventana anterior y ya no nos permitira guardar
          * con el mismo nombre (si ya existe)*/
     }
-
 
     // Método que me retorna si la clave ya existe
     public boolean userExiste(String nameUser, HashMap<String, String> users) {
@@ -223,8 +221,6 @@ public class InCrearUs extends JFrame implements ActionListener {
             Usuario.setText("");
             Contrasena.setText("");
             cerrar();
-
-
         }
         if (jb == cuentaMaestro) {
             validarUser();
@@ -237,7 +233,6 @@ public class InCrearUs extends JFrame implements ActionListener {
             Usuario.setText("");
             Contrasena.setText("");
             cerrar();
-
         }
         if (jb == volver) {
             cerrar();

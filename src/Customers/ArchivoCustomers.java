@@ -3,6 +3,7 @@ package Customers;
 import java.io.*;
 
 public class ArchivoCustomers {
+    // Metodo encargado de escribir los datos de los clientes
     public void setDataC(Clientes[] clientes, String archivo) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(archivo);
@@ -16,7 +17,7 @@ public class ArchivoCustomers {
 
         }
     }
-
+    // Metodo encargado de leer los datos de los clientes del bin
     public Clientes[] getDataC(String archivo) {
             Clientes[] clientes = new Clientes[0];
         try {

@@ -160,7 +160,6 @@ public class InDeleteUs extends JFrame implements ActionListener {
             // vaciá los JTextField
             Usuario.setText("");
             Contrasena.setText("");
-
         }
         if (jb == cuentaMaestro) {
             deleteM();
@@ -168,7 +167,6 @@ public class InDeleteUs extends JFrame implements ActionListener {
             // vaciá los JTextField
             Usuario.setText("");
             Contrasena.setText("");
-
         }
         if (jb == volver) {
             cerrar();

@@ -5,16 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="UsersCrar">
-      <change afterPath="$PROJECT_DIR$/src/Customers/ArchivoCustomers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Customers/Clientes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/Libros.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Archivos_Bin/Libros.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/dataM.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Archivos_Bin/dataM.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/dataCustomers.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Archivos_Bin/dataCustomers.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customers/Clientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customers/Clientes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PersistenciaDatos/Prestamo.java" beforeDir="false" />
     </list>
     <list id="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" name="Changes by gpati" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/Employees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/Employees.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/SerizalizaDeseralizaUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/SerizalizaDeseralizaUs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customers/ArchivoCustomers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customers/ArchivoCustomers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customers/Clientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customers/Clientes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Filtros/filtro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filtros/filtro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InDeleteUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InDeleteUs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InEstadoLibros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InEstadoLibros.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaz/InLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InLogin.java" afterDir="false" />
     </list>
     <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="FINAl" />
     <list id="ecc96d05-5993-44b6-bd22-180bbb27c80c" name="JLabel" comment="" />
@@ -37,40 +49,59 @@
     <setting file="file://$PROJECT_DIR$/src/Interfaz_3.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/Interfaz/InCrearUs.java">
+      <ranges>
+        <range start1="24" end1="25" start2="24" end2="24" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="100" end1="101" start2="99" end2="100" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="140" end1="141" start2="139" end2="140" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="166" end1="167" start2="165" end2="166" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="190" end1="191" start2="189" end2="189" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="225" end1="227" start2="223" end2="223" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="239" end1="240" start2="235" end2="235" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+      </ranges>
+    </file>
     <file path="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java">
       <ranges>
-        <range start1="2" end1="2" start2="2" end2="3" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="5" end1="5" start2="6" end2="7" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="15" end1="15" start2="17" end2="22" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="46" end1="46" start2="53" end2="54" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="61" end1="62" start2="69" end2="70" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="126" end1="128" start2="134" end2="136" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="151" end1="152" start2="159" end2="160" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="202" end1="203" start2="210" end2="212" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="206" end1="207" start2="215" end2="216" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="210" end1="211" start2="219" end2="220" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="213" end1="214" start2="222" end2="223" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="220" end1="221" start2="229" end2="230" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="223" end1="223" start2="232" end2="233" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="225" end1="226" start2="235" end2="235" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="227" end1="229" start2="236" end2="253" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="230" end1="233" start2="254" end2="269" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="234" end1="237" start2="270" end2="276" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="238" end1="238" start2="277" end2="279" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="239" end1="240" start2="280" end2="280" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="241" end1="242" start2="281" end2="281" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="244" end1="245" start2="283" end2="284" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="246" end1="248" start2="285" end2="289" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="249" end1="252" start2="290" end2="316" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="253" end1="259" start2="317" end2="320" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="260" end1="262" start2="321" end2="323" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="263" end1="268" start2="324" end2="347" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="311" end1="312" start2="390" end2="391" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="322" end1="323" start2="401" end2="402" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="332" end1="333" start2="411" end2="412" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="351" end1="352" start2="430" end2="435" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="358" end1="359" start2="441" end2="446" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="367" end1="368" start2="454" end2="455" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="2" end1="3" start2="2" end2="2" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="5" end1="6" start2="4" end2="4" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="18" end1="23" start2="16" end2="18" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="28" end1="28" start2="23" end2="24" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="30" end1="30" start2="26" end2="27" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="38" end1="39" start2="35" end2="35" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="40" end1="40" start2="36" end2="37" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="53" end1="53" start2="50" end2="51" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="67" end1="70" start2="65" end2="65" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="72" end1="75" start2="67" end2="67" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="109" end1="109" start2="101" end2="102" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="134" end1="136" start2="127" end2="129" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="159" end1="161" start2="152" end2="154" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="189" end1="209" start2="182" end2="184" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="280" end1="281" start2="255" end2="255" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="288" end1="290" start2="262" end2="263" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="293" end1="294" start2="266" end2="267" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="301" end1="301" start2="274" end2="275" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="304" end1="305" start2="278" end2="279" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="313" end1="315" start2="287" end2="287" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="316" end1="318" start2="288" end2="288" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="320" end1="321" start2="290" end2="290" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="331" end1="332" start2="300" end2="300" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="360" end1="373" start2="328" end2="337" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="374" end1="375" start2="338" end2="338" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="376" end1="379" start2="339" end2="348" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="380" end1="381" start2="349" end2="351" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="383" end1="386" start2="353" end2="354" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Customers/Clientes.java">
+      <ranges>
+        <range start1="9" end1="9" start2="9" end2="10" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="15" end1="15" start2="16" end2="18" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="50" end1="50" start2="53" end2="54" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
+        <range start1="59" end1="61" start2="63" end2="64" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="62" end1="63" start2="65" end2="66" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="66" end1="67" start2="69" end2="69" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="71" end1="71" start2="73" end2="78" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
+        <range start1="74" end1="75" start2="81" end2="84" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
       </ranges>
     </file>
   </component>

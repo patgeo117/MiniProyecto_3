@@ -101,6 +101,7 @@ public class InCrearLib extends JFrame implements ActionListener {
         if(jb == volver){
             setVisible(false);
             new InBiblioteca();
+            // Volvemos a mostrar los botones que solo se ven con Usuarios Admin
             InBiblioteca.bCrearCuentas.setVisible(true);
             InBiblioteca.lCrearCuenta.setVisible(true);
             InBiblioteca.lDeleteUser.setVisible(true);

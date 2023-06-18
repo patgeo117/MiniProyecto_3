@@ -8,6 +8,7 @@ import java.util.Objects;
 
 public class InLogin extends JFrame {
 
+    // Iconos
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/LoginIcon.png")));
     ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/LoginIcon2.png")));
 
@@ -135,5 +136,4 @@ public class InLogin extends JFrame {
             txtContrasena.setText("");
         }
     }
-
 }

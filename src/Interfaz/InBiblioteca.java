@@ -1,9 +1,7 @@
 package Interfaz;
 
-import Bibliotecarios.Employees;
 import Filtros.filtro;
 import PersistenciaDatos.ManejoArchivo;
-import PersistenciaDatos.Prestamo;
 import Customers.*;
 
 import javax.swing.*;
@@ -16,18 +14,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.util.Date;
-import java.util.ListIterator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class InBiblioteca extends JFrame implements ActionListener {
     // Icono
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/IconBiblioteca.png")));
+
     // panel
     JPanel panel;
+
     // Botones
     static JButton bCrearCuentas;
     JButton bPrestarLibro;
@@ -36,8 +33,8 @@ public class InBiblioteca extends JFrame implements ActionListener {
     JButton bVolver;
     JButton bCrearLib;
     static JButton bDeleteBook;
-
     static JButton bDeleteUser;
+
     // JMenuBar
     JMenuBar menuBar;
     JMenu estadoLibro;
@@ -51,6 +48,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
     static JLabel lCrearCuenta;
     static JLabel lDeleteUser;
 
+    // se inicializan las clases
     ArchivoCustomers archivoCustomers = new ArchivoCustomers();
     ManejoArchivo manejoArchivo = new ManejoArchivo();
     filtro filtros = new filtro();
@@ -65,14 +63,8 @@ public class InBiblioteca extends JFrame implements ActionListener {
     };
     // Crear un componente JTable con el modelo de tabla
     JTable table = new JTable(model);
-    // Creo un Sorter para ordenar los datos
-    //TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
-    // Ordenar por la segunda columna
 
     public InBiblioteca() {
-
-        //table.setRowSorter(sorter); // le paso el filtro a la tabla
-        //sorter.toggleSortOrder(1); // Ordeno por la segunda columna
 
         // Configuración Panel
         panel = new JPanel();
@@ -107,6 +99,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
         this.setJMenuBar(menuBar);
 
         // Configuración Label
+
         lCrearCuenta = new JLabel("Crear Cuenta:");
         lCrearCuenta.setBounds(40, 480, 100, 20);
         lCrearCuenta.setVisible(false);
@@ -132,8 +125,8 @@ public class InBiblioteca extends JFrame implements ActionListener {
         bDeleteUser.addActionListener(this);
         add(bDeleteUser);
 
-        bDeleteBook = new JButton("Eliminar \n Libro");
-        bDeleteBook.setBounds(360, 500, 100, 40);
+        bDeleteBook = new JButton("Eliminar Libro");
+        bDeleteBook.setBounds(360, 500, 120, 20);
         bDeleteBook.setBackground(Color.red);
         bDeleteBook.setVisible(false);
         bDeleteBook.addActionListener(this);
@@ -157,8 +150,8 @@ public class InBiblioteca extends JFrame implements ActionListener {
         bInfo.addActionListener(this);
         add(bInfo);
 
-        bCrearLib = new JButton("Añadir \n Libro");
-        bCrearLib.setBounds(520, 60, 100, 40);
+        bCrearLib = new JButton("Añadir Libro");
+        bCrearLib.setBounds(520, 60, 120, 40);
         bCrearLib.setBackground(Color.RED);
         bCrearLib.addActionListener(this);
         add(bCrearLib);
@@ -187,26 +180,8 @@ public class InBiblioteca extends JFrame implements ActionListener {
     }
 
     public void MostrarInfo() {
-        // creo un iterador para recorrer multa, ListIterator recorre en cualquier dirección la lista (es un puntero)
-        ListIterator<Integer> data = Prestamo.multa.listIterator();
-        // StringBuilder permite concatenar diferentes cadenas de texto sin crear un nuevo object (es mutable, permite modificar su estado)
-        StringBuilder deudores = new StringBuilder();
-        boolean hayDeudores = false;
-
-        while (data.hasNext()) { // Me aseguro que recorra el data
-            int multa = data.next(); // recorro el siguiente dato
-            if (multa > 0) {
-                hayDeudores = true;
-                // Construir una cadena con la información de los deudores
-                deudores.append("Usuarios: ").append(Prestamo.user).append("\n").append("Libros: ").append(Prestamo.book)
-                        .append("\n").append("Multa correspondiente: ").append(Prestamo.multa).append("\n").append("Dias de atraso: ").append(Prestamo.DiasAtraso);
-            }
-            break;
-        }
-        if (hayDeudores) {
-            // se añade los append a el JOpcionPanel
-            JOptionPane.showMessageDialog(null, deudores.toString());
-        }
+        // Mostrar información
+        JOptionPane.showMessageDialog(null, archivoCustomers.getDataC("src/Archivos_Bin/dataCustomers.bin"));
     }
 
     public Object[][] DatosTabla() {
@@ -278,7 +253,6 @@ public class InBiblioteca extends JFrame implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona una fila");
         }
-
     }
 
     public void RetornarLibro() throws ParseException {
@@ -286,12 +260,11 @@ public class InBiblioteca extends JFrame implements ActionListener {
         if (indexRow >= 0) {
             String estado = (String) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
 
-            if (Objects.equals(estado, "false")) {
-
+            if (Objects.equals(estado, "false")) { // Valido que el estado este en  true
                 // Register customer
                 Clientes[] clientes = archivoCustomers.getDataC("src/Archivos_Bin/dataCustomers.bin");
 
-                String libro = (String) model.getValueAt(indexRow, 0);
+                String libro = (String) model.getValueAt(indexRow, 0); // obtengo el nombre del libro
                 String id = JOptionPane.showInputDialog(null, "Ingrese su nit ");
 
                 if (!Objects.equals(id, "")) {
@@ -299,10 +272,11 @@ public class InBiblioteca extends JFrame implements ActionListener {
                     String fechaFin = JOptionPane.showInputDialog(null, "dd / MM / yyyy");
                     if (!Objects.equals(fechaFin, "")) {
                         for (int i = 0; i < clientes.length; i++) {
+                            // valido el id y el nombre del libro correspondan
                             if (clientes[i].getId().equals(id) && clientes[i].getLibro().equals(libro)) {
                                 clienteValido = true;
                                 clientes[i].setFechaFin(fechaFin); // Actualizar la deuda del cliente
-                                JOptionPane.showMessageDialog(null, clientes[i].getLibro());
+                                JOptionPane.showMessageDialog(null, "# " + clientes[i].getId() + " devueñve:\n" + clientes[i].getLibro());
                                 break;
                             }
                         }
@@ -311,14 +285,9 @@ public class InBiblioteca extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(null, "Datos incorrectso");
                     } else {
                         archivoCustomers.setDataC(clientes, "src/Archivos_Bin/dataCustomers.bin");
-
-
                         model.setValueAt("true", indexRow, 2); // Muestro el dato en la tabla
-
-
                     }
                     model.fireTableDataChanged(); // Actualiza la tabla
-
                     manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
                 } else {
                     JOptionPane.showMessageDialog(null, "Datos vacios");
@@ -329,7 +298,6 @@ public class InBiblioteca extends JFrame implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona una fila");
         }
-
     }
 
     public void EliminarLibro() {
@@ -358,32 +326,32 @@ public class InBiblioteca extends JFrame implements ActionListener {
 
             // Sí se presiona el Jmenuitem mostrar del jmenu personasMora
             if (jm == mostrar) {
-                // creo un iterador para recorrer multa, ListIterator recorre en cualquier dirección la lista (es un puntero)
-                ListIterator<Integer> data = Prestamo.multa.listIterator();
-                // StringBuilder permite concatenar diferentes cadenas de texto sin crear un nuevo object (es mutable, permite modificar su estado)
-                StringBuilder deudores = new StringBuilder();
-                boolean hayDeudores = false;
-
-                while (data.hasNext()) { // Me aseguro que recorra el data
-                    int multa = data.next(); // itero sobre la lista
-                    if (multa > 0) {
-                        hayDeudores = true;
-                        // Construir una cadena con la información de los deudores con StringBuilder
-                        deudores.append("Usuarios en Mora: ").append(Prestamo.user).append("\n").append("Libros prestados: ").append(Prestamo.book).append("\n")
-                                .append("Multa correspondiente: ").append(Prestamo.multa).append("\n");
+                Clientes[] clientes = archivoCustomers.getDataC("src/Archivos_Bin/dataCustomers.bin");
+                HashMap<String, Integer> deudores = new HashMap<>();
+                for (Clientes cliente : clientes) {
+                    try {
+                        if (cliente.getDeuda() > 0) {
+                            deudores.put(cliente.getId(), cliente.getDeuda());
+                        }
+                    } catch (ParseException ex) {
+                        throw new RuntimeException(ex);
                     }
-                    break;
                 }
-                // Mostrar cuadro de texto con los deudores cuando es true
-                if (hayDeudores) {
-                    JOptionPane.showMessageDialog(null, deudores.toString());
+
+                StringBuilder info = new StringBuilder(); // cadena mutable
+                if (!deudores.isEmpty()) { // valido que halla datos en el hasMap
+                    for (Map.Entry<String, Integer> deudor : deudores.entrySet()) {
+                        String key = deudor.getKey();
+                        Integer value = deudor.getValue();
+                        info.append("ID: ").append(key).append(" tiene una deuda de: ").append(value).append("\n");
+                    }
+                    JOptionPane.showMessageDialog(null, info.toString());
                 } else {
-                    JOptionPane.showMessageDialog(null, "Todos los usuarios a paz y salvo");
+                    JOptionPane.showMessageDialog(null, "Todos los clientes a paz y salvó");
+
                 }
             }
-
-            // Al presionar el jmenuitem este mostrará un cuadro de txt donde
-            // apareceran el nombre, categoria y estado de cada libro
+            // Mostrar estado de los libros por categoría
             if (jm == terror) {
                 JTable terrores = new JTable(model);// Se crea una tabla y se le pasa el modelo
                 TableRowSorter<TableModel> Filtro = new TableRowSorter<>(model); // Se crea un sorter para organizar los datos
