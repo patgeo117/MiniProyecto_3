@@ -80,19 +80,23 @@ public class InCrearLib extends JFrame implements ActionListener {
         JButton jb = (JButton) e.getSource();
         // Al precionar el botón se toman los datos con la función y muestra una ventana de aprobación
         if (jb == AgregarLibro) {
-            String nombres = NombreLibro.getText();
-            String categorias = (String) CategoriaLibro.getSelectedItem();
-            String estados = EstadoLibro.getText();
-            // llamo al método encargado de capturar los datos ingresados
-            Libros.agregarLibro(nombres,categorias,estados);
+            if(!NombreLibro.getText().equals("")) {
+                String nombres = NombreLibro.getText();
+                String categorias = (String) CategoriaLibro.getSelectedItem();
+                String estados = EstadoLibro.getText();
+                // llamo al método encargado de capturar los datos ingresados
+                Libros.agregarLibro(nombres, categorias, estados);
 
-            // Guardo los valores en él .bin
-            manejoArchivo.escribirObjeto(Libros.obtenerMatrizLibros());
-            // Mensaje
-            JOptionPane.showMessageDialog(null, "Libro Añadido...", " ", JOptionPane.INFORMATION_MESSAGE);
-            // vaciá los JTextField
-            NombreLibro.setText("");
-            System.out.println("Libro Creado");
+                // Guardo los valores en él .bin
+                manejoArchivo.escribirObjeto(Libros.obtenerMatrizLibros());
+                // Mensaje
+                JOptionPane.showMessageDialog(null, "Libro Añadido...", " ", JOptionPane.INFORMATION_MESSAGE);
+                // vaciá los JTextField
+                NombreLibro.setText("");
+                System.out.println("Libro Creado");
+            }else {
+                JOptionPane.showMessageDialog(null,"Por favor ingrese el nombre del libro");
+            }
         }
         if(jb == volver){
             setVisible(false);

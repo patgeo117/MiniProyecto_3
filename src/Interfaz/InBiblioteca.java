@@ -1,8 +1,10 @@
 package Interfaz;
 
+import Bibliotecarios.Employees;
 import Filtros.filtro;
 import PersistenciaDatos.ManejoArchivo;
 import PersistenciaDatos.Prestamo;
+import Customers.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -13,6 +15,11 @@ import javax.swing.JTable;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.util.Date;
 import java.util.ListIterator;
 import java.util.Objects;
 
@@ -44,6 +51,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
     static JLabel lCrearCuenta;
     static JLabel lDeleteUser;
 
+    ArchivoCustomers archivoCustomers = new ArchivoCustomers();
     ManejoArchivo manejoArchivo = new ManejoArchivo();
     filtro filtros = new filtro();
 
@@ -59,7 +67,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
     JTable table = new JTable(model);
     // Creo un Sorter para ordenar los datos
     //TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
-     // Ordenar por la segunda columna
+    // Ordenar por la segunda columna
 
     public InBiblioteca() {
 
@@ -124,8 +132,8 @@ public class InBiblioteca extends JFrame implements ActionListener {
         bDeleteUser.addActionListener(this);
         add(bDeleteUser);
 
-        bDeleteBook = new JButton("Eliminar Libro");
-        bDeleteBook.setBounds(360, 500, 100, 20);
+        bDeleteBook = new JButton("Eliminar \n Libro");
+        bDeleteBook.setBounds(360, 500, 100, 40);
         bDeleteBook.setBackground(Color.red);
         bDeleteBook.setVisible(false);
         bDeleteBook.addActionListener(this);
@@ -149,7 +157,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
         bInfo.addActionListener(this);
         add(bInfo);
 
-        bCrearLib = new JButton("Añadir Libro");
+        bCrearLib = new JButton("Añadir \n Libro");
         bCrearLib.setBounds(520, 60, 100, 40);
         bCrearLib.setBackground(Color.RED);
         bCrearLib.addActionListener(this);
@@ -200,72 +208,144 @@ public class InBiblioteca extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(null, deudores.toString());
         }
     }
-    public Object[][] DatosTabla(){
+
+    public Object[][] DatosTabla() {
         // Obtener el modelo de la tabla
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-    // Obtener el número de filas y columnas en la tabla
+        // Obtener el número de filas y columnas en la tabla
         int numRows = model.getRowCount();
         int numCols = model.getColumnCount();
 
-    // Crear un arreglo bidimensional para almacenar los datos
+        // Crear un arreglo bidimensional para almacenar los datos
         Object[][] data = new Object[numRows][numCols];
 
-    // Recorrer cada fila y columna de la tabla y almacenar los datos en el arreglo
+        // Recorrer cada fila y columna de la tabla y almacenar los datos en el arreglo
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
                 data[row][col] = model.getValueAt(row, col);
             }
         }
 
-    // Retornar los datos como un Object[][]
+        // Retornar los datos como un Object[][]
         return data;
     }
 
+
     public void Prestarlibro() {
-
         int indexRow = table.getSelectedRow(); // Obtengo la fila seleccionada
-        String estado = (String) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
-        for (int i = 0; i <= table.getRowCount(); i++) {
 
-            if (Objects.equals(estado, "true") && indexRow == i) {// validó que data = true y esté seleccionada la fila = i para evitar desbordamientos
-                model.setValueAt("false", indexRow, 2); // Muestro el dato en la tabla
-                break; // aseguro que termine la ejecución si ejecuta el bloque de código
+        if (indexRow >= 0) {
+            String estado = (String) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
+            if (Objects.equals(estado, "true")) {
+                // Register customer
+                Clientes[] clientes = archivoCustomers.getDataC("src/Archivos_Bin/dataCustomers.bin");
 
-            } else if (!Objects.equals(estado, "true") && indexRow == i) { //
-                JOptionPane.showMessageDialog(null, "El libro no se encuentra Disponible por el momento");
-                break;
+                String libro = (String) model.getValueAt(indexRow, 0);
+                String cliente = JOptionPane.showInputDialog(null, "Nombre: ");
+                String fechainicio = JOptionPane.showInputDialog(null, "dd / MM / yyyy");
+                String id = JOptionPane.showInputDialog(null, "Ingresa tu NIT");
+
+                if (!(cliente.equals("") || fechainicio.equals("") || id.equals(""))) {
+
+                    Clientes addCliente = new Clientes(cliente, libro, id, fechainicio, "00/00/00", 0);
+
+                    Clientes[] newClientes = new Clientes[clientes.length + 1];
+
+                    for (int i = 0; i < clientes.length; i++) {
+                        newClientes[i] = clientes[i];
+                    }
+                    newClientes[newClientes.length - 1] = addCliente; //agregó el nuevo dato en la última posición
+
+                    archivoCustomers.setDataC(newClientes, "src/Archivos_Bin/dataCustomers.bin");
+
+                    for (Clientes c : newClientes) {
+                        System.out.println(c);
+                    }
+                    // Select Book
+                    model.setValueAt("false", indexRow, 2); // Muestro el dato en la tabla
+
+                    model.fireTableDataChanged(); // Actualiza la tabla
+                    manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Datos vacios");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El libro no se encuentra disponible");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona una fila");
         }
-        model.fireTableDataChanged(); // Actualiza la tabla
 
-        manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
     }
 
-    public void RetornarLibro() {
+    public void RetornarLibro() throws ParseException {
         int indexRow = table.getSelectedRow(); // Obtengo la fila seleccionada
-        String estado = (String) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
-        for (int i = 0; i <= table.getRowCount(); i++) {
+        if (indexRow >= 0) {
+            String estado = (String) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
 
-            if (Objects.equals(estado, "false") && indexRow == i) {// validó que data = true y esté seleccionada la fila = i para evitar desbordamientos
-                model.setValueAt("true", indexRow, 2); // Muestro el dato en la tabla
-                break; // aseguro que termine la ejecución si ejecuta el bloque de código
+            if (Objects.equals(estado, "false")) {
 
-            } else if (!Objects.equals(estado, "false") && indexRow == i) { //
+                // Register customer
+                Clientes[] clientes = archivoCustomers.getDataC("src/Archivos_Bin/dataCustomers.bin");
+
+                String libro = (String) model.getValueAt(indexRow, 0);
+                String id = JOptionPane.showInputDialog(null, "Ingrese su nit ");
+
+                if (!Objects.equals(id, "")) {
+                    boolean clienteValido = false;
+                    String fechaFin = JOptionPane.showInputDialog(null, "dd / MM / yyyy");
+                    if (!Objects.equals(fechaFin, "")) {
+                        for (int i = 0; i < clientes.length; i++) {
+                            if (clientes[i].getId().equals(id) && clientes[i].getLibro().equals(libro)) {
+                                clienteValido = true;
+                                clientes[i].setFechaFin(fechaFin); // Actualizar la deuda del cliente
+                                JOptionPane.showMessageDialog(null, clientes[i].getLibro());
+                                break;
+                            }
+                        }
+                    }
+                    if (!clienteValido) {
+                        JOptionPane.showMessageDialog(null, "Datos incorrectso");
+                    } else {
+                        archivoCustomers.setDataC(clientes, "src/Archivos_Bin/dataCustomers.bin");
+
+
+                        model.setValueAt("true", indexRow, 2); // Muestro el dato en la tabla
+
+
+                    }
+                    model.fireTableDataChanged(); // Actualiza la tabla
+
+                    manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
+                } else {
+                    JOptionPane.showMessageDialog(null, "Datos vacios");
+                }
+            } else {
                 JOptionPane.showMessageDialog(null, "El libro se encuentra Disponible");
-                break;
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecciona una fila");
         }
-        model.fireTableDataChanged(); // Actualiza la tabla
 
-        manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
     }
 
-    public void EliminarLibro(){
-        int indexRow = table.getSelectedRow();
-        model.removeRow(indexRow);
-        model.fireTableDataChanged(); // Actualiza la tabla
-        manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
+    public void EliminarLibro() {
+        if (table.getSelectedRow() >= 0) {
+            int indexRow = table.getSelectedRow(); // Obtengo la fila seleccionada
+            String estado = (String) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
+            if (Objects.equals(estado, "true")) {
+                model.removeRow(indexRow);
+                model.fireTableDataChanged(); // Actualiza la tabla
+                manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
+            } else {
+                JOptionPane.showMessageDialog(null, "El libro se encuentra prestado");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila en la tabla.");
+        }
     }
 
     // ActionListener para los Jmenuitem
@@ -309,7 +389,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
                 TableRowSorter<TableModel> Filtro = new TableRowSorter<>(model); // Se crea un sorter para organizar los datos
                 terrores.setRowSorter(Filtro); // le aplico el filtro a la tabla
                 Filtro.setRowFilter(filtros.filter1); // Llamo a la función que me filtra los datos por categoria
-                terrores.setBounds(30,20,500,200);
+                terrores.setBounds(30, 20, 500, 200);
                 InEstadoLibros estadoLibros = new InEstadoLibros();
                 estadoLibros.panel.add(new JScrollPane(terrores));
 
@@ -320,7 +400,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
                 TableRowSorter<TableModel> Filtro = new TableRowSorter<>(model);
                 novelas.setRowSorter(Filtro);
                 Filtro.setRowFilter(filtros.filter2);
-                novelas.setBounds(30,20,500,200);
+                novelas.setBounds(30, 20, 500, 200);
                 InEstadoLibros estadoLibros = new InEstadoLibros();
                 estadoLibros.panel.add(new JScrollPane(novelas));
             }
@@ -330,7 +410,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
                 TableRowSorter<TableModel> Filtro = new TableRowSorter<>(model);
                 ingenieria.setRowSorter(Filtro);
                 Filtro.setRowFilter(filtros.filter3);
-                ingenieria.setBounds(30,20,500,200);
+                ingenieria.setBounds(30, 20, 500, 200);
                 InEstadoLibros estadoLibros = new InEstadoLibros();
                 estadoLibros.panel.add(new JScrollPane(ingenieria));
             }
@@ -349,14 +429,22 @@ public class InBiblioteca extends JFrame implements ActionListener {
             new InDeleteUs();
         }
         if (jb == bPrestarLibro) {
-            Prestarlibro();
+            try {
+                Prestarlibro();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
         if (jb == bVolver) {
             setVisible(false);
             new InLogin();
         }
         if (jb == bRetornarLibro) {
-            RetornarLibro();
+            try {
+                RetornarLibro();
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
         }
         if (jb == bInfo) {
             MostrarInfo();
@@ -365,7 +453,7 @@ public class InBiblioteca extends JFrame implements ActionListener {
             setVisible(false);
             new InCrearLib();
         }
-        if(jb == bDeleteBook){
+        if (jb == bDeleteBook) {
             EliminarLibro();
         }
     }
