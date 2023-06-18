@@ -1,0 +1,607 @@
+Index: src/Interfaz/InCrearLib.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Interfaz;\r\n\r\nimport Bibliotecarios.Bibliotecario;\r\nimport org.w3c.dom.DOMStringList;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.io.*;\r\nimport java.util.ArrayList;\r\n\r\npublic class InCrearLib extends JFrame implements ActionListener {\r\n    // Jlabel\r\n    JLabel lNombreLibro;\r\n    JLabel lCategoriaLibro;\r\n    JLabel lEstadoLibro;\r\n    // JtextField\r\n    JTextField EstadoLibro;\r\n    JTextField NombreLibro;\r\n    JTextField CategoriaLibro;\r\n\r\n    // Jbutton\r\n    JButton AñadirLibro;\r\n    JButton volver;\r\n\r\n    public InCrearLib(){\r\n        // Configuración Jlabel\r\n        lNombreLibro = new JLabel(\"Nombre Del Libro\");\r\n        lNombreLibro.setBounds(100, 15, 100, 40);\r\n        add(lNombreLibro);\r\n\r\n        lCategoriaLibro = new JLabel(\"Categoría Del Libro\");\r\n        lCategoriaLibro.setBounds(100, 70, 120, 40);\r\n        add(lCategoriaLibro);\r\n\r\n        lEstadoLibro = new JLabel(\"Estado Del Libro\");\r\n        lEstadoLibro.setBounds(100, 120, 100, 40);\r\n        add(lEstadoLibro);\r\n\r\n\r\n        // Configuración JtextField\r\n        NombreLibro = new JTextField();\r\n        NombreLibro.setBounds(100, 50, 100, 25);\r\n        add(NombreLibro);\r\n\r\n        CategoriaLibro = new JTextField();\r\n        CategoriaLibro.setBounds(100, 105, 100, 25);\r\n        add(CategoriaLibro);\r\n\r\n        EstadoLibro = new JTextField(String.valueOf(true));\r\n        EstadoLibro.setBounds(100, 155, 100, 25);\r\n        EstadoLibro.setEditable(false);\r\n        add(EstadoLibro);\r\n\r\n        // Configuración Jbutton\r\n        AñadirLibro = new JButton(\"Crear Bibliotecario\");\r\n        AñadirLibro.setBounds(75, 200, 150, 30);\r\n        AñadirLibro.addActionListener(this);\r\n        add(AñadirLibro);\r\n\r\n        volver = new JButton(\"Volver\");\r\n        volver.setBounds(10, 10, 80, 20);\r\n        volver.addActionListener(this);\r\n        add(volver);\r\n\r\n\r\n        // Configuración de ventana\r\n        setLayout(null);\r\n        setSize(300, 280);\r\n        setTitle(\"Crear Cuenta\");\r\n        setLocationRelativeTo(null);\r\n        setResizable(false);\r\n        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\r\n        setVisible(true);\r\n    }\r\n    public void dataLibros() {\r\n        // creo un HashMap que va a recibit los datos por defecto de getData() (método que lee el bin);\r\n        Object[][] dataBibliotecarios = getDataB();\r\n\r\n        // Se toma el Nombre y la categoría del JTextField\r\n        String nombreLibro = NombreLibro.getText();\r\n        String categoriaLibro = CategoriaLibro.getText();\r\n\r\n        // Se toma el estado del JTestField\r\n        String estadoLibro = EstadoLibro.getText();\r\n\r\n        // Agrego nuevos  datos al Hasmap\r\n        Object[] nuevoLibro = {nombreLibro,categoriaLibro,estadoLibro};\r\n        //dataBibliotecarios.wait(nuevoLibro);\r\n\r\n        // Guardo los datos en el bin\r\n        setDataB(dataBibliotecarios);\r\n    }\r\n    public static void setDataB(Object[][] data) {\r\n\r\n        try {\r\n            FileOutputStream outputB = new FileOutputStream(\"src/Archivos_Bin/Libros.bin\");\r\n            ObjectOutputStream modifiB = new ObjectOutputStream(outputB);\r\n\r\n            modifiB.writeObject(data);\r\n\r\n            modifiB.close();\r\n            outputB.close();\r\n\r\n        } catch (Exception io) {\r\n            io.printStackTrace();\r\n        }\r\n    }\r\n    public Object[][] getDataB() {\r\n        // creo un nuevo HasMap que captura los datos del bin\r\n        //Object[]Ñ newObjeto = new Object();\r\n        try {\r\n            File file = new File(\"src/Archivos_Bin/Libros.bin\");\r\n            // Válido que el archivo exista\r\n            if (file.exists()) {\r\n                FileInputStream inputB = new FileInputStream(file);\r\n                ObjectInputStream leerB = new ObjectInputStream(inputB);\r\n\r\n                // leo el archivo y agregó los valores al HashMap\r\n                //newObjeto = (Object[][]) leerB.readObject();\r\n\r\n                leerB.close();\r\n                inputB.close();\r\n            }\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n        // retorno los datos del bin\r\n        return null;\r\n    }\r\n    public static String[] getNomColumnas() {\r\n        return new String[]{\"Título\", \"Categoría\", \"Estado\"};\r\n    }\r\n\r\n    @Override\r\n    public void actionPerformed(ActionEvent e) {\r\n        JButton jb = (JButton) e.getSource();\r\n        // Al precionar el botón se toman los datos con la función y muestra una ventana de aprobación\r\n        if (jb == AñadirLibro) {\r\n            // llamo al método encargado de capturar los datos ingresados\r\n            dataLibros();\r\n            JOptionPane.showMessageDialog(null, \"Libro Añadido...\", \" \", JOptionPane.INFORMATION_MESSAGE);\r\n            // vaciá los JTextField\r\n            NombreLibro.setText(\"\");\r\n            CategoriaLibro.setText(\"\");\r\n            System.out.println(\"Libro Creado\");\r\n        }\r\n        if(jb == volver){\r\n            setVisible(false);\r\n            new InBiblioteca();\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        new InCrearLib();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Interfaz/InCrearLib.java b/src/Interfaz/InCrearLib.java
+--- a/src/Interfaz/InCrearLib.java	(revision 7ad151ddc612cc30a9b9cb95549044dc259dc272)
++++ b/src/Interfaz/InCrearLib.java	(date 1686935647098)
+@@ -1,13 +1,11 @@
+ package Interfaz;
+ 
+-import Bibliotecarios.Bibliotecario;
+-import org.w3c.dom.DOMStringList;
++import PersistenciaDatos.Libros;
++import PersistenciaDatos.ManejoArchivo;
+ 
+ import javax.swing.*;
+ import java.awt.event.ActionEvent;
+ import java.awt.event.ActionListener;
+-import java.io.*;
+-import java.util.ArrayList;
+ 
+ public class InCrearLib extends JFrame implements ActionListener {
+     // Jlabel
+@@ -15,14 +13,16 @@
+     JLabel lCategoriaLibro;
+     JLabel lEstadoLibro;
+     // JtextField
+-    JTextField EstadoLibro;
+-    JTextField NombreLibro;
+-    JTextField CategoriaLibro;
++    public static JTextField NombreLibro;
++    public static JComboBox CategoriaLibro;
++    public static JTextField EstadoLibro;
+ 
+     // Jbutton
+     JButton AñadirLibro;
+     JButton volver;
+ 
++    ManejoArchivo manejoArchivo = new ManejoArchivo();
++
+     public InCrearLib(){
+         // Configuración Jlabel
+         lNombreLibro = new JLabel("Nombre Del Libro");
+@@ -43,17 +43,18 @@
+         NombreLibro.setBounds(100, 50, 100, 25);
+         add(NombreLibro);
+ 
+-        CategoriaLibro = new JTextField();
++        String[] opciones = {"TERROR", "NOVELAS", "INGENIERÍA"};
++        CategoriaLibro = new JComboBox(opciones);
+         CategoriaLibro.setBounds(100, 105, 100, 25);
+         add(CategoriaLibro);
+ 
+-        EstadoLibro = new JTextField(String.valueOf(true));
++        EstadoLibro = new JTextField("true");
+         EstadoLibro.setBounds(100, 155, 100, 25);
+         EstadoLibro.setEditable(false);
+         add(EstadoLibro);
+ 
+         // Configuración Jbutton
+-        AñadirLibro = new JButton("Crear Bibliotecario");
++        AñadirLibro = new JButton("Añadir Libro");
+         AñadirLibro.setBounds(75, 200, 150, 30);
+         AñadirLibro.addActionListener(this);
+         add(AñadirLibro);
+@@ -73,85 +74,30 @@
+         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+         setVisible(true);
+     }
+-    public void dataLibros() {
+-        // creo un HashMap que va a recibit los datos por defecto de getData() (método que lee el bin);
+-        Object[][] dataBibliotecarios = getDataB();
+-
+-        // Se toma el Nombre y la categoría del JTextField
+-        String nombreLibro = NombreLibro.getText();
+-        String categoriaLibro = CategoriaLibro.getText();
+-
+-        // Se toma el estado del JTestField
+-        String estadoLibro = EstadoLibro.getText();
+-
+-        // Agrego nuevos  datos al Hasmap
+-        Object[] nuevoLibro = {nombreLibro,categoriaLibro,estadoLibro};
+-        //dataBibliotecarios.wait(nuevoLibro);
+-
+-        // Guardo los datos en el bin
+-        setDataB(dataBibliotecarios);
+-    }
+-    public static void setDataB(Object[][] data) {
+-
+-        try {
+-            FileOutputStream outputB = new FileOutputStream("src/Archivos_Bin/Libros.bin");
+-            ObjectOutputStream modifiB = new ObjectOutputStream(outputB);
+-
+-            modifiB.writeObject(data);
+-
+-            modifiB.close();
+-            outputB.close();
+-
+-        } catch (Exception io) {
+-            io.printStackTrace();
+-        }
+-    }
+-    public Object[][] getDataB() {
+-        // creo un nuevo HasMap que captura los datos del bin
+-        //Object[]Ñ newObjeto = new Object();
+-        try {
+-            File file = new File("src/Archivos_Bin/Libros.bin");
+-            // Válido que el archivo exista
+-            if (file.exists()) {
+-                FileInputStream inputB = new FileInputStream(file);
+-                ObjectInputStream leerB = new ObjectInputStream(inputB);
+-
+-                // leo el archivo y agregó los valores al HashMap
+-                //newObjeto = (Object[][]) leerB.readObject();
+-
+-                leerB.close();
+-                inputB.close();
+-            }
+-        } catch (Exception e) {
+-            e.printStackTrace();
+-        }
+-        // retorno los datos del bin
+-        return null;
+-    }
+-    public static String[] getNomColumnas() {
+-        return new String[]{"Título", "Categoría", "Estado"};
+-    }
+ 
+     @Override
+     public void actionPerformed(ActionEvent e) {
+         JButton jb = (JButton) e.getSource();
+         // Al precionar el botón se toman los datos con la función y muestra una ventana de aprobación
+         if (jb == AñadirLibro) {
++            String nombres = NombreLibro.getText();
++            String categorias = (String) CategoriaLibro.getSelectedItem();
++            String estados = EstadoLibro.getText();
+             // llamo al método encargado de capturar los datos ingresados
+-            dataLibros();
++            Libros.agregarLibro(nombres,categorias,estados);
++
++            // Guardo los valores en él .bin
++            manejoArchivo.escribirObjeto(Libros.obtenerMatrizLibros());
++            // Mensaje
+             JOptionPane.showMessageDialog(null, "Libro Añadido...", " ", JOptionPane.INFORMATION_MESSAGE);
+             // vaciá los JTextField
+             NombreLibro.setText("");
+-            CategoriaLibro.setText("");
+             System.out.println("Libro Creado");
+         }
+         if(jb == volver){
+             setVisible(false);
+             new InBiblioteca();
++            //ManejoArchivo.leerObjeto();
+         }
+     }
+-
+-    public static void main(String[] args) {
+-        new InCrearLib();
+-    }
+-}
++}
+\ No newline at end of file
+Index: src/Main/Principal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Main;\r\n\r\nimport Interfaz.InCrearLib;\r\nimport Interfaz.InLogin;\r\nimport Interfaz.InCrearUs;\r\n\r\nimport java.util.HashMap;\r\n\r\n\r\npublic class Principal {\r\n    public static String rutaArchivo = \"src/Archivos_Bin/Libros.bin\";\r\n    public static void main(String[] args) {\r\n        // InCrearUs.setDataM();\r\n        //ManejoArchivo.getDataRow(rutaArchivo);\r\n        //ManejoArchivo.CrearArchivo(rutaArchivo, (Serializable) Libros.getDataRow());\r\n        new InLogin();\r\n\r\n       /* HashMap<String, String> s = new HashMap<>();\r\n        //Pasamos los valores por defecto\r\n        s.put(\"Master\", \"Master\");\r\n        InCrearUs.setDataM(s);*/\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main/Principal.java b/src/Main/Principal.java
+--- a/src/Main/Principal.java	(revision 7ad151ddc612cc30a9b9cb95549044dc259dc272)
++++ b/src/Main/Principal.java	(date 1686933653710)
+@@ -1,18 +1,13 @@
+ package Main;
+ 
+-import Interfaz.InCrearLib;
+ import Interfaz.InLogin;
+-import Interfaz.InCrearUs;
+-
+-import java.util.HashMap;
+-
+ 
+ public class Principal {
+-    public static String rutaArchivo = "src/Archivos_Bin/Libros.bin";
++    //public static String rutaArchivo = "src/Archivos_Bin/Libros.bin";
+     public static void main(String[] args) {
+         // InCrearUs.setDataM();
+         //ManejoArchivo.getDataRow(rutaArchivo);
+-        //ManejoArchivo.CrearArchivo(rutaArchivo, (Serializable) Libros.getDataRow());
++        //ManejoArchivo.CrearArchivo(rutaArchivo);
+         new InLogin();
+ 
+        /* HashMap<String, String> s = new HashMap<>();
+Index: src/Interfaz/InBiblioteca.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Interfaz;\r\n\r\nimport javax.swing.*;\r\nimport javax.swing.table.DefaultTableModel;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.util.*;\r\nimport java.lang.*;\r\n\r\nimport PersistenciaDatos.Libros;\r\nimport PersistenciaDatos.ManejoArchivo;\r\nimport PersistenciaDatos.Prestamo;\r\nimport Interfaz.InCrearLib;\r\nimport Main.Principal;\r\n\r\npublic class InBiblioteca extends JFrame implements ActionListener {\r\n    // Icono\r\n    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource(\"/Imagenes/IconBiblioteca.png\")));\r\n    // panel\r\n    JPanel panel;\r\n    // Botones\r\n    JButton bCrearCuentas;\r\n    JButton bPrestarLibro;\r\n    JButton bRetornarLibro;\r\n    JButton bInfo;\r\n    JButton bVolver;\r\n    JButton bCrearLib;\r\n    // JMenuBar\r\n    JMenuBar menuBar;\r\n    JMenu estadoLibro;\r\n    JMenu personasMora;\r\n    JMenuItem mostrar;\r\n    JMenuItem terror;\r\n    JMenuItem novela;\r\n    JMenuItem inge;\r\n    // JLabel\r\n    JLabel lCrearCuenta;\r\n\r\n    // Crear un modelo de tabla y agregar los datos\r\n    DefaultTableModel model = new DefaultTableModel((Object[][]) ManejoArchivo.getDataRow(Principal.rutaArchivo), InCrearLib.getNomColumnas()) {\r\n        // Se deshabilita la opción de modificar las filas y las columnas\r\n        @Override\r\n        public boolean isCellEditable(int row, int column) {\r\n            return false;\r\n        }\r\n    };\r\n    // Crear un componente JTable con el modelo de tabla\r\n    JTable table = new JTable(model);\r\n\r\n    public InBiblioteca() {\r\n\r\n        // Configuración Panel\r\n        panel = new JPanel();\r\n        panel.setBounds(40, 120, 600, 350);\r\n        add(panel);\r\n\r\n        // Configuración Jmenubar\r\n        menuBar = new JMenuBar();\r\n\r\n        estadoLibro = new JMenu(\"Estado\");\r\n        personasMora = new JMenu(\"Personas en Mora\");\r\n\r\n        mostrar = new JMenuItem(\"Mostrar\");\r\n        mostrar.addActionListener(Action2);\r\n\r\n        terror = new JMenuItem(\"Terror\");\r\n        terror.addActionListener(Action2);\r\n        novela = new JMenuItem(\"Novela Clásica\");\r\n        novela.addActionListener(Action2);\r\n        inge = new JMenuItem(\"Ingeniería\");\r\n        inge.addActionListener(Action2);\r\n\r\n        personasMora.add(mostrar);\r\n\r\n        estadoLibro.add(terror);\r\n        estadoLibro.add(novela);\r\n        estadoLibro.add(inge);\r\n\r\n        menuBar.add(estadoLibro);\r\n        menuBar.add(personasMora);\r\n\r\n        this.setJMenuBar(menuBar);\r\n\r\n        // Configuración Label\r\n        lCrearCuenta = new JLabel(\"Crear Cuenta:\");\r\n        lCrearCuenta.setBounds(40, 480, 100, 20);\r\n        lCrearCuenta.setVisible(false);\r\n        add(lCrearCuenta);\r\n\r\n        // Configuración Botones\r\n        bCrearCuentas = new JButton(\"Crear\");\r\n        bCrearCuentas.setBounds(40, 500, 100, 20);\r\n        bCrearCuentas.setBackground(Color.green);\r\n        bCrearCuentas.setVisible(false);\r\n        bCrearCuentas.addActionListener(this);\r\n        add(bCrearCuentas);\r\n\r\n        bPrestarLibro = new JButton(\"Prestar\");\r\n        bPrestarLibro.setBounds(100, 60, 100, 40);\r\n        bPrestarLibro.setBackground(Color.RED);\r\n        bPrestarLibro.addActionListener(this);\r\n        add(bPrestarLibro);\r\n\r\n        bRetornarLibro = new JButton(\"Retornar\");\r\n        bRetornarLibro.setBounds(240, 60, 100, 40);\r\n        bRetornarLibro.setBackground(Color.RED);\r\n        bRetornarLibro.addActionListener(this);\r\n        add(bRetornarLibro);\r\n\r\n        bInfo = new JButton(\"Información\");\r\n        bInfo.setBounds(380, 60, 100, 40);\r\n        bInfo.setBackground(Color.RED);\r\n        bInfo.addActionListener(this);\r\n        add(bInfo);\r\n\r\n        bCrearLib = new JButton(\"Añadir Libro\");\r\n        bCrearLib.setBounds(520, 60, 100, 40);\r\n        bCrearLib.setBackground(Color.RED);\r\n        bCrearLib.addActionListener(this);\r\n        add(bCrearLib);\r\n\r\n        bVolver = new JButton(\"Volver\");\r\n        bVolver.setBounds(10, 10, 75, 30);\r\n        bVolver.setBackground(Color.green);\r\n        bVolver.addActionListener(this);\r\n        add(bVolver);\r\n\r\n        // Configuración Ventana\r\n        setLayout(null);\r\n        setSize(700, 600);\r\n        setTitle(\"Biblioteca\");\r\n        setLocationRelativeTo(null);\r\n        setResizable(false);\r\n        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\r\n        setIconImage(img.getImage());\r\n        setVisible(true);\r\n\r\n\r\n        // Se le dan las dimensiones\r\n        table.setPreferredScrollableViewportSize(new Dimension(600, 300));\r\n        // se añade al panel y además se le agrega el método JScroll para que se visualice de forma correcta\r\n        panel.add(new JScrollPane(table));\r\n\r\n    }\r\n    public void MostrarInfo(){\r\n        // creo un iterador para recorrer multa, ListIterator recorre en cualquier dirección la lista (es un puntero)\r\n        ListIterator<Integer> data = Prestamo.multa.listIterator();\r\n        // StringBuilder permite concatenar diferentes cadenas de texto sin crear un nuevo object (es mutable, permite modificar su estado)\r\n        StringBuilder deudores = new StringBuilder();\r\n        boolean hayDeudores = false;\r\n\r\n        while (data.hasNext()) { // Me aseguro que recorra el data\r\n            int multa = data.next(); // recorro el siguiente dato\r\n            if (multa > 0) {\r\n                hayDeudores = true;\r\n                // Construir una cadena con la información de los deudores\r\n                deudores.append(\"Usuarios: \").append(Prestamo.user).append(\"\\n\").append(\"Libros: \").append(Prestamo.book)\r\n                        .append(\"\\n\").append(\"Multa correspondiente: \").append(Prestamo.multa).append(\"\\n\").append(\"Dias de atraso: \").append(Prestamo.DiasAtraso);\r\n            }\r\n            break;\r\n        }\r\n        if (hayDeudores) {\r\n            // se añade los append a el JOpcionPanel\r\n            JOptionPane.showMessageDialog(null, deudores.toString());\r\n        }\r\n    }\r\n\r\n    public void Prestarlibro() {\r\n        int indexRow = table.getSelectedRow(); // Obtengo la fila seleccionada\r\n        boolean data = (boolean) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada\r\n        for (int i = 0; i <= table.getRowCount(); i++) {\r\n            if (data && indexRow == i){// validó que data = true y esté seleccionada la fila = i para evitar desbordamientos\r\n                //ManejoArchivo.data = new Object[indexRow][2];\r\n                model.setValueAt(false, indexRow, 2); // Muestro el dato en la tabla\r\n                //cambiarValor(ManejoArchivo.data,indexRow,2,false); // actualizo el dato en la matriz\r\n                break; // aseguro que termine la ejecución si ejecuta el bloque de código\r\n            } else if (!data && indexRow == i) { //\r\n                JOptionPane.showMessageDialog(null, \"El libro no se encuentra Disponible por el momento\");\r\n                break;\r\n            }\r\n        }\r\n        model.fireTableDataChanged(); // Actualiza la tabla\r\n\r\n        //ManejoArchivo.getDataRow(Principal.rutaArchivo);\r\n    }\r\n    public static void cambiarValor(Object[][] data, int fila, int columna, Object nuevoValor) {\r\n        data[fila][columna] = nuevoValor;\r\n    }\r\n\r\n    public void RetornarLibro() {\r\n        int indexRow = table.getSelectedRow();\r\n\r\n        for (int i = 0; i < table.getRowCount(); i++) {\r\n            if (indexRow == i) {\r\n                boolean data = (boolean) model.getValueAt(i, 2);\r\n                String usuario = JOptionPane.showInputDialog(null, \"Ingresa tu nombre\");\r\n                boolean validarUser = false;\r\n                // validó que el usuario tenga datos para control del boron cancel\r\n                if(usuario == null){\r\n                    JOptionPane.showMessageDialog(null, \"Acción Cancelada\");\r\n                }else if(!usuario.equals(\" \")){\r\n                    validarUser = true;\r\n                }\r\n                //valido que data no sea nulo (confirmar que tenga datos)\r\n                if (!data ) { // data == false\r\n                    if(validarUser){\r\n                        int dias = Integer.parseInt(JOptionPane.showInputDialog(null, \"Días que fue prestado el libro\"));\r\n                        int diasAtraso = dias - 7;\r\n                        String libro = (String) model.getValueAt(i, 0); // Obtengo el nombre del libro de acuerdo a la celda seleccionada\r\n                        model.setValueAt(true, indexRow, 2);\r\n                        Libros.data[i][2] = true;\r\n\r\n                        if (diasAtraso > 0) {\r\n                                int multa = diasAtraso * 1000;\r\n                                Prestamo.DiasAtraso.add(diasAtraso);\r\n                                // Mando los datos al constructor de la instancia\r\n                                new Prestamo(usuario, libro, multa);\r\n                                for(int ignored : Prestamo.multa){ // recorro con el forech las multas\r\n                                    JOptionPane.showMessageDialog(null, usuario + \" por demora en la entrega tiene una multa de: \" + multa);\r\n                                    break;\r\n                                }\r\n                            } else {\r\n                                JOptionPane.showMessageDialog(null, \"No se debe cobrar ninguna multa.\");\r\n                            }\r\n                    }\r\n                } else {\r\n                    JOptionPane.showMessageDialog(null, \"El libro ya esta en la biblioteca\");\r\n                }\r\n                break;\r\n            }\r\n        }\r\n        model.fireTableDataChanged();\r\n    }\r\n\r\n    // ActionListener para los Jmenuitem\r\n    ActionListener Action2 = new ActionListener() {\r\n        @Override\r\n        public void actionPerformed(ActionEvent e) {\r\n\r\n            // Se crea un jmenuitem al cual se le asigna el jmenuitem presionado\r\n            JMenuItem jm = (JMenuItem) e.getSource();\r\n\r\n            // Sí se presiona el Jmenuitem mostrar del jmenu personasMora\r\n            if (jm == mostrar) {\r\n                // creo un iterador para recorrer multa, ListIterator recorre en cualquier dirección la lista (es un puntero)\r\n                ListIterator<Integer> data = Prestamo.multa.listIterator();\r\n                // StringBuilder permite concatenar diferentes cadenas de texto sin crear un nuevo object (es mutable, permite modificar su estado)\r\n                StringBuilder deudores = new StringBuilder();\r\n                boolean hayDeudores = false;\r\n\r\n                while (data.hasNext()) { // Me aseguro que recorra el data\r\n                    int multa = data.next(); // itero sobre la lista\r\n                    if (multa > 0) {\r\n                        hayDeudores = true;\r\n                        // Construir una cadena con la información de los deudores con StringBuilder\r\n                        deudores.append(\"Usuarios en Mora: \").append(Prestamo.user).append(\"\\n\").append(\"Libros prestados: \").append(Prestamo.book).append(\"\\n\")\r\n                                .append(\"Multa correspondiente: \").append(Prestamo.multa).append(\"\\n\");\r\n                    }\r\n                    break;\r\n                }\r\n                // Mostrar cuadro de texto con los deudores cuando es true\r\n                if (hayDeudores) {\r\n                    JOptionPane.showMessageDialog(null, deudores.toString());\r\n                } else {\r\n                    JOptionPane.showMessageDialog(null, \"Todos los usuarios a paz y salvo\");\r\n                }\r\n            }\r\n\r\n            // Al presionar el jmenuitem terror este mostrará un cuadro de txt donde\r\n            // apareceran los nombre y el estado de cada libro de terror\r\n            if (jm == terror) {\r\n                JOptionPane.showMessageDialog(null,\r\n                        \"Nombre: \" + Libros.data[0][0] + \"    Estado: \" + Libros.data[0][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[1][0] + \"    Estado: \" + Libros.data[1][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[2][0] + \"    Estado: \" + Libros.data[2][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[3][0] + \"    Estado: \" + Libros.data[3][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[4][0] + \"    Estado: \" + Libros.data[4][2] + \"\\n\", \"Libros Terror\", JOptionPane.PLAIN_MESSAGE);\r\n            }\r\n\r\n            // Al presionar el jmenuitem novela este mostrará un cuadro de txt donde\r\n            // apareceran los nombre y el estado de cada libro de novels Classics\r\n            if (jm == novela) {\r\n                JOptionPane.showMessageDialog(null,\r\n                        \"Nombre: \" + Libros.data[5][0] + \"    Estado: \" + Libros.data[5][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[6][0] + \"    Estado: \" + Libros.data[6][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[7][0] + \"    Estado: \" + Libros.data[7][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[8][0] + \"    Estado: \" + Libros.data[8][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[9][0] + \"    Estado: \" + Libros.data[9][2] + \"\\n\", \"Libros Novela\", JOptionPane.PLAIN_MESSAGE);\r\n            }\r\n\r\n            // Al presionar el jmenuitem inge este mostrará un cuadro de txt donde\r\n            // apareceran los nombre y el estado de cada libro de engineering\r\n            if (jm == inge) {\r\n                JOptionPane.showMessageDialog(null,\r\n                        \"Nombre: \" + Libros.data[10][0] + \"    Estado: \" + Libros.data[10][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[11][0] + \"    Estado: \" + Libros.data[11][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[12][0] + \"    Estado: \" + Libros.data[12][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[13][0] + \"    Estado: \" + Libros.data[13][2] + \"\\n\" +\r\n                                \"Nombre: \" + Libros.data[14][0] + \"    Estado: \" + Libros.data[14][2] + \"\\n\", \"Libros Ingeniería\", JOptionPane.PLAIN_MESSAGE);\r\n            }\r\n        }\r\n    };\r\n\r\n    @Override\r\n    public void actionPerformed(ActionEvent e) {     // ActionListener para los botones\r\n        JButton jb = (JButton) e.getSource();\r\n        if (jb == bCrearCuentas) {\r\n            setVisible(false);\r\n            new InCrearUs();\r\n        }\r\n        if (jb == bPrestarLibro) {\r\n            Prestarlibro();\r\n        }\r\n        if (jb == bVolver) {\r\n            setVisible(false);\r\n            new InLogin();\r\n        }\r\n        if (jb == bRetornarLibro) {\r\n            RetornarLibro();\r\n        }\r\n        if(jb == bInfo){\r\n            MostrarInfo();\r\n        }\r\n        if(jb == bCrearLib){\r\n            setVisible(false);\r\n            new InCrearLib();\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Interfaz/InBiblioteca.java b/src/Interfaz/InBiblioteca.java
+--- a/src/Interfaz/InBiblioteca.java	(revision 7ad151ddc612cc30a9b9cb95549044dc259dc272)
++++ b/src/Interfaz/InBiblioteca.java	(date 1686929855317)
+@@ -1,18 +1,16 @@
+ package Interfaz;
+ 
++import PersistenciaDatos.Libros;
++import PersistenciaDatos.ManejoArchivo;
++import PersistenciaDatos.Prestamo;
++
+ import javax.swing.*;
+ import javax.swing.table.DefaultTableModel;
+ import java.awt.*;
+ import java.awt.event.ActionEvent;
+ import java.awt.event.ActionListener;
+-import java.util.*;
+-import java.lang.*;
+-
+-import PersistenciaDatos.Libros;
+-import PersistenciaDatos.ManejoArchivo;
+-import PersistenciaDatos.Prestamo;
+-import Interfaz.InCrearLib;
+-import Main.Principal;
++import java.util.ListIterator;
++import java.util.Objects;
+ 
+ public class InBiblioteca extends JFrame implements ActionListener {
+     // Icono
+@@ -38,7 +36,7 @@
+     JLabel lCrearCuenta;
+ 
+     // Crear un modelo de tabla y agregar los datos
+-    DefaultTableModel model = new DefaultTableModel((Object[][]) ManejoArchivo.getDataRow(Principal.rutaArchivo), InCrearLib.getNomColumnas()) {
++    DefaultTableModel model = new DefaultTableModel(manejoArchivo.leerObjeto(), manejoArchivo.getNomColumnas()) {
+         // Se deshabilita la opción de modificar las filas y las columnas
+         @Override
+         public boolean isCellEditable(int row, int column) {
+@@ -182,10 +180,6 @@
+         }
+         model.fireTableDataChanged(); // Actualiza la tabla
+ 
+-        //ManejoArchivo.getDataRow(Principal.rutaArchivo);
+-    }
+-    public static void cambiarValor(Object[][] data, int fila, int columna, Object nuevoValor) {
+-        data[fila][columna] = nuevoValor;
+     }
+ 
+     public void RetornarLibro() {
+Index: src/PersistenciaDatos/ManejoArchivo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package PersistenciaDatos;\r\nimport java.io.*;\r\npublic class ManejoArchivo {\r\n\r\n    public static void CrearArchivo(String rutaArchivo,Serializable objeto) {\r\n        File archivoE = new File(rutaArchivo);\r\n        if (archivoE.exists()) {\r\n            System.out.println(\"El archivo ya existe.\");\r\n            return;\r\n        }\r\n        try {\r\n            FileOutputStream archivo = new FileOutputStream(rutaArchivo);\r\n            ObjectOutputStream salida = new ObjectOutputStream(archivo);\r\n            salida.writeObject(objeto);\r\n            salida.close();\r\n            System.out.println(\"Se creo el archivo\");\r\n        }catch (IOException e){\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n    public static Object getDataRow(String rutaArchivo) {\r\n        Object objeto = null;\r\n        File archivoE = new File(rutaArchivo);\r\n        if (archivoE.exists()) {\r\n           objeto = new Object();\r\n            try {\r\n                FileInputStream archivo = new FileInputStream(rutaArchivo);\r\n                ObjectInputStream entrada = new ObjectInputStream(archivo);\r\n\r\n                // Leer objeto desde el archivo binario\r\n                objeto = entrada.readObject();\r\n\r\n                archivo.close();\r\n                entrada.close();\r\n                System.out.println(\"Archivo binario leído correctamente.\");\r\n\r\n            } catch (IOException | ClassNotFoundException e) {\r\n                e.printStackTrace();\r\n            }\r\n        }else {\r\n            System.out.println(\"No se encontró el archivo.\");\r\n        }\r\n        return objeto;\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/PersistenciaDatos/ManejoArchivo.java b/src/PersistenciaDatos/ManejoArchivo.java
+--- a/src/PersistenciaDatos/ManejoArchivo.java	(revision 7ad151ddc612cc30a9b9cb95549044dc259dc272)
++++ b/src/PersistenciaDatos/ManejoArchivo.java	(date 1686935272595)
+@@ -1,8 +1,85 @@
+ package PersistenciaDatos;
++
+ import java.io.*;
++import java.util.Arrays;
++import java.util.HashSet;
++import java.util.Set;
++
++
+ public class ManejoArchivo {
+ 
+-    public static void CrearArchivo(String rutaArchivo,Serializable objeto) {
++    public  void escribirObjeto(Object[][] nuevosObjetos) {
++        String RutaArchivo = "src/Archivos_Bin/Libros.bin";
++
++        // Leo el archivo y lo agrego un Onjecto
++        Object[][] objetosExistentes = leerObjeto();
++
++        // Creo una colecion de datos que no se pueden repetir.
++        Set<Object[]> conjuntoObjetos = new HashSet<>();
++
++        // Valido que los datos no sean nulos 
++        if (objetosExistentes != null) {
++            // agrego los datos del Object a la collection
++            conjuntoObjetos.addAll(Arrays.asList(objetosExistentes));
++            System.out.println(conjuntoObjetos);
++        }
++
++        // itero sobre los nuevos datos
++        for (Object[] objetoNuevo : nuevosObjetos) {
++            // verificar si el objetoNuevo ya está en conjuntoObjetos
++            boolean objetoYaExiste = false;
++            // itero sobre cada dato de la colletion
++            for (Object[] objetoExistente : conjuntoObjetos) {
++                // verifico si los datos son iguales y si existe evito que se agregue el nuevo object
++                if (Arrays.equals(objetoNuevo, objetoExistente)) {
++                    objetoYaExiste = true;
++                    break;
++                }
++            }
++            // Si el dato no existe lo agrego a la collection
++            if (!objetoYaExiste) {
++                conjuntoObjetos.add(objetoNuevo);
++            }
++        }
++
++        System.out.println(conjuntoObjetos);
++        try {
++            FileOutputStream fileOutputStream = new FileOutputStream(RutaArchivo);
++            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
++
++            // Agregó la nueva collecion que contiene lso datos del .bin y lo nuevos que se van a agregar.
++            objectOutputStream.writeObject(conjuntoObjetos.toArray(new Object[0][0]));
++
++            objectOutputStream.close();
++            fileOutputStream.close();
++
++        } catch (IOException e) {
++            e.printStackTrace();
++        }
++    }
++
++    // Método que lee los datos guardados en él .bin
++
++    public  Object[][] leerObjeto() {
++        Object[][] objetos = null;
++        try {
++            String rutaArchivo = "src/Archivos_Bin/Libros.bin";
++            FileInputStream fileInputStream = new FileInputStream(rutaArchivo);
++            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
++
++            objetos = (Object[][]) objectInputStream.readObject();
++
++            objectInputStream.close();
++            fileInputStream.close();
++        } catch (IOException | ClassNotFoundException e) {
++            e.printStackTrace();
++        }
++        return objetos;
++    }
++
++    // Método para crear el archivo .bin
++
++    public static void CrearArchivo(String rutaArchivo) {
+         File archivoE = new File(rutaArchivo);
+         if (archivoE.exists()) {
+             System.out.println("El archivo ya existe.");
+@@ -11,37 +88,16 @@
+         try {
+             FileOutputStream archivo = new FileOutputStream(rutaArchivo);
+             ObjectOutputStream salida = new ObjectOutputStream(archivo);
+-            salida.writeObject(objeto);
++            //salida.writeObject(objeto);
+             salida.close();
+             System.out.println("Se creo el archivo");
+-        }catch (IOException e){
++        } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
+-    public static Object getDataRow(String rutaArchivo) {
+-        Object objeto = null;
+-        File archivoE = new File(rutaArchivo);
+-        if (archivoE.exists()) {
+-           objeto = new Object();
+-            try {
+-                FileInputStream archivo = new FileInputStream(rutaArchivo);
+-                ObjectInputStream entrada = new ObjectInputStream(archivo);
+-
+-                // Leer objeto desde el archivo binario
+-                objeto = entrada.readObject();
+ 
+-                archivo.close();
+-                entrada.close();
+-                System.out.println("Archivo binario leído correctamente.");
+-
+-            } catch (IOException | ClassNotFoundException e) {
+-                e.printStackTrace();
+-            }
+-        }else {
+-            System.out.println("No se encontró el archivo.");
+-        }
+-        return objeto;
++    // Table-Modelo
++    public String[] getNomColumnas() {
++        return new String[]{"Título", "Categoría", "Estado"};
+     }
+-
+-
+ }
+Index: src/PersistenciaDatos/Libros.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package PersistenciaDatos;\r\n\r\nimport java.io.Serializable;\r\n\r\npublic class Libros implements Serializable {\r\n    // se crea la base de datos de los libros\r\n    public static Object[][] data = new Object[][] {\r\n            {\"El resplandor\", \"TERROR\", true},\r\n            {\"It\", \"TERROR\", true},\r\n            {\"El Exorcista\", \"TERROR\", true},\r\n            {\"Pet Sematary\", \"TERROR\", true},\r\n            {\"Frankenstein\", \"TERROR\", true},\r\n            {\"Cien años de soledad\", \"NOVELA\", true},\r\n            {\"1984\", \"NOVELA\", true},\r\n            {\"El gran Gatsby\", \"NOVELA\", true},\r\n            {\"Orgullo y prejuicio\", \"NOVELA\", true},\r\n            {\"Don Quijote de la Mancha\", \"NOVELA\", true},\r\n            {\"Circuit Analysis: Theory and Practice\", \"INGENIERÍA\", true},\r\n            {\"Mechanics of Materials\", \"INGENIERÍA\", true},\r\n            {\"Introduction to Chemical Engineering Thermodynamics\", \"INGENIERÍA\", true},\r\n            {\"Structural Analysis\", \"INGENIERÍA\", true},\r\n            {\"Structural Analysis\", \"INGENIERÍA\", true},\r\n            {\"Introduction to Electrical Engineering\", \"INGENIERÍA\", true}\r\n    };\r\n\r\n    public static Object getDataRow(){\r\n        return data;\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/PersistenciaDatos/Libros.java b/src/PersistenciaDatos/Libros.java
+--- a/src/PersistenciaDatos/Libros.java	(revision 7ad151ddc612cc30a9b9cb95549044dc259dc272)
++++ b/src/PersistenciaDatos/Libros.java	(date 1686929109503)
+@@ -1,8 +1,28 @@
+ package PersistenciaDatos;
+ 
+ import java.io.Serializable;
++import java.util.ArrayList;
++import java.util.List;
+ 
+ public class Libros implements Serializable {
++
++    public static List<Object[]> listaLibros = new ArrayList<>();
++
++    public static void agregarLibro(String nombre, String categoria, String estado) {
++        Object[] libro = {nombre, categoria, estado};
++        listaLibros.add(libro);
++    }
++
++    public static Object[][] obtenerMatrizLibros() {
++        int numFilas = listaLibros.size();
++        Object[][] matrizLibros = new Object[numFilas][3];
++        for (int i = 0; i < numFilas; i++) {
++            matrizLibros[i] = listaLibros.get(i);
++        }
++        return matrizLibros;
++    }
++
++
+     // se crea la base de datos de los libros
+     public static Object[][] data = new Object[][] {
+             {"El resplandor", "TERROR", true},
+@@ -22,9 +42,5 @@
+             {"Structural Analysis", "INGENIERÍA", true},
+             {"Introduction to Electrical Engineering", "INGENIERÍA", true}
+     };
+-
+-    public static Object getDataRow(){
+-        return data;
+-    }
+ }
+ 
+Index: src/Interfaz/InCrearUs.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Interfaz;\r\n\r\nimport Bibliotecarios.Bibliotecario;\r\nimport Bibliotecarios.UsuarioMaestro;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.io.*;\r\nimport java.util.*;\r\n\r\npublic class InCrearUs extends JFrame implements ActionListener {\r\n    // icono\r\n    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource(\"/Imagenes/LoginIcon.png\")));\r\n    // Jlabel\r\n    JLabel lUsuario;\r\n    JLabel lContrasena;\r\n    // JtextField\r\n    JTextField Usuario;\r\n    JPasswordField Contrasena;\r\n    // Jbutton\r\n    JButton cuentaUsuario;\r\n    JButton cuentaMaestro;\r\n    JButton volver;\r\n\r\n    // un booleano que va permitir verificar/crear un User cuadno sea true\r\n    boolean validar = false;\r\n\r\n    public InCrearUs() {\r\n        // Configuración Jlabel\r\n        lUsuario = new JLabel(\"Usuario\");\r\n        lUsuario.setBounds(100, 15, 100, 40);\r\n        add(lUsuario);\r\n\r\n        lContrasena = new JLabel(\"Contraseña\");\r\n        lContrasena.setBounds(100, 70, 100, 40);\r\n        add(lContrasena);\r\n\r\n        // Configuración JtextField\r\n        Usuario = new JTextField();\r\n        Usuario.setBounds(100, 50, 100, 25);\r\n        add(Usuario);\r\n\r\n        Contrasena = new JPasswordField();\r\n        Contrasena.setBounds(100, 105, 100, 25);\r\n        add(Contrasena);\r\n\r\n        // Configuración Jbutton\r\n        cuentaUsuario = new JButton(\"Crear Bibliotecario\");\r\n        cuentaUsuario.setBounds(75, 160, 150, 30);\r\n        cuentaUsuario.addActionListener(this);\r\n        add(cuentaUsuario);\r\n\r\n        cuentaMaestro = new JButton(\"Crear Master\");\r\n        cuentaMaestro.setBounds(90, 200, 120, 30);\r\n        cuentaMaestro.addActionListener(this);\r\n        add(cuentaMaestro);\r\n\r\n        volver = new JButton(\"Volver\");\r\n        volver.setBounds(10, 10, 80, 20);\r\n        volver.addActionListener(this);\r\n        add(volver);\r\n\r\n\r\n        // Configuración de ventana\r\n        setLayout(null);\r\n        setSize(300, 280);\r\n        setTitle(\"Crear Cuenta\");\r\n        setLocationRelativeTo(null);\r\n        setResizable(false);\r\n        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);\r\n        setIconImage(img.getImage());\r\n        setVisible(true);\r\n    }\r\n\r\n    // Método que ba a guardar\r\n    public void dataBibliotecarios() {\r\n        // creo un HashMap que va a recibit los datos por defecto  de getData() (método que lee el bin);\r\n        HashMap<String, String> dataBibliotecarios = getDataB();\r\n\r\n        // Se toma el usuario del JTextField\r\n        String name = Usuario.getText();\r\n        // Se toma la Contraseña del JTestField\r\n        char[] clave = Contrasena.getPassword();\r\n        String password = new String(clave);\r\n\r\n        if (validar) {\r\n            if (!name.equals(\"\") & !password.equals(\"\")) {\r\n                // Agrego nuevos  datos al Hasmap\r\n                dataBibliotecarios.put(name, password);\r\n\r\n                // Guardo los datos en el bin\r\n                setDataB(dataBibliotecarios, \"src/Archivos_Bin/dataBibliotecarios.bin\");\r\n\r\n                JOptionPane.showMessageDialog(null, \"Cuenta creada...\", \" \", JOptionPane.INFORMATION_MESSAGE);\r\n\r\n            } else {\r\n                JOptionPane.showMessageDialog(null, \"Datos vacios, Ingrese los datos\", \" \", JOptionPane.INFORMATION_MESSAGE);\r\n            }\r\n        }\r\n\r\n        for (String key : dataBibliotecarios.keySet()) {\r\n            String value = dataBibliotecarios.get(key);\r\n            System.out.println(\"### key: \" + key + \"  \" + \"Value: \" + value);\r\n\r\n        }\r\n    }\r\n\r\n    // Escribir en archivo\r\n    public static void setDataB(HashMap<String, String> data, String archivo) {\r\n\r\n        try {\r\n            FileOutputStream outputB = new FileOutputStream(archivo);\r\n            ObjectOutputStream modifiB = new ObjectOutputStream(outputB);\r\n\r\n            modifiB.writeObject(data);\r\n\r\n            modifiB.close();\r\n            outputB.close();\r\n\r\n        } catch (Exception io) {\r\n            io.printStackTrace();\r\n        }\r\n    }\r\n\r\n    // leer archivos Bibliotecario\r\n    public HashMap<String, String> getDataB() {\r\n        // creo un nuevo HasMap que captura los datos del bin\r\n        HashMap<String, String> newHash = new HashMap<>();\r\n        try {\r\n            File file = new File(\"src/Archivos_Bin/dataBibliotecarios.bin\");\r\n            // Válido que el archivo exista\r\n            if (file.exists()) {\r\n                FileInputStream inputB = new FileInputStream(file);\r\n                ObjectInputStream leerB = new ObjectInputStream(inputB);\r\n\r\n                // leo el archivo y agregó los valores al HashMap\r\n                newHash = (HashMap<String, String>) leerB.readObject();\r\n\r\n                leerB.close();\r\n                inputB.close();\r\n            }\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n        // retorno los datos del bin\r\n        return newHash;\r\n    }\r\n\r\n    // Método que ba a guardar\r\n    public void dataMaestros() {\r\n        // creo un HashMap que va a recibit los datos por defecto  de getData() (método que lee el bin);\r\n        HashMap<String, String> dataMaestro = getDataM();\r\n\r\n        // Se toma el usuario del JTextField\r\n        String name = Usuario.getText();\r\n        // Se toma la Contraseña del JTestField\r\n        char[] clave = Contrasena.getPassword();\r\n        String password = new String(clave);\r\n\r\n        if (validar) {\r\n            if (!name.equals(\"\") & !password.equals(\"\")) {\r\n                // Agrego nuevos  datos al Hasmap\r\n                dataMaestro.put(name, password);\r\n\r\n                // Guardo los datos en el bin\r\n                setDataM(dataMaestro, \"src/Archivos_Bin/dataMaestros.bin\");\r\n\r\n                JOptionPane.showMessageDialog(null, \"Cuenta creada...\", \" \", JOptionPane.INFORMATION_MESSAGE);\r\n            } else {\r\n                JOptionPane.showMessageDialog(null, \"Datos vacios, Ingrese los datos\", \" \", JOptionPane.INFORMATION_MESSAGE);\r\n\r\n            }\r\n        }\r\n        for (String key : dataMaestro.keySet()) {\r\n            String value = dataMaestro.get(key);\r\n            System.out.println(\"*** key: \" + key + \"  \" + \"Value: \" + value);\r\n        }\r\n\r\n    }\r\n\r\n    // Escribir en archivo Maestro\r\n    public static void setDataM(HashMap<String, String> data, String archivo) {\r\n\r\n        try {\r\n            FileOutputStream outputM = new FileOutputStream(archivo);\r\n            ObjectOutputStream modifiM = new ObjectOutputStream(outputM);\r\n\r\n            modifiM.writeObject(data);\r\n\r\n            modifiM.close();\r\n            outputM.close();\r\n\r\n        } catch (Exception io) {\r\n            io.printStackTrace();\r\n        }\r\n    }\r\n\r\n    // leer archivo maestro\r\n    public HashMap<String, String> getDataM() {\r\n        // creo un nuevo HasMap que captura los datos del bin\r\n        HashMap<String, String> newMaster = new HashMap<>();\r\n        try {\r\n            File file = new File(\"src/Archivos_Bin/dataMaestros.bin\");\r\n            // Válido que el archivo exista\r\n            if (file.exists()) {\r\n                FileInputStream inputM = new FileInputStream(file);\r\n                ObjectInputStream leerM = new ObjectInputStream(inputM);\r\n\r\n                // leo el archivo y agregó los valores al HashMap\r\n                newMaster = (HashMap<String, String>) leerM.readObject();\r\n\r\n                leerM.close();\r\n                inputM.close();\r\n            }\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        // retorno los datos del bin\r\n        return newMaster;\r\n    }\r\n\r\n    // Método que me retorna si la clave ya existe\r\n    public boolean userExiste(String nameUser, HashMap<String, String> users) {\r\n        return users.containsKey(nameUser); // devuelve true si la calve existe y false si no\r\n    }\r\n\r\n    public void validarUser() {\r\n        // Obtengo los datos de los archivos bin\r\n        HashMap<String, String> usuarioMaestro = getDataM();\r\n        HashMap<String, String> usuarioBibliotecario = getDataB();\r\n\r\n        // Se toma el usuario del JTextField\r\n        String name = Usuario.getText();\r\n\r\n        boolean maestroExsite = userExiste(name, usuarioMaestro);\r\n        boolean bibliotecarioExiste = userExiste(name, usuarioBibliotecario);\r\n\r\n        if (maestroExsite || bibliotecarioExiste) {\r\n            JOptionPane.showMessageDialog(null, \"¡¡ ERROR !!, Usuario ya existe\");\r\n        } else {\r\n            validar = true;\r\n        }\r\n\r\n    }\r\n\r\n    @Override\r\n    public void actionPerformed(ActionEvent e) {\r\n        JButton jb = (JButton) e.getSource();\r\n\r\n        // Al precionar el botón se toman los datos con la función y muestra una ventana de aprobación\r\n        if (jb == cuentaUsuario) {\r\n            validarUser();\r\n            // llamo al método encargado de crear los usuarios\r\n            dataBibliotecarios();\r\n            // vaciá los JTextField\r\n            Usuario.setText(\"\");\r\n            Contrasena.setText(\"\");\r\n\r\n        }\r\n        if (jb == cuentaMaestro) {\r\n            validarUser();\r\n            dataMaestros();\r\n            // vaciá los JTextField\r\n            Usuario.setText(\"\");\r\n            Contrasena.setText(\"\");\r\n\r\n        }\r\n        if (jb == volver) {\r\n            setVisible(false);\r\n            InBiblioteca interfaz2 = new InBiblioteca();\r\n            interfaz2.bCrearCuentas.setVisible(true);\r\n            interfaz2.lCrearCuenta.setVisible(true);\r\n        }\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Interfaz/InCrearUs.java b/src/Interfaz/InCrearUs.java
+--- a/src/Interfaz/InCrearUs.java	(revision 7ad151ddc612cc30a9b9cb95549044dc259dc272)
++++ b/src/Interfaz/InCrearUs.java	(date 1686928143712)
+@@ -1,13 +1,11 @@
+ package Interfaz;
+ 
+-import Bibliotecarios.Bibliotecario;
+-import Bibliotecarios.UsuarioMaestro;
+-
+ import javax.swing.*;
+ import java.awt.event.ActionEvent;
+ import java.awt.event.ActionListener;
+ import java.io.*;
+-import java.util.*;
++import java.util.HashMap;
++import java.util.Objects;
+ 
+ public class InCrearUs extends JFrame implements ActionListener {
+     // icono
+@@ -75,7 +73,7 @@
+ 
+     // Método que ba a guardar
+     public void dataBibliotecarios() {
+-        // creo un HashMap que va a recibit los datos por defecto  de getData() (método que lee el bin);
++        // creo un HashMap que va a recibit los datos por defecto de getData() (método que lee el bin);
+         HashMap<String, String> dataBibliotecarios = getDataB();
+ 
+         // Se toma el usuario del JTextField
+Index: src/Archivos_Bin/dataBibliotecarios.bin
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>��\u0000\u0005sr\u0000\u0011java.util.HashMap\u0005\u0007���\u0016`�\u0003\u0000\u0002F\u0000\nloadFactorI\u0000\tthresholdxp?@\u0000\u0000\u0000\u0000\u0000\fw\b\u0000\u0000\u0000\u0010\u0000\u0000\u0000\u0006t\u0000\u0005user1t\u0000\u0005user1t\u0000\u0000t\u0000\u0005user5t\u0000\u0005user2t\u0000\u0005user2t\u0000\u0005user5t\u0000\u0000t\u0000\u0005user3t\u0000\u0000t\u0000\u0005user4t\u0000\u0000x
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Archivos_Bin/dataBibliotecarios.bin b/src/Archivos_Bin/dataBibliotecarios.bin
+--- a/src/Archivos_Bin/dataBibliotecarios.bin	(revision 7ad151ddc612cc30a9b9cb95549044dc259dc272)
++++ b/src/Archivos_Bin/dataBibliotecarios.bin	(date 1686834326056)
+@@ -1,2 +1,2 @@
+ �� sr java.util.HashMap���`� F 
+-loadFactorI 	thresholdxp?@     w      t user1t user1t  t user5t user2t user2t user5t  t user3t  t user4t  x
+\ No newline at end of file
++loadFactorI 	thresholdxp?@     w      t user1t user1t  t user5t user2t user2t Dt Dt user5t  t user3t  t user4t  x
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" name=\"Changes\" comment=\"final\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Archivos_Bin/dataBibliotecarios.bin\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Archivos_Bin/dataBibliotecarios.bin\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Interfaz/InCrearUs.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Interfaz/InCrearUs.java\" afterDir=\"false\" />\r\n    </list>\r\n    <list id=\"0a5985e6-772f-4ab5-9bc7-7afe290d5433\" name=\"Changes by johan\" comment=\"FINAl\" />\r\n    <list id=\"ecc96d05-5993-44b6-bd22-180bbb27c80c\" name=\"JLabel\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/src/Interfaz_3.java\" root0=\"SKIP_INSPECTION\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2PhXWK2eTa00LJL08xEDOB3pcdi\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;Trabajo&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/gpati/IdeaProjects/MiniProyecto1.1&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\johan\\OneDrive\\Documentos\\Universidad\\univalle\\3cer semestre\\POE\\MiniProyecto_3\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ed344a7c-e6ca-4294-80ac-476dcbc32eb3\" name=\"Changes\" comment=\"\" />\r\n      <created>1683910319141</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1683910319141</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Inicio\">\r\n      <created>1683913003323</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683913003323</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Creacion de clases\">\r\n      <created>1683919987849</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683919987849</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Interfaz 1\">\r\n      <created>1683946866499</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683946866499</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Interfaz 1\">\r\n      <created>1683946881506</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1683946881506</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Interfaz 2\">\r\n      <created>1684030579781</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684030579781</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Añado el mensaje de crear cuenta\">\r\n      <created>1684720247196</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684720247196</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Implementación de la lista de libros\">\r\n      <created>1684786724533</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684786724533</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Implementación de la lista de libros 2\">\r\n      <created>1684788999555</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684788999556</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Mejoras al JTABLE\">\r\n      <created>1684851853666</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684851853666</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"PRUEBA Prestar libro\">\r\n      <created>1684898383046</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684898383046</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Changes by jHoan\">\r\n      <created>1684898678462</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684898678462</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"PRUEBA Prestar libro 2.0\">\r\n      <created>1684898894128</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1684898894128</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"13\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"Space.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"testOne\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Inicio\" />\r\n    <MESSAGE value=\"Creacion de clases\" />\r\n    <MESSAGE value=\"Interfaz 1\" />\r\n    <MESSAGE value=\"Interfaz 2\" />\r\n    <MESSAGE value=\"Añado el mensaje de crear cuenta\" />\r\n    <MESSAGE value=\"Implementación de la lista de libros\" />\r\n    <MESSAGE value=\"Implementación de la lista de libros 2\" />\r\n    <MESSAGE value=\"Mejoras al JTABLE\" />\r\n    <MESSAGE value=\"PRUEBA Prestar libro\" />\r\n    <MESSAGE value=\"Changes by johan\" />\r\n    <MESSAGE value=\"PRUEBA Prestar libro 2.0\" />\r\n    <MESSAGE value=\"final\" />\r\n    <MESSAGE value=\"Changes by jHoan\" />\r\n    <MESSAGE value=\"FINAl\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"FINAl\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7ad151ddc612cc30a9b9cb95549044dc259dc272)
++++ b/.idea/workspace.xml	(date 1686935647152)
+@@ -5,17 +5,30 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="final">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_06_2023_11_15_a__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_06_2023_11_15_a__m___Changes_.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_06_2023_11_15_a__m___Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_06_2023_11_15_a__m___Changes_1.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/dataBibliotecarios.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Archivos_Bin/dataBibliotecarios.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/dataMaestros.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Archivos_Bin/dataMaestros.bin" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/Main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Principal.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/PersistenciaDatos/Libros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersistenciaDatos/Libros.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/PersistenciaDatos/ManejoArchivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PersistenciaDatos/ManejoArchivo.java" afterDir="false" />
++    </list>
++    <list id="fd862f62-b54f-4adc-bfba-bee05f3a5b2c" name="Changes by johan" comment="">
++      <change beforePath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" afterDir="false" />
+     </list>
+-    <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="FINAl" />
+     <list id="ecc96d05-5993-44b6-bd22-180bbb27c80c" name="JLabel" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
++  <component name="CodeInsightWorkspaceSettings">
++    <option name="optimizeImportsOnTheFly" value="true" />
++  </component>
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+@@ -25,10 +38,23 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="HighlightingSettingsPerFile">
+     <setting file="file://$PROJECT_DIR$/src/Interfaz_3.java" root0="SKIP_INSPECTION" />
+   </component>
++  <component name="LineStatusTrackerManager">
++    <file path="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java">
++      <ranges>
++        <range start1="2" end1="2" start2="2" end2="6" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
++        <range start1="7" end1="15" start2="11" end2="13" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
++        <range start1="38" end1="38" start2="36" end2="38" changelist="fd862f62-b54f-4adc-bfba-bee05f3a5b2c" />
++        <range start1="40" end1="41" start2="40" end2="41" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
++        <range start1="184" end1="185" start2="184" end2="184" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
++        <range start1="186" end1="189" start2="185" end2="185" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
++      </ranges>
++    </file>
++  </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+   </component>
+@@ -41,16 +67,24 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;Trabajo&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;C:/Users/gpati/IdeaProjects/MiniProyecto1.1&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "ASKED_ADD_EXTERNAL_FILES": "true",
++    "Downloaded.Files.Path.Enabled": "false",
++    "Repository.Attach.Annotations": "false",
++    "Repository.Attach.JavaDocs": "true",
++    "Repository.Attach.Sources": "true",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "codeWithMe.voiceChat.enabledByDefault": "false",
++    "git-widget-placeholder": "Trabajo",
++    "last_opened_file_path": "C:/Users/gpati/IdeaProjects/Proyecto_Base_Datos",
++    "project.structure.last.edited": "Global Libraries",
++    "project.structure.proportion": "0.15",
++    "project.structure.side.proportion": "0.2",
++    "settings.editor.selected.configurable": "preferences.pluginManager"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="C:\Users\johan\OneDrive\Documentos\Universidad\univalle\3cer semestre\POE\MiniProyecto_3" />
+Index: src/Archivos_Bin/dataMaestros.bin
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>��\u0000\u0005sr\u0000\u0011java.util.HashMap\u0005\u0007���\u0016`�\u0003\u0000\u0002F\u0000\nloadFactorI\u0000\tthresholdxp?@\u0000\u0000\u0000\u0000\u0000\fw\b\u0000\u0000\u0000\u0010\u0000\u0000\u0000\u0003t\u0000\u0006Masterq\u0000~\u0000\u0002t\u0000\u0000t\u0000\u0000t\u0000\u0005Admint\u0000\u0005Adminx
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Archivos_Bin/dataMaestros.bin b/src/Archivos_Bin/dataMaestros.bin
+--- a/src/Archivos_Bin/dataMaestros.bin	(revision 7ad151ddc612cc30a9b9cb95549044dc259dc272)
++++ b/src/Archivos_Bin/dataMaestros.bin	(date 1686834347244)
+@@ -1,2 +1,2 @@
+ �� sr java.util.HashMap���`� F 
+-loadFactorI 	thresholdxp?@     w      t Masterq ~ t  t  t Admint Adminx
+\ No newline at end of file
++loadFactorI 	thresholdxp?@     w      t Masterq ~ t  t  t Dt Dt Admint Adminx
+\ No newline at end of file
