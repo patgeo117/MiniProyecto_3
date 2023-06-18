@@ -304,13 +304,13 @@ public class InBiblioteca extends JFrame implements ActionListener {
         if (table.getSelectedRow() >= 0) {
             int indexRow = table.getSelectedRow(); // Obtengo la fila seleccionada
             String estado = (String) model.getValueAt(indexRow, 2); // obtengo el valor de la posición deseada
-            if (Objects.equals(estado, "true")) {
+            //if (Objects.equals(estado, "true")) {
                 model.removeRow(indexRow);
                 model.fireTableDataChanged(); // Actualiza la tabla
                 manejoArchivo.setObjeto(DatosTabla()); // Actualiza el .bin
-            } else {
-                JOptionPane.showMessageDialog(null, "El libro se encuentra prestado");
-            }
+            //} else {
+                //JOptionPane.showMessageDialog(null, "El libro se encuentra prestado");
+           // }
         } else {
             JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila en la tabla.");
         }

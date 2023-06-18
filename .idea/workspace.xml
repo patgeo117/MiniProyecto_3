@@ -4,31 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="UsersCrar">
+    <list default="true" id="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" name="Changes" comment="Users">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_06_2023_4_25_p__m___Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_06_2023_4_25_p_ m__[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_06_2023_4_26_p__m___Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_06_2023_4_26_p_ m__[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_06_2023_11_27_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_06_2023_11_27_p__m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/Libros.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Archivos_Bin/Libros.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Archivos_Bin/dataCustomers.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/Archivos_Bin/dataCustomers.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customers/Clientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customers/Clientes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PersistenciaDatos/Prestamo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main/Principal.java" afterDir="false" />
     </list>
-    <list id="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" name="Changes by gpati" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/Bibliotecario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/Employees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/Employees.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/SerizalizaDeseralizaUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/SerizalizaDeseralizaUs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bibliotecarios/UsuarioMaestro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customers/ArchivoCustomers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customers/ArchivoCustomers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customers/Clientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customers/Clientes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Filtros/filtro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Filtros/filtro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearLib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InCrearUs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/InDeleteUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InDeleteUs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/InEstadoLibros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InEstadoLibros.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaz/InLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaz/InLogin.java" afterDir="false" />
-    </list>
-    <list id="0a5985e6-772f-4ab5-9bc7-7afe290d5433" name="Changes by johan" comment="FINAl" />
+    <list id="7af130a7-0ef9-4f3a-97d5-fea73179c93c" name="Changes by johan" comment="" />
     <list id="ecc96d05-5993-44b6-bd22-180bbb27c80c" name="JLabel" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,63 +34,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/Interfaz_3.java" root0="SKIP_INSPECTION" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/Interfaz/InCrearUs.java">
-      <ranges>
-        <range start1="24" end1="25" start2="24" end2="24" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="100" end1="101" start2="99" end2="100" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="140" end1="141" start2="139" end2="140" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="166" end1="167" start2="165" end2="166" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="190" end1="191" start2="189" end2="189" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="225" end1="227" start2="223" end2="223" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="239" end1="240" start2="235" end2="235" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Interfaz/InBiblioteca.java">
-      <ranges>
-        <range start1="2" end1="3" start2="2" end2="2" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="5" end1="6" start2="4" end2="4" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="18" end1="23" start2="16" end2="18" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="28" end1="28" start2="23" end2="24" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="30" end1="30" start2="26" end2="27" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="38" end1="39" start2="35" end2="35" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="40" end1="40" start2="36" end2="37" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="53" end1="53" start2="50" end2="51" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="67" end1="70" start2="65" end2="65" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="72" end1="75" start2="67" end2="67" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="109" end1="109" start2="101" end2="102" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="134" end1="136" start2="127" end2="129" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="159" end1="161" start2="152" end2="154" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="189" end1="209" start2="182" end2="184" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="280" end1="281" start2="255" end2="255" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="288" end1="290" start2="262" end2="263" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="293" end1="294" start2="266" end2="267" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="301" end1="301" start2="274" end2="275" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="304" end1="305" start2="278" end2="279" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="313" end1="315" start2="287" end2="287" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="316" end1="318" start2="288" end2="288" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="320" end1="321" start2="290" end2="290" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="331" end1="332" start2="300" end2="300" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="360" end1="373" start2="328" end2="337" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="374" end1="375" start2="338" end2="338" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="376" end1="379" start2="339" end2="348" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="380" end1="381" start2="349" end2="351" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="383" end1="386" start2="353" end2="354" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Customers/Clientes.java">
-      <ranges>
-        <range start1="9" end1="9" start2="9" end2="10" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="15" end1="15" start2="16" end2="18" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="50" end1="50" start2="53" end2="54" changelist="68a3ea94-dd91-4d82-9c6b-60d44622c8bc" />
-        <range start1="59" end1="61" start2="63" end2="64" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="62" end1="63" start2="65" end2="66" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="66" end1="67" start2="69" end2="69" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="71" end1="71" start2="73" end2="78" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-        <range start1="74" end1="75" start2="81" end2="84" changelist="ed344a7c-e6ca-4294-80ac-476dcbc32eb3" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -247,8 +177,18 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="730a5b7c-eb6a-4c4e-9375-111a1086aed0" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="730a5b7c-eb6a-4c4e-9375-111a1086aed0">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -286,15 +226,5 @@
     <MESSAGE value="FINAl" />
     <MESSAGE value="Users" />
     <option name="LAST_COMMIT_MESSAGE" value="Users" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.RuntimeException" package="java.lang" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
